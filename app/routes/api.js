@@ -8,7 +8,7 @@ var User = require("../models/userModel")
 /**
  * This is used to handle the signup user api call
  * @param  {[string]} email [email is fetched using .query]
- * @param  {[string]} password [Password is fetched using .query]                                                                                          res.json({success: true,               token: 'JWT '               +       token});                            } else {          res.send({success:                      false,   msg:  'Authentication failed. Wrong password.'});                  }             });    }  }); [description]
+ * @param  {[string]} password [Password is fetched using .query]              
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
@@ -36,7 +36,7 @@ router.post('/signup', function(req, res) {
 /**
  * This is used to handle the authenticate api call
  * @param  {[string]} email [email is fetched using .query]
- * @param  {[string]} password [Password is fetched using .query]                                                                                      res.json({success: true,               token: 'JWT '               +       token});                            } else {          res.send({success:                      false,   msg:  'Authentication failed. Wrong password.'});                  }             });    }  }); [description]
+ * @param  {[string]} password [Password is fetched using .query]   
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
@@ -68,7 +68,7 @@ router.post('/authenticate', function(req, res) {
 /**
  * This is a dummy function to verify the jwt key
  * grant access to user
- * @param  {[string]} jwt header [contains the jwt header]                                                                                    res.json({success: true,               token: 'JWT '               +       token});                            } else {          res.send({success:                      false,   msg:  'Authentication failed. Wrong password.'});                  }             });    }  }); [description]
+ * @param  {[string]} jwt header [contains the jwt header]       
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
