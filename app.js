@@ -4,9 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var routes = require('./app/routes/index');
+var api = require('./app/routes/api');
+//db
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+//auth
+var passport = require("passport");
+//db config
+var config = require("./config/database");
+var mongoose = require('mongoose');
+mongoose.connect(config.database);
+var User = require("./app/models/userModel");
 
 var app = express();
 
@@ -22,13 +30,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Use the passport package
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
-app.use('/', routes);
-app.use('/users', users);
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
-
+app.use('/', routes);
+app.use('/api', api);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
