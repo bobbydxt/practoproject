@@ -37,8 +37,8 @@ require('./config/passport')(passport);
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
-app.use('/', routes);
-app.use('/api', api);
+app.use('/api',api);
+app.use('/*', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -53,10 +53,8 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    res.json({error: true,message: err.message,err: err});
+  
   });
 }
 
@@ -64,10 +62,8 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.json({error: true,message: err.message,err: err});
+  
 });
 
 

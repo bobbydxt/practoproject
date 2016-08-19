@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var apirouter = express.Router();
 var jwt = require('jsonwebtoken');
 var config = require("../../config/database");
 var passport = require("passport");
@@ -12,7 +12,7 @@ var User = require("../models/userModel")
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
-router.post('/signup', function(req, res) {
+apirouter.post('/signup', function(req, res) {
 
  if (!req.query.email || !req.query.password) {
     res.json({success: false, msg: 'Please pass name and password.'});
@@ -40,7 +40,7 @@ router.post('/signup', function(req, res) {
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
-router.post('/authenticate', function(req, res) {
+apirouter.post('/authenticate', function(req, res) {
   User.findOne({
     email: req.query.email
   }, function(err, user) {
@@ -72,7 +72,7 @@ router.post('/authenticate', function(req, res) {
  * @return {[bool]} [if the response was sent or error was thrown was]
  * @author Bobby Dixit
  */
-router.get('/user', passport.authenticate('jwt', { session: false}), function(req, res) {
+apirouter.get('/user', passport.authenticate('jwt', { session: false}), function(req, res) {
   var token = getToken(req.headers);
   if (token) {
     var decoded = jwt.verify(token, config.secret);
@@ -91,6 +91,19 @@ router.get('/user', passport.authenticate('jwt', { session: false}), function(re
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
 });
+/**
+ * This function tells if the api call is not defined
+ * it specifies it is invalid
+ * @return {[res is sent]}      [sends success as false and 
+ *                               err message associated with it]
+ * @author Bobby Dixit
+ */
+apirouter.all('/*', function(req, res) {
+
+    
+ return res.json( { success: false, msg: 'You query is a invalid api query' });
+});
+
 
 /**
  * [getToken this functions returns the token]
@@ -115,4 +128,4 @@ getToken = function (headers) {
 
 
 
-module.exports = router;
+module.exports = apirouter;
