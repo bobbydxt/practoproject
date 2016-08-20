@@ -4,17 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./app/routes/index');
-var api = require('./app/routes/api');
+var routes = require('./server/routes/index');
+var api = require('./server/routes/api');
 //db
 
 //auth
 var passport = require("passport");
 //db config
-var config = require("./config/database");
+var config = require("./server/config/database");
 var mongoose = require('mongoose');
 mongoose.connect(config.database);
-var User = require("./app/models/userModel");
+var User = require("./server/models/userModel");
 
 var app = express();
 
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Use the passport package
 app.use(passport.initialize());
-require('./config/passport')(passport);
+require('./server/config/passport')(passport);
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
