@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
+var userApi= require('./server/routes/userApi');
 var routes = require('./server/routes/index');
-var api = require('./server/routes/api');
 //db
 
 //auth
@@ -37,7 +38,8 @@ require('./server/config/passport')(passport);
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
-app.use('/api',api);
+
+app.use('/api/user/', userApi);
 app.use('/*', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
