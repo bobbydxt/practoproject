@@ -7,4 +7,6 @@ before_install:
 language: node_js
 node_js:
   - 4.4.7
+after_success:
+  - bower install angular
 

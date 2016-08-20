@@ -30,6 +30,8 @@ build/Release
 node_modules
 jspm_packages
 src/js/angular
+bower_components
+
 
 # Optional npm cache directory
 .npm
