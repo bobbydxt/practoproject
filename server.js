@@ -5,8 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//routes
 var userApi= require('./server/routes/userApi');
+var expenseApi = require('./server/routes/expenseApi');
 var routes = require('./server/routes/index');
+
 //db
 
 //auth
@@ -39,6 +42,8 @@ app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
+//routing
+app.use('/api/expense',expenseApi);
 app.use('/api/user/', userApi);
 app.use('/*', routes);
 // catch 404 and forward to error handler
