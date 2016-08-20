@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js'
-      'src/js/app/**/*.js',
+      'src/js/**/*.js',
       '/test/js/**/*.js'
     ],
 
