@@ -1,4 +1,4 @@
 module.exports = {
-  'secret': 'practo-project-secret',
+  'secret': 'practoproject',
   'database': 'mongodb://localhost:27017/practo-project'
 };

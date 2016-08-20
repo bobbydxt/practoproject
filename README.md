@@ -19,3 +19,11 @@ run npm app.js to start server
 Karma jasmie is used for testing
 
 For testing run: karma start
+
+### to use api and database
+For API we are using Json Web Token
+
+Sample setting file is provided at server/config/database sample.js
+
+create a file name database.js at the same location with your credentials
+
