@@ -45,6 +45,8 @@ app.listen(3000, function () {
 //routing
 app.use('/api/expense',expenseApi);
 app.use('/api/user/', userApi);
+app.use('/src/', express.static(__dirname + '/src'));
+app.use('/bower_components/', express.static(__dirname + '/bower_components'));
 app.use('/*', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
