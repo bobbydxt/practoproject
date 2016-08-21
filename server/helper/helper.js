@@ -28,13 +28,15 @@ helper.getToken = function (headers) {
  *                  checked
  * @return {Boolean} all fields are present or not
  */
-helper.hasParams = function (object,field){
-    var check=true;
-    field.forEach( function(element, index) {
-      if (!object.hasOwnProperty(element))
-      check=false;
-    });
-    return check;
+helper.validEmailPass = function (data,res){
+    if(!data.email||!data.password||!validator.isEmail(data.email))
+    {
+      this.sendjson(res,400,false, 
+      'Please pass valid email and password.');
+      return false;
+    }
+    else
+      return true;
 };
 
 /**
@@ -130,18 +132,15 @@ helper.validate = function(object,extra)
       var validation,temp;
       switch(element.property){
         case 'expenseType': 
-           validation = validator.isInt(object[element.property],{min: 1, max: 5});
         case 'mainCatagory': 
-            validation = validator.isInt(object[element.property],{min: 1, max: 10});
-            break;
         case 'subCatagory': 
             validation = validator.isInt(object[element.property],{min: 1, max: 10});
             break;
         case 'amount': 
-            validation = validator.isDecimal(object[element.property],{min: 1, max: 5});
+            validation = validator.isDecimal(object[element.property]);
             break;
         case 'ondate': 
-            validation = validator.isDate(object[element.property],{min: 1, max: 5});
+            validation = validator.isDate(object[element.property]);
             break;
         default:
             temp = {err: err,toreturn :toreturn};
@@ -184,7 +183,9 @@ helper.sendjson = function(res,status,success,message,extra)
   else
    return res.status(status).send({
           success: success,
-          msg: message,
+          msg: message
           });
 }
+
+
 module.exports = helper;

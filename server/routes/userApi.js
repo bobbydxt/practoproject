@@ -15,11 +15,7 @@ var config = require("../config/database");
  */
 apirouter.post('/signup', function(req, res) {
 
- if (!helper.hasParams(req.query,['email','password'])||
-  !validator.isEmail(req.query.email)) {
-    helper.sendjson(res,400,false, 
-      'Please pass valid email and password.');
-  } else {
+ if (helper.validEmailPass(req.query,res)){
     
     var newUser = new User({
       email: req.query.email,
@@ -28,7 +24,7 @@ apirouter.post('/signup', function(req, res) {
     // save the user
    newUser.save(function(err) {
       if (err) {
-        return helper.sendjsonerr(409,false, err.message);
+        return helper.sendjson(res,409,false, err.message);
       }
       return helper.sendjson(res,200,true, 
         'Successful created new user.');
@@ -45,11 +41,7 @@ apirouter.post('/signup', function(req, res) {
  * @author Bobby Dixit
  */
 apirouter.get('/authenticate', function(req, res) {
-if (!helper.hasParams(req.query,['email','password'])||
-  !validator.isEmail(req.query.email)) {
-    helper.sendjson(res,400,false, 
-     'Please pass valid email and password.');
-  } else {
+ if (helper.validEmailPass(req.query,res)){
     //check if email exists
   User.findOne({
     email: req.query.email
