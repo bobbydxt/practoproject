@@ -25,7 +25,7 @@ apirouter.post('/new', passport.authenticate('jwt', {
             } else {
                 
                 var result = helper.validate(req.query);
-                if (result.status != true) {
+                if (result.status !== true) {
                     helper.sendjson(res,400,false,result.err);
                 } else {
                         result.touse["users"]=auth.user._id;
@@ -74,7 +74,7 @@ apirouter.put('/update', passport.authenticate('jwt', {
                         result.touse["users"]=auth.user._id;
                     Expense.update({id: req.query.id},{$set:result.touse},
                       function(err) {
-                        if (err) {s
+                        if (err) {
                             return helper.sendjson(res,403,false,err.message);
                         }
                         return helper.sendjson(res,200,true,'Successful updated new Expense.',
