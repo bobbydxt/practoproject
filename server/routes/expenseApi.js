@@ -110,12 +110,12 @@ apirouter.delete('/delete', passport.authenticate('jwt', {
                     Expense.remove({
                       _id: req.query.id,
                       users: auth.user._id},
-                      function(err) {
-                        if (err) {
-                            return helper.sendjson(res,409,false,err.message);
+                      function(error) {
+                        if (error) {
+                            return helper.sendjson(res,409,false,error.message);
                         }
                         return helper.sendjson(res,200,true,'Successful deleted Expense.',
-                            {name:'id', data:auth.user._id });
+                            {name:'deleted_id', data:auth.user._id });
                     });
 
                 }
@@ -158,7 +158,7 @@ apirouter.get('/bymonth', passport.authenticate('jwt', {
                         if (err) {
                             return helper.sendjson(res,403,false,err.message);
                         }
-                        return helper.sendjson(res,200,true,'Successful updated new Expense.',
+                        return helper.sendjson(res,200,true,'Successful searched Expense.',
                             {name:'data' ,  data:expense });
                     });
                 }
