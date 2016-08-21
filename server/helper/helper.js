@@ -130,23 +130,14 @@ helper.validate = function(object,extra)
     }
     else if (object.hasOwnProperty(element.property)) {
       var validation,temp;
-      switch(element.property){
-        case 'expenseType': 
-        case 'mainCatagory': 
-        case 'subCatagory': 
-            validation = validator.isInt(object[element.property],{min: 1, max: 10});
-            break;
-        case 'amount': 
-            validation = validator.isDecimal(object[element.property]);
-            break;
-        case 'ondate': 
-            validation = validator.isDate(object[element.property]);
-            break;
-        default:
-            temp = {err: err,toreturn :toreturn};
-            break;
-
-      }
+       var switcher = {
+        'expenseType': validator.isInt(object[element.property],{min: 1, max: 5}),
+        'mainCatagory': validator.isInt(object[element.property],{min: 1, max: 10}),
+        'subCatagory': validator.isInt(object[element.property],{min: 1, max: 10}),
+        'amount': validator.isDecimal(object[element.property]),
+        'ondate': validator.isDate(object[element.property])
+       };
+      validation = switcher[element.property];
       temp = present.subvalidator(validation,element.property,object[element.property],toreturn,err);
       err = temp.err;
       toreturn = temp.toreturn;
