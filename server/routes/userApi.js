@@ -17,8 +17,8 @@ apirouter.post('/signup', function(req, res) {
 
  if (!helper.hasParams(req.query,['email','password'])||
   !validator.isEmail(req.query.email)) {
-    res.status(400).send({success: false, msg: 
-      'Please pass valid email and password.'});
+    helper.sendjson(res,400,false, 
+      'Please pass valid email and password.');
   } else {
     
     var newUser = new User({
@@ -28,11 +28,10 @@ apirouter.post('/signup', function(req, res) {
     // save the user
    newUser.save(function(err) {
       if (err) {
-        return res.status(409).send({success: false,
-         msg: err.message});
+        return helper.sendjsonerr(409,false, err.message);
       }
-      return res.status(200).send({success: true, 
-        msg: 'Successful created new user.'});
+      return helper.sendjson(res,200,true, 
+        'Successful created new user.');
     });
 
   }
@@ -48,8 +47,8 @@ apirouter.post('/signup', function(req, res) {
 apirouter.get('/authenticate', function(req, res) {
 if (!helper.hasParams(req.query,['email','password'])||
   !validator.isEmail(req.query.email)) {
-    res.status(400).send({success: false, 
-      msg: 'Please pass valid email and password.'});
+    helper.sendjson(res,400,false, 
+     'Please pass valid email and password.');
   } else {
     //check if email exists
   User.findOne({
@@ -58,8 +57,8 @@ if (!helper.hasParams(req.query,['email','password'])||
     if (err) throw err;
  
     if (!user) {
-      res.status(400).send({success: false, 
-        msg: 'Authentication failed. User not found.'});
+      helper.sendjson(res,400,false,
+        'Authentication failed. User not found.');
     } else {
       // check if password matches
       user.comparePassword(req.query.password, function (err, isMatch) {
@@ -68,10 +67,11 @@ if (!helper.hasParams(req.query,['email','password'])||
           var token = jwt.sign({ user }, 
             config.secret);
           // return the information including token as JSON
-          res.status(200).send({success: true, token: 'JWT ' + token});
+          helper.sendjson(res,200,true, "token created successfully",
+           {name:token, data: 'JWT ' + token});
         } else {
-          res.status(403).send({success: false, 
-            msg: 'Authentication failed. Wrong password.'});
+          helper.sendjson(res,403,false,
+            'Authentication failed. Wrong password.');
         }
       });
     }
@@ -90,15 +90,14 @@ apirouter.get('/user', passport.authenticate('jwt', { session: false}),
  function(req, res) {
   helper.verifyToken(req.headers,function(auth)
     {
-       if(auth.success==false)
+       if(auth.success===false)
       {
-          return res.send({success: false, 
-            msg: auth.msg});
+          return helper.sendjson(res,403,false, auth.msg);
       }
       else
       {
-            return res.status(200).send({success: true, 
-            msg:  auth.user.email });
+            return helper.sendjson(res,200, true, 
+              auth.user.email );
       }
 
 });
@@ -113,8 +112,8 @@ apirouter.get('/user', passport.authenticate('jwt', { session: false}),
  * @author Bobby Dixit
  */
 apirouter.all('/*', function(req, res) {
-   return res.status(404).send({success: false
- , msg: 'Invalid Api Request for User'});
+   return helper.sendjson(res,404, false,
+    'Invalid Api Request for User');
 });
 
 

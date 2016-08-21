@@ -69,6 +69,26 @@ helper.verifyToken = function(header,callback)
            msg: 'No token provided' };
   }
 }
+
+/**
+ * This is used to reduce the clycometric complexity of validate function
+ * @param  {bool} validation sends in the validation result
+ * @param  {string} name keeps in the name of the field 
+ * @param  {object} data contains the data
+ * @param  {toreturn} contains the array of valid datas
+ * @param {[err]} contains the array of errors occoured
+ * @return {array} containing toreturn array and error array
+ * @author [Bobby Dixit]
+ */
+helper.subvalidator = function(validation,name,data,toreturn,err) {
+  if(!validation)
+  err.push("You value for "+ name+ "is invalid");
+  else
+  toreturn[name]= data;
+  return {toreturn: toreturn, err: err};
+
+}
+
 /**
  * checks if expense fields are valid or not
  * @param  {object} object over which validation is to be done
@@ -81,6 +101,7 @@ helper.verifyToken = function(header,callback)
  */
 helper.validate = function(object,extra)
 {
+  var present=this;
   var field = [{
                     property: 'expenseType',
                     type: 'cumpulsory'
@@ -101,52 +122,69 @@ helper.validate = function(object,extra)
   var err=[];
   field.forEach( function(element, index) {
      if (!object.hasOwnProperty(element.property)&&
-      element.type=="cumpulsory")
+      element.type==="cumpulsory")
      {
       err.push("You need to have: " + element.property);
     }
     else if (object.hasOwnProperty(element.property)) {
-
+      var validation,temp;
       switch(element.property){
         case 'expenseType': 
-            if(!validator.isInt(object[element.property],{min: 1, max: 5}))
-              err.push("You value for "+ element.property+ "is invalid");
-            else
-              toreturn[element.property]= object[element.property];
-            break;
+           validation = validator.isInt(object[element.property],{min: 1, max: 5});
         case 'mainCatagory': 
-            if(!validator.isInt(object[element.property],{min: 1, max: 10}))
-              err.push("You value for "+ element.property+ "is invalid");
-            else
-              toreturn[element.property]= object[element.property];
+            validation = validator.isInt(object[element.property],{min: 1, max: 10});
             break;
         case 'subCatagory': 
-            if(!validator.isInt(object[element.property],{min: 1, max: 10}))
-              err.push("You value for "+ element.property+ "is invalid");
-            else
-              toreturn[element.property]= object[element.property];
+            validation = validator.isInt(object[element.property],{min: 1, max: 10});
             break;
         case 'amount': 
-            if(!validator.isDecimal(object[element.property],{min: 1, max: 5}))
-              err.push("You value for "+ element.property+ "is invalid");
-            else
-              toreturn[element.property]= object[element.property];
+            validation = validator.isDecimal(object[element.property],{min: 1, max: 5});
             break;
         case 'ondate': 
-            if(!validator.isDate(object[element.property],{min: 1, max: 5}))
-              err.push("You value for "+ element.property+ "is invalid");
-            else
-              toreturn[element.property]= object[element.property];
+            validation = validator.isDate(object[element.property],{min: 1, max: 5});
+            break;
+        default:
+            temp = {err: err,toreturn :toreturn};
             break;
 
       }
+      temp = present.subvalidator(validation,element.property,object[element.property],toreturn,err);
+      err = temp.err;
+      toreturn = temp.toreturn;
     
     }
   });
-  if(err.length==0)
+  if(err.length===0)
     return {status: true,touse: toreturn};
   else 
     return {status: false,err: err};
 }
 
+
+/**
+ * used to generate http response
+ * @param  {object} res res express object
+ * @param  {number} status numeric http status
+ * @param  {bool} status sends if request wsa
+ * @param  {string} message  message of the request 
+ * @param  {object} extra  if any extra info is to be sent 
+ * @return {bool} if operation was successful or not
+ */
+helper.sendjson = function(res,status,success,message,extra)
+{
+  
+  if(extra)
+  {
+    return res.status(status).send({
+          success: success,
+          msg: message,
+          data: extra.data
+          });
+  }
+  else
+   return res.status(status).send({
+          success: success,
+          msg: message,
+          });
+}
 module.exports = helper;

@@ -20,19 +20,13 @@ apirouter.post('/new', passport.authenticate('jwt', {
     }),
     function(req, res) {
         helper.verifyToken(req.headers, function(auth) {
-            if (auth.success == false) {
-                return res.send({
-                    success: false,
-                    msg: auth.msg
-                });
+            if (auth.success === false) {
+                return helper.sendjson(res,403,false,auth.msg);
             } else {
                 
                 var result = helper.validate(req.query);
                 if (result.status != true) {
-                    res.status(400).send({
-                        success: false,
-                        msg: result.err
-                    });
+                    helper.sendjson(res,400,false,result.err);
                 } else {
                         result.touse["users"]=auth.user._id;
                     var new_expense = new Expense(result.touse);
@@ -40,16 +34,10 @@ apirouter.post('/new', passport.authenticate('jwt', {
 
                     new_expense.save(function(err, expense) {
                         if (err) {
-                            return res.status(409).send({
-                                success: false,
-                                msg: err.message,data: new_expense
-                            });
+                            return helper.sendjson(res,409,false,new_expense);
                         }
-                        return res.status(200).send({
-                            success: true,
-                            msg: 'Successful created new Expense.',
-                            id: expense.id
-                        });
+                        return helper.sendjson(res,200,true, 'Successful created new Expense.',
+                            {name:'id', data:expense.id});
                     });
 
                 }
@@ -74,35 +62,23 @@ apirouter.put('/update', passport.authenticate('jwt', {
     }),
     function(req, res) {
         helper.verifyToken(req.headers, function(auth) {
-            if (auth.success == false) {
-                return res.send({
-                    success: false,
-                    msg: auth.msg
-                });
+            if (auth.success === false) {
+                return helper.sendjson(res,403,false,auth.msg);
             } else {
               var result = helper.validate(req.query);
-                if (result.status==false||!req.query.id) {
-                    res.status(400).send({
-                        success: false,
-                        msg: "You need to enter id"
-                    });
+                if (result.status===false||!req.query.id) {
+                    helper.sendjson(res,400,false,"You need to enter id");
                 } else {
 
                     
                         result.touse["users"]=auth.user._id;
                     Expense.update({id: req.query.id},{$set:result.touse},
                       function(err) {
-                        if (err) {
-                            return res.status(403).send({
-                                success: false,
-                                msg: err.message
-                            });
+                        if (err) {s
+                            return helper.sendjson(res,403,false,err.message);
                         }
-                        return res.status(200).send({
-                            success: true,
-                            msg: 'Successful updated new Expense.',
-                            id: req.query.id
-                        });
+                        return helper.sendjson(res,200,true,'Successful updated new Expense.',
+                            {name:'id', data:req.query.id });
                     });
                 }
             }
@@ -125,33 +101,21 @@ apirouter.delete('/delete', passport.authenticate('jwt', {
     }),
     function(req, res) {
         helper.verifyToken(req.headers, function(auth) {
-            if (auth.success == false) {
-                return res.send({
-                    success: false,
-                    msg: auth.msg
-                });
+            if (auth.success === false) {
+                return helper.sendjson(res,403,false,auth.msg);
             } else {
                 if (!req.query.id) {
-                    res.status(400).send({
-                        success: false,
-                        msg: ' Id is cumpulsory for delete'
-                    });
+                    helper.sendjson(res,403, false,' Id is cumpulsory for delete');
                 } else {
                     Expense.remove({
                       _id: req.query.id,
                       users: auth.user._id},
                       function(err) {
                         if (err) {
-                            return res.status(409).send({
-                                success: false,
-                                msg: err.message,data: new_expense
-                            });
+                            return helper.sendjson(res,409,false,err.message);
                         }
-                        return res.status(200).send({
-                            success: true,
-                            msg: 'Successful deleted Expense.',
-                            id: auth.user._id
-                        });
+                        return helper.sendjson(res,200,true,'Successful deleted Expense.',
+                            {name:'id', data:auth.user._id });
                     });
 
                 }
@@ -177,19 +141,13 @@ apirouter.get('/bymonth', passport.authenticate('jwt', {
     }),
     function(req, res) {
         helper.verifyToken(req.headers, function(auth) {
-            if (auth.success == false) {
-                return res.send({
-                    success: false,
-                    msg: auth.msg
-                });
+            if (auth.success === false) {
+                return helper.sendjson(res,403, false, auth.msg);
             } else {
                 if (!req.query.month||!req.query.year||
                     !validator.isInt(req.query.month)||
                     !validator.isInt(req.query.year)) {
-                    res.status(400).send({
-                        success: false,
-                        msg: "You need to enter valid year and month"
-                    });
+                   helper.sendjson(res,400,false, "You need to enter valid year and month");
                 } else {
 
                     
@@ -198,16 +156,10 @@ apirouter.get('/bymonth', passport.authenticate('jwt', {
                                   year: req.query.year},
                       function(err,expense) {
                         if (err) {
-                            return res.status(403).send({
-                                success: false,
-                                msg: err.message
-                            });
+                            return helper.sendjson(res,403,false,err.message);
                         }
-                        return res.status(200).send({
-                            success: true,
-                            msg: 'Successful updated new Expense.',
-                            data: expense
-                        });
+                        return helper.sendjson(res,200,true,'Successful updated new Expense.',
+                            {name:'data' ,  data:expense });
                     });
                 }
             }
@@ -225,8 +177,8 @@ apirouter.get('/bymonth', passport.authenticate('jwt', {
  * @author Bobby Dixit
  */
 apirouter.all('/*', function(req, res) {
-   return res.status(404).send({success: false
- , msg: 'Invalid Api Request for Expense'});
+   return helper.sendjson(res,404,false,
+    'Invalid Api Request for Expense');
 });
 
 
