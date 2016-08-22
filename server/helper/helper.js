@@ -67,8 +67,8 @@ helper.verifyToken = function(header,callback)
         }
     });
   } else {
-    return {success: false,status: 400,
-           msg: 'No token provided' };
+    return callback({success: false,status: 400,
+           msg: 'No token provided' });
   }
 }
 

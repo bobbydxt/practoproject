@@ -84,7 +84,7 @@ apirouter.get('/user', passport.authenticate('jwt', { session: false}),
     {
        if(auth.success===false)
       {
-          return helper.sendjson(res,403,false, auth.msg);
+          return helper.sendjson(res,auth.status,false, auth.msg);
       }
       else
       {
