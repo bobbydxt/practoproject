@@ -1,6 +1,4 @@
-{<img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/gpa.svg" />}[https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/feed]
-{<img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/coverage.svg" />}[https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/coverage]
-{<img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/issue_count.svg" />}[https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/feed]
+
 #Expense Manager
 
 A website developed over node using express server with a RESTful API Backend and a Angular.js Frontend
