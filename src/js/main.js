@@ -1,5 +1,6 @@
-var app=angular.module('expenseapp',  ['ngRoute'])
-			    .config(['$routeProvider',function($routeProvider) {
+var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule']);
+			    
+app.config(['$routeProvider',function($routeProvider) {
 			    	$routeProvider
 			    	.when('/sign_in',{
 			    		templateUrl : 'views/partials/sign_in.html',
@@ -12,9 +13,6 @@ var app=angular.module('expenseapp',  ['ngRoute'])
 			    	.otherwise({ 
 			    		templateUrl : 'views/partials/home.html',
 			    		controller : 'mainController'
+			    		
 					 });
 			    }]);
-	app.controller('mainController', ['$scope', function($scope){
-		 $scope.message = 'random message';
-	}]);
-	

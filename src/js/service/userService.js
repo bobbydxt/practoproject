@@ -2,22 +2,48 @@
 	 function($http){
 		var userService={};
 		/**
-		 * @param  {string}	email for !expr
+		 * @param  {string}	email for login
 		 * @param  {string}	password for login
+		 * @param {object} callback 
 		 * @return {data} response based on success or faileur
 		 * @author [Bobby Dixit]
 		 */
 		userService.loginUser = function(email,password,callback)
 		{
-				$http({url: '/api/user/authenticate',
-						  method: "GET",
-						  params: {email: email, password: password},
+				userHttpreqHandler('api/user/authenticate','GET',{email: email, password: password},
+					callback);
+		}
+		/**
+		 * @param  {string}	email for !signup
+		 * @param  {string}	password for signup
+		 * @param {object} callback 
+		 * @return {data} response based on success or faileur
+		 * @author [Bobby Dixit]
+		 */
+		userService.signupUser = function(email,password,callback)
+		{
+				userHttpreqHandler('api/user/signup','POST',{email: email, password: password},callback);
+		}
+		/**
+		 * http handler
+		 * @param  {url} url to use
+		 * @param  {method} method to use
+		 * @param  {param} parameter to use
+		 * @param  {callback}
+		 * @author [Bobby Dixit]
+		 */
+		function userHttpreqHandler(url,method,param,callback)
+		{
+				$http({url: url,
+						  method: method,
+						  params: param,
 						  timeout:5000
-						}).success(function(resp){
-							callback(handleSuccess(resp));
+						}).success(function(res,status){
+							callback(handleNew(res,status,true));
+
 						})
 						  .error(function (err,status){
-						  	callback(handleError(err,status));
+						  	callback(handleNew(err,status,false));
 						  });
 		}
 		/**
@@ -27,34 +53,17 @@
 		 */
 		userService.authenticateUser = function(token)
 		{
-			return $http({url: '/api/user/user',
-						  method: "GET",
-						  headers: {'Authorization': token},
-						  timeout:5000
-						}).then(handleSuccess,handleError);			
+			// here exta authentication can be done		
 		}
 		/**
-		 * @param  {string}	email email for !expr
-		 * @param  {string}	password for login
-		 * @return {data} response based on success or faileur
+		 * @param  {object} to display data
+		 * @param  {numeric} http status code
+		 * @param  {success} 
 		 * @author [Bobby Dixit]
 		 */
-		userService.signup = function(email,password)
+		handleNew = function(res,status,success)
 		{
-			return $http({url: '/api/user/user',
-						  method: "POST",
-						  params: {email: email, password: password},
-						  timeout:5000
-						}).then(handleSuccess,handleError);			
-		}
-
-		handleSuccess = function(res,status)
-		{
-			return {success:true,status: status,data: JSON.parse(res)};
-		}
-		handleError = function(error,status)
-		{
-			return {success: false,status: status,data: error};
+			return {success:success,status: status,data: res};
 		}
 		return userService;
 	}])

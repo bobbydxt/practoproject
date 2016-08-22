@@ -1,13 +1,24 @@
-	app.controller('signinController', function($scope,userFactory){
-		 $scope.email;
-		 $scope.password;
+/**
+ * @param  {scope} for local data handling
+ * @param  {userFactory} for all functional tasks
+ * @author [Bobby Dixit]
+ */
+	app.controller('signinController',
+		['$scope','userFactory', 
+		function($scope,userFactory){
+		 	//initialization
+		 	(function()
+		 	{
+		 		//only non logged in user
+		 		userFactory.routeNotLoggedIn();
+		 	})();
 		 $scope.login = function(userInfo) {
+
 		 	if($scope.form.$valid) {
-		 		userFactory.login(userInfo.email,userInfo.password,function(response){
-		 			console.log('the status is :'+ response.success + 'with message :' + response.message);
-		 		});
+		 		//login
+		 		userFactory.login(userInfo.email,userInfo.password);
     		} else {
       			console.log('Error : Invalid form pushed User');
     		}
 		 }
-	});
+	}]);

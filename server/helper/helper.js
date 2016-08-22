@@ -38,6 +38,41 @@ helper.validEmailPass = function (data,res){
     else
       return true;
 };
+/**
+ * This function is used to generate jwt token
+ * @param  {object} object that provides email and password
+ * @param  {[object]} res  triggers http response
+ * @author [Bobby Dixit]
+ */
+helper.tokenGenerator = function(object,res)
+{
+  User.findOne({
+    email: object.email
+  }, function(err, user) {
+    if (err) throw err;
+ 
+    if (!user) {
+      helper.sendjson(res,400,false,
+        'Authentication failed. User not found.');
+    } else {
+      // check if password matches
+      user.comparePassword(object.password, function (err, isMatch) {
+        if (isMatch && !err) {
+          var email=user.email;
+          // if user is found and password is right create a token
+          var token = jwt.sign({ email }, 
+            config.secret);
+          // return the information including token as JSON
+          helper.sendjson(res,200,true, "token created successfully",
+           {email: email, token: 'JWT ' + token});
+        } else {
+          helper.sendjson(res,403,false,
+            'Authentication failed. Wrong password.');
+        }
+      });
+    }
+  });
+}
 
 /**
  * this functions checks if jwt is valid or not 
@@ -168,7 +203,7 @@ helper.sendjson = function(res,status,success,message,extra)
     return res.status(status).send({
           success: success,
           msg: message,
-          data: extra.data
+          data: extra
           });
   }
   else

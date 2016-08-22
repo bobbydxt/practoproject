@@ -26,8 +26,11 @@ apirouter.post('/signup', function(req, res) {
       if (err) {
         return helper.sendjson(res,409,false, err.message);
       }
-      return helper.sendjson(res,200,true, 
-        'Successful created new user.');
+      else
+      {
+
+      return helper.tokenGenerator(req.query,res);
+    }
     });
 
   }
@@ -43,31 +46,7 @@ apirouter.post('/signup', function(req, res) {
 apirouter.get('/authenticate', function(req, res) {
  if (helper.validEmailPass(req.query,res)){
     //check if email exists
-  User.findOne({
-    email: req.query.email
-  }, function(err, user) {
-    if (err) throw err;
- 
-    if (!user) {
-      helper.sendjson(res,400,false,
-        'Authentication failed. User not found.');
-    } else {
-      // check if password matches
-      user.comparePassword(req.query.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          // if user is found and password is right create a token
-          var token = jwt.sign({ user }, 
-            config.secret);
-          // return the information including token as JSON
-          helper.sendjson(res,200,true, "token created successfully",
-           {name:token, data: 'JWT ' + token});
-        } else {
-          helper.sendjson(res,403,false,
-            'Authentication failed. Wrong password.');
-        }
-      });
-    }
-  });
+  helper.tokenGenerator(req.query,res);
 }
 });
 
