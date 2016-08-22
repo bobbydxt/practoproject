@@ -45,7 +45,7 @@
                 '200': 'token wasn\'t regurned',
                 '409': 'Email already exists'
             };
-            if (object.success == true && object.data.data.token && object.data.data.email) {
+            if (object.success === true && object.data.data.token && object.data.data.email) {
                             if(setCurrentUser(object.data.data.token,object.data.data.email))
                             {
                                 response = { success: true,
