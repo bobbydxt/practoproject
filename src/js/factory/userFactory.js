@@ -2,7 +2,8 @@
         function(localStorageService,userService,flashService,$location){
 	var userFactory = {};
 
-    var presentState = null;
+    presentState = getPresentState();
+
     /**
      * Login function
      * @param  {string} email 
@@ -68,10 +69,13 @@
  		setCurrentUser = function(token,email) {
 
                 //setting local sto
-                localStorageService.set({'token': token});
-                localStorageService.set({'email': email});
+                localStorageService.set('token', token);
+                localStorageService.set('email', email);
                 return true;
         }
+
+        getPresentState = function()
+
         /**
          * @return {bool} if successfully logged out
          * @author [Bobby Dixit]
