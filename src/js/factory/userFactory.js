@@ -1,4 +1,4 @@
-	app.factory('userFactory', ['localStorageService','userService','flashService','$location',
+	app.service('userFactory', ['localStorageService','userService','flashService','$location',
         function(localStorageService,userService,flashService,$location){
 	var userFactory = {};
 
@@ -30,7 +30,7 @@
                     postHttpHandler (object)
                  });
 
-        }
+        } 
     /**
      * Processes http data sent from login and signup methords
      * @param  {object} object contains the responce pushed 

@@ -4,7 +4,7 @@
 		function($scope,userFactory){
 		 	//initialization
 		 		//only non logged in user
-		 	//	userFactory.routeNotLoggedIn();
+		 		userFactory.routeNotLoggedIn();
 		 $scope.login = function(userInfo) {
 
 		 	callHandler(userInfo,userFactory.login);
