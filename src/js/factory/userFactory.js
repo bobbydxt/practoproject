@@ -74,8 +74,17 @@
                 return true;
         }
 
+        /**
+         * @return {if logged in it sends back the token and email
+         *          or returns false }
+         */ 
         getPresentState = function()
-
+        {
+            if(localStorageService.get('token')&&localstorage.get('email'))
+                return({token: localStorageService.get('token')})
+            else
+                return false;
+        }
         /**
          * @return {bool} if successfully logged out
          * @author [Bobby Dixit]
@@ -118,7 +127,7 @@
          */
         userFactory.loginCheck = function()
         {
-            if(localStorageService.get('token')&&localstorage.get('email'))
+            if()
                 return true;
             else
                 return false;
