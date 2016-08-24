@@ -8,62 +8,74 @@
                     $scope.filterListner = {};
                     $scope.filterObject = {};
                     $scope.expenseConstant = expenseConstant;
-
+                    createList(true);
+                    //console.log($scope.filterObject );
                     $scope.$watch('date', function(val) {
-                        createList();
+
                         if (val !== undefined) {
                             var pdate = val.split(',');
                             if (!isNaN(pdate[0]) && !isNaN(pdate[1])) {
                                 viewExpenseFactory.getMonthlyData(pdate, function(response) {
                                     $scope.presentStack = response;
-                                    console.log($scope.presentStack);
+                                    $scope.displayTransactions = {};
+                                    console.log($scope.filterObject);
+                                   monthChanged($scope.filterObject[1],'expense',{eid: 1});
+                                  //  monthChanged($scope.filterObject[2],'expense',{eid: 2});
                                 });
                             }
                         }
                     });
 
 
+
                     $scope.onexpenseTypeChange = function(value) {
-                        //this.$parent.mainCatagory
-                        console.log($scope);
-                        var eid, mid, sid, check;
+
+                        var eid, check;
                         eid = this.expenseType.id;
 
-                        mid = this.mainCatagory.id;
+                        this.filterObject[eid]['status'] = value;
+                        expenseAddToDisplay(eid,value)
+                        $scope.filterObject[eid] = {
+                                    status: value,
+                                    data: setMainCatagoryList(
+                                        $scope.expenseConstant[eid].data, value, eid)
+                                };
+                    }
 
+
+                    function expenseAddToDisplay(eid,value)
+                    {
+                        check = checkIfPresent(eid, $scope.presentStack);
+                        //console.log(value);
+                        addOthrToDisplay(check,value,true);
                     }
 
 
 
                     $scope.onmainCatagoryChange = function(value) {
 
-                        var eid, mid, sid, check;
+                        var eid, mid, check;
                         eid = this.$parent.expenseType.id;
                         mid = this.mainCatagory.id;
-                        check = checkIfPresent(mid, checkIfPresent(eid, this.presentStack));
+                        
+                        //console.log(value);
+
                         this.filterObject[eid]['data'][mid]['status'] = value;
-                        checkExpenseFullfilled(eid, mid, tocheck);
-                        if (checkSubFullfilled($scope.filterObject[eid]
-                                ['data']) === true) {
-                            this.filterObject[eid]['status'] = true;
-                            this.filterListner[eid] = true;
-                        }
-                        if (value === true && check !== false) {
-                            for (var data in check) {
-                                if ({}.hasOwnProperty.call(check, data)) {
-                                    this.displayTransactions[data] = check[data];
-                                }
-                            }
-                        } else {
-                            for (var data in check) {
-                                if ({}.hasOwnProperty.call(check, data)) {
-                                    delete this.displayTransactions[data];
-                                }
-                            }
-                        }
+                            mainAddToDisplay(eid,mid,value)
+                        var parent = checkSubFullfilled($scope.filterObject[eid]['data'])
+                            this.filterObject[eid]['data']['status'] = parent;
+                            this.filterListner[eid] = parent;
+                            //setting the sub catagories 
+                            this.filterObject[eid]['data'][mid]['subCatagory'] = setSubCatagoryList(
+                            this.expenseConstant[eid]['data'][mid]['subCatagory'], value, eid, mid)
                     }
 
-
+                    function mainAddToDisplay(eid,mid,value)
+                    {
+                        check = checkIfPresent(mid, checkIfPresent(eid, $scope.presentStack));
+                        
+                        addOthrToDisplay(check,value,false);
+                    }
 
                     $scope.onsubCatagoryChange = function(value) {
                         //console.log(this.$parent.mainCatagory);
@@ -75,23 +87,100 @@
                         sid = this.subCatagory.id;
                         // console.log(eid+mid+sid);
                         // console.log($scope.filterListner);
-                        check = checkIfPresent(sid, checkIfPresent(mid, checkIfPresent(eid, this.presentStack)));
-                        this.filterObject[eid]['data'][mid]['subCatagory'][sid]['status'] = value;
+                        
                         //console.log(value);
-                        if (checkSubFullfilled($scope.filterObject[eid]['data'][mid]['subCatagory']) === true) {
-                            this.filterObject[eid]['data'][mid]['status'] = true;
-                            this.filterListner[eid + ' ' + mid] = true;
+                        this.filterObject[eid]['data'][mid]['subCatagory'][sid]['status'] = value;
+                        subAddToDisplay(sid,eid,mid,value);
+                        var parent = checkSubFullfilled($scope.filterObject[eid]['data'][mid]['subCatagory'])
+                            this.filterObject[eid]['data'][mid]['status'] = parent;
+                            this.filterListner[eid + ' ' + mid] = parent;
+                    }
+
+                    function subAddToDisplay(sid,eid,mid,value)
+                    {
+                       check = checkIfPresent(sid, checkIfPresent(mid, checkIfPresent(eid, $scope.presentStack)));
+                        
+                        subDisplay(check,value);
+                        
+                    }
+
+
+
+                    function addOthrToDisplay(object,status,call)
+                    {
+                        if (object !== false) {
+                            console.log(object);
+                            for (var data in object) {
+                                console.log(data);
+                                if (object[data]) {
+                                    if(call===true)
+                                    addOthrToDisplay(object[data],status,false)
+                                    else
+                                    subDisplay(object[data],status)
+                                }
+                            }
+                        }                     
+                    }
+
+
+                    //function triggerLocalStorage(pdata,)
+
+                    function monthChanged(object,fieldname,data)
+                    {
+                        console.log(object);
+
+                        var pushDataHandler = {
+                            'expense': 'mid',
+                            'main': 'sid'
+                        };
+
+                        var dataSetObject = {
+                            'expense':  object['data'],
+                            'main': object['subCatagory'],
+                            'sub': false
+                        };
+
+                        var fieldNameHandler = {
+                            'expense': 'main',
+                            'main': 'sub'
+                        };
+                        var checkState = dataSetObject[fieldname];
+                        if(object.status===true)
+                        {
+                         var trueHandler = {
+                            'expense':  expenseAddToDisplay(data.eid,true),
+                            'main': mainAddToDisplay(data.eid,data.mid,true),
+                            'sub': subAddToDisplay(data.sid,data.eid,data.mid,true)
+                        };
+                           trueHandler[fieldname];
                         }
-                        if (value === true && check !== false) {
-                            for (var data in check) {
-                                if ({}.hasOwnProperty.call(check, data)) {
-                                    this.displayTransactions[data] = check[data];
+                        else if(checkState!==false)
+                        {
+                            for (var value in checkState) {
+                                if (checkState[value]) {
+                                    data[pushDataHandler[fieldname]] = value;
+                                    monthChanged(checkState[value],fieldNameHandler[fieldname],data)
+
+                                }
+                            }
+                        }
+                    
+                    }
+                    function subDisplay(object,status)
+                    {
+                        console.log(object);
+                        if (status === true && object !== false) {
+                            for (var data in object) {
+                                if (object[data]) {
+                                    console.log(object[data]);
+                                    $scope.displayTransactions[data] = object[data];
                                 }
                             }
                         } else {
-                            for (var data in check) {
-                                if ({}.hasOwnProperty.call(check, data)) {
-                                    delete this.displayTransactions[data];
+                            for (var data in object) {
+                                if (object[data]) {
+                                    delete $scope.displayTransactions[data];
+
                                 }
                             }
                         }
@@ -101,21 +190,24 @@
                         var check = true;
                         
                         for (var val in tocheck) {
+                            if (tocheck.hasOwnProperty(val)) {
                                 if (tocheck[val].status === false)
                                     check = false;
+                            }
+                        }
                             return check;
 
 
                         }
-                    }
+                    
 
                         function createList() {
                             //console.log($scope.expenseConstant);
                             for (var data in $scope.expenseConstant) {
-
-                                $scope.filterObject[$scope.expenseConstant[data].id] = {
-                                    status: false,
-                                    data: setMainCatagoryList($scope.expenseConstant[data].data, false, data)
+                                $scope.filterListner[data] = true;
+                                $scope.filterObject[data] = {
+                                    status: true,
+                                    data: setMainCatagoryList($scope.expenseConstant[data].data, true, data)
                                 };
                             }
                             console.log($scope.filterObject);
@@ -148,29 +240,8 @@
                         }
 
 
-                        function toggleSubCatagory(object, state) {
-                            if (state === true) {
-                                for (var insertData in object) {
-                                    $scope.displayTransactions[insertData] = check[insertData];
-                                }
-                            } else {
-                                for (var deleteData in object) {
-                                    delete $scope.displayTransactions[deleteData];
-                                }
-                            }
-                        }
 
-                        function toggleMainCatagory(object, state) {
-                            for (var newMain in object) {
-                                toggleSubCatagory(newMain, state);
-                            }
-                        }
 
-                        function toggleExpenseType(object, state) {
-                            for (var newtype in object) {
-                                toggleSubCatagory(newtype, state);
-                            }
-                        }
 
                         $scope.getDataDetails = function(object) {
                             var temp = {};

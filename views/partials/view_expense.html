@@ -18,7 +18,7 @@
 		<div class="" ng-repeat="expenseType in expenseConstant">
 		<input type="checkbox" name="expenseType.id" 
 		ng-model="filterListner[expenseType.id]" 
-		ng-change="onExpenseCatagoryChange(filterListner[expenseType.id])" 
+		ng-change="onexpenseTypeChange(filterListner[expenseType.id])" 
 		ng-value="expenseType" />
 		{{expenseType.name}}
 			<div class="" ng-repeat="mainCatagory in expenseType.data"
@@ -26,7 +26,7 @@
 			{{mainC = expenseType.id + ' ' + mainCatagory.id;""}}
 			<input type="checkbox" name="mainCatagory.id" 
 			ng-model="filterListner[mainC]" 
-			ng-change="onexpenseTypeChange(filterListner[mainC])" 
+			ng-change="onmainCatagoryChange(filterListner[mainC])" 
 			ng-value="mainCatagory" />
 			{{mainCatagory.name}}
 				<div class="" style="padding-left:10px"
