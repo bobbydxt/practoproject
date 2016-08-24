@@ -52,19 +52,7 @@
             //console.log(value);
                 checkMainFullfilled(eid,mid);
 
-            if(value===true&&check!==false)
-            {
-                   for(var data in check)
-                   {
-                     if ({}.hasOwnProperty.call(check, data)) {
-                    this.displayTransactions[data]=check[data];
-                   }
-               }
-            }
-            else
-            {
 
-            }
         }
 
 
@@ -83,11 +71,24 @@
                 this.filterObject[eid]['data'][mid]['subCatagory'][sid]['status']=value;
             //console.log(value);
                 checkMainFullfilled(eid,mid);
-
+                if(value===true&&check!==false)
+                {
                    for(var data in check)
                    {
+                     if ({}.hasOwnProperty.call(check, data)) {
                     this.displayTransactions[data]=check[data];
                    }
+                }
+               }
+               else
+               {
+                    for(var data in check)
+                   {
+                    if ({}.hasOwnProperty.call(check, data)) {
+                     delete this.displayTransactions[data];
+                 }
+                   }
+               }
         }
         
         function  checkMainFullfilled(eid,mid)
