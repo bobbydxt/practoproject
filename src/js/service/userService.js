@@ -8,9 +8,10 @@
 		 * @return {data} response based on success or faileur
 		 * @author [Bobby Dixit]
 		 */
-		userService.loginUser = function(email,password,callback)
+		userService.loginUser = function(userInfo,callback)
 		{
-				userHttpreqHandler('api/user/authenticate','GET',{email: email, password: password},
+				userHttpreqHandler('api/user/authenticate','GET',
+					{email: userInfo.email, password: userInfo.password},
 					callback);
 		}
 		/**
@@ -22,7 +23,8 @@
 		 */
 		userService.signupUser = function(email,password,callback)
 		{
-				userHttpreqHandler('api/user/signup','POST',{email: email, password: password},callback);
+				userHttpreqHandler('api/user/signup','POST',
+					{email: userInfo.email, password: userInfo.password},callback);
 		}
 		/**
 		 * http handler

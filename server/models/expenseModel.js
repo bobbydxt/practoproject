@@ -37,6 +37,10 @@ var ExpenseSchema = new Schema({
   users: [{
        type: Schema.Types.ObjectId,
         ref: 'User'
+  }],
+  remark: [{
+        type: String,
+        default: ''
   }]
 });
 /**

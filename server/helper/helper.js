@@ -58,13 +58,13 @@ helper.tokenGenerator = function(object,res)
       // check if password matches
       user.comparePassword(object.password, function (err, isMatch) {
         if (isMatch && !err) {
-          var email=user.email;
+          
           // if user is found and password is right create a token
-          var token = jwt.sign({ email }, 
+          var token = jwt.sign({ user }, 
             config.secret);
           // return the information including token as JSON
           helper.sendjson(res,200,true, "token created successfully",
-           {email: email, token: 'JWT ' + token});
+           {email: user.email, token: 'JWT ' + token});
         } else {
           helper.sendjson(res,403,false,
             'Authentication failed. Wrong password.');
@@ -91,7 +91,7 @@ helper.verifyToken = function(header,callback)
    var user = User.findOne({
       email: decoded.user.email
     },function(err,user) {
-        if (err) return  callback({success: false,status: 401,
+        if (err) return  callback({success: false,status: 403,
            msg: err.message});
         if (!user) {
           return callback({success: false,status: 403,
@@ -166,11 +166,12 @@ helper.validate = function(object,extra)
     else if (object.hasOwnProperty(element.property)) {
       var validation,temp;
        var switcher = {
-        'expenseType': validator.isInt(object[element.property],{min: 1, max: 5}),
-        'mainCatagory': validator.isInt(object[element.property],{min: 1, max: 10}),
-        'subCatagory': validator.isInt(object[element.property],{min: 1, max: 10}),
+        'expenseType': validator.isInt(object[element.property],{min: 1, max: 2}),
+        'mainCatagory': validator.isInt(object[element.property],{min: 0, max: 10}),
+        'subCatagory': validator.isInt(object[element.property],{min: 0, max: 10}),
         'amount': validator.isDecimal(object[element.property]),
-        'ondate': validator.isDate(object[element.property])
+        'ondate': validator.isDate(object[element.property]),
+        'remark': true
        };
       validation = switcher[element.property];
       temp = present.subvalidator(validation,element.property,object[element.property],toreturn,err);

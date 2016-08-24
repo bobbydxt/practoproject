@@ -1,25 +1,17 @@
 
 	app.controller('userController',
-		['$scope','userFactory', 
-		function($scope,userFactory){
+		['$scope','userFactory','helperService', 
+		function($scope,userFactory,helperService){
 		 	//initialization
 		 		//only non logged in user
 		 		userFactory.routeNotLoggedIn();
 		 $scope.login = function(userInfo) {
 
-		 	callHandler(userInfo,userFactory.login);
+		 	helperService.callHandler(userInfo,$scope.form.$valid,userFactory.login);
 		 }
 		 $scope.signUp = function(userInfo) {
 
-		 	callHandler(userInfo,userFactory.signup);
+		 	helperService.callHandler(userInfo,$scope.form.$valid,userFactory.signup);
 		 }
-		 function callHandler(userInfo,caller)
-		 {
-		 	if($scope.form.$valid) {	
-		 		//signup
-		 		caller(userInfo.email,userInfo.password);
-    		} else {
-      			console.log('Error : Invalid form pushed User');
-    		}
-		 }
+		 
 	}]);

@@ -1,9 +1,8 @@
-	app.service('userFactory', ['localStorageService','userService','flashService','$location',
+	app.factory('userFactory', ['localStorageService','userService','flashService','$location',
         function(localStorageService,userService,flashService,$location){
 	var userFactory = {};
 
-    presentState = getPresentState();
-
+    userFactory.presentState = false;
     /**
      * Login function
      * @param  {string} email 
@@ -12,8 +11,8 @@
      * @return {response containing status}
      * @author [Bobby Dixit]
      */        
-        userFactory.login = function(email, password) {
-                 userService.loginUser(email,password, function (object) {
+        userFactory.login = function(userInfo) {
+                 userService.loginUser(userInfo, function (object) {
                         postHttpHandler (object);
                     });
  
@@ -25,8 +24,8 @@
      * @return {response containing status}
      * @author [Bobby Dixit]
      */   
-        userFactory.signup = function(email, password) {
-                 userService.signupUser(email,password,function (object){
+        userFactory.signup = function(userInfo) {
+                 userService.signupUser(userInfo,function (object){
                     console.log(object);
                     postHttpHandler (object)
                  });
@@ -49,6 +48,7 @@
             if (object.success === true && object.data.data.token && object.data.data.email) {
                             if(setCurrentUser(object.data.data.token,object.data.data.email))
                             {
+                                console.log('here');
                                 response = { success: true,
                                     message: 'You are successfully logged in'};
                                     $location.path('/');
@@ -66,11 +66,13 @@
          *                false if token already exists
          * @author [Bobby Dixit]
          */
- 		setCurrentUser = function(token,email) {
+ 		function setCurrentUser(token,email) {
 
                 //setting local sto
+                console.log(token,email);
                 localStorageService.set('token', token);
                 localStorageService.set('email', email);
+                this.presentState={token: token};
                 return true;
         }
 
@@ -78,12 +80,24 @@
          * @return {if logged in it sends back the token and email
          *          or returns false }
          */ 
-        getPresentState = function()
+       userFactory.getPresentState = function()
         {
-            if(localStorageService.get('token')&&localstorage.get('email'))
-                return({token: localStorageService.get('token')})
+
+            if(this.presentState && this.presentState.token)
+            {
+                console.log(this.presentState);
+                return this.presentState;
+            }
+            else if(localStorageService.get('token')&&localStorageService.get('email'))
+                {
+                this.presentState={token: localStorageService.get('token')};
+                console.log(this.presentState+'no');
+                return this.presentState;
+                }
             else
+            {
                 return false;
+            }
         }
         /**
          * @return {bool} if successfully logged out
@@ -93,7 +107,10 @@
             //clearAll is used instead of remove
             //as we should remove expense history also
                 localStorageService.clearAll();
+                this.presentState = false;
+                $location.path("/");
                 return true;
+
         }
         /**
          * Route check for authenticated pages
@@ -101,7 +118,7 @@
          */
         userFactory.routeLoggedIn = function()
         {
-            if(!this.loginCheck)
+            if(!this.loginCheck())
             {
                 $location.path("/");
                 flashService.warning('You need to login to access this');
@@ -114,7 +131,7 @@
         userFactory.routeNotLoggedIn = function()
         {
 
-            if(this.loginCheck)
+            if(this.loginCheck())
             {
                 $location.path("/");
                 flashService.warning('You need to logout to access this');
@@ -127,11 +144,16 @@
          */
         userFactory.loginCheck = function()
         {
-            if()
+            //console.log(userFactory.getPresentState());
+            if(this.getPresentState())
                 return true;
             else
                 return false;
         }
+
+
+
+   userFactory.getPresentState();
         return userFactory;
  
 	}])

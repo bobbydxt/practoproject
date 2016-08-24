@@ -358,7 +358,7 @@
 						}
 					}},
 				'10': {'name': 'Investments',
-					'id': '1''0',
+					'id': '10',
 					'subCatagory':{
 						'1': {
 							'name':'Insurance',
