@@ -56,8 +56,10 @@
             {
                    for(var data in check)
                    {
+                     if ({}.hasOwnProperty.call(check, data)) {
                     this.displayTransactions[data]=check[data];
                    }
+               }
             }
             else
             {
@@ -81,17 +83,11 @@
                 this.filterObject[eid]['data'][mid]['subCatagory'][sid]['status']=value;
             //console.log(value);
                 checkMainFullfilled(eid,mid);
-            if(value===true&&check!==false)
-            {
+
                    for(var data in check)
                    {
                     this.displayTransactions[data]=check[data];
                    }
-            }
-            else
-            {
-
-            }
         }
         
         function  checkMainFullfilled(eid,mid)
@@ -101,6 +97,7 @@
 
             for(var val in tocheck)
             {
+                if ({}.hasOwnProperty.call(foo, key)) {
                 if(tocheck[val].status===false)
                     check = false;
             }
@@ -117,6 +114,7 @@
             //console.log($scope.expenseConstant);
             for (var data in $scope.expenseConstant)
             {
+
                 $scope.filterObject[$scope.expenseConstant[data].id] = {status: false, 
                     data: setMainCatagoryList($scope.expenseConstant[data].data,false,data)};           
             }
@@ -128,9 +126,11 @@
             var temp = {};
             for(var main in object)
             {
+                 if ({}.hasOwnProperty.call(check, data)) {
                 $scope.filterListner[expId +' '+ main] = status;
                 temp[object[main].id] = {status: status, 
                     subCatagory: setSubCatagoryList(object[main].subCatagory,status,expId,main)}
+                }
             }
             return temp;
 
