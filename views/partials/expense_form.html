@@ -38,6 +38,9 @@
             <label for="remark">remark</label>
             <input type="text" name="remark" id="remark" class="form-control" ng-model="userInfo.remark"  />
         </div>
+        <datepicker>
+        <input type="text" name="date" id="date" class="form-control" ng-model="userInfo.date"  />
+        </datepicker>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
             <a href="#/register" class="btn">Register</a>

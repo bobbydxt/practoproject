@@ -1,4 +1,5 @@
-	app.controller('expenseController', ['$scope','$location','userFactory','expenseFactory','expenseConstant', 'helperService',
+	app.controller('expenseController', ['$scope','$location','userFactory','expenseFactory',
+		'expenseConstant', 'helperService',
 		function($scope,$location,userFactory,expenseFactory,expenseConstant,helperService){
 
 		//only logged in user

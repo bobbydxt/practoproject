@@ -160,7 +160,7 @@ apirouter.get('/bymonth', passport.authenticate('jwt', {
                             return helper.sendjson(res,403,false,err.message);
                         }
                         return helper.sendjson(res,200,true,'Successful searched Expense.',
-                            {name:'data' ,  data:expense });
+                            {name:'data' ,  data: expense });
                     });
                 }
             }

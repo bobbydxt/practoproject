@@ -1,6 +1,7 @@
+
 	app.constant('expenseConstant', {
 
-			credit: {
+			'1': {
 			'id': '1',
 			'name': 'credit',
 			'data': {
@@ -139,7 +140,7 @@
 					}}
 				}
 			},
-				debit: {
+				'2': {
 					'id': '2',
 					'name': 'debit',
 					'data': {
@@ -380,4 +381,4 @@
 				}
 			}
 
-		})
+		}) 

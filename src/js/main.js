@@ -1,4 +1,4 @@
-var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule']);
+var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','720kb.datepicker']);
 			    
 	app.config(['$routeProvider',function($routeProvider) {
 			    	$routeProvider
@@ -17,6 +17,10 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule'])
 			    	.when('/expense_form',{
 			    		templateUrl : 'views/partials/expense_form.html',
 			    		controller : 'expenseController'
+			    	})
+			    	.when('/view_expense',{
+			    		templateUrl : 'views/partials/view_expense.html',
+			    		controller : 'viewExpenseController'
 			    	})
 			    	.otherwise({ 
 			    		templateUrl : 'views/partials/home.html',

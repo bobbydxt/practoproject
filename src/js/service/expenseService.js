@@ -5,7 +5,7 @@
 
 		expenseService.newExpense = function(params,callback)
 		{
-			console.log(params);
+			//console.log(params);
 
 			httpRequestHandler({
 								expenseType: params.expense.expenseCatagory.id,
@@ -17,34 +17,42 @@
 
 		}
 
-		function httpRequestHandler(params,url,method,callback)
+		expenseService.getMonthlyExpense = function(params,callback)
+		{
+			//console.log(params);
+			callback(
+				httpRequestHandler({month: parseInt(params[0]), year: parseInt(params[1])},
+					'/api/expense/bymonth','GET',callback))
+		}
+
+		function httpRequestHandler(params,url,method,tocall)
 		{
 			var auth=httpHeaderVerifier();
 			if(auth)
 			{
-				console.log($http.defaults.headers.common.Authorization);
+				//console.log($http.defaults.headers.common.Authorization);
 						$http({
 						  params: params,
 						  method: method,
 						  url: url,
 						  timeout:5000
 						}).success(function(res,status){
-							console.log(res);
-							callback(parseHttpResponse(status,true,res));
+							//console.log(res);
+							tocall(true,res.data.data);
 						})
 						  .error(function (err,status){
 						  	console.log(err);
 						  	if(status===403)
 						  	{
-						  		userFactory.logout;
+						  		userFactory.logout();
 						  	}
-						  	callback(parseHttpResponse(status,false,err));
+						  	tocall(parseHttpResponse(status,false,err.msg));
 						  });
 			}
 			else
 			{
-				callback(parseHttpResponse(status,false,err));
-				userFactory.logout;
+				tocall(parseHttpResponse(status,false,err));
+				userFactory.logout();
 			}
 		}
 
@@ -64,16 +72,9 @@
 		}
 
 
-		function parseHttpResponse(status,success,data)
+		function parseHttpResponse(status,success,msg)
 		{
-			if(data.data)
-			{
-				return {status: status,success: success, data: data.data, msg:data.msg}
-			}
-			else
-			{
-				return {status: status,success: success, msg:data.msg}
-			}
+				return {status: status,success: success, msg:msg}
 		}
 
 		return expenseService;

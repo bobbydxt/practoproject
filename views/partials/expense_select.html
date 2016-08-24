@@ -1,16 +1,16 @@
 <H1> Add Expense </H1>
 <div class="expense_type_container">
 
-		<div class="credit_expense_type" ng-repeat="expenseType in expenseConstant.credit.data">
+		<div class="credit_expense_type" ng-repeat="expenseType in expenseConstant.1.data">
 		<input type="radio" name="mainCatagory" 
 		ng-model="$parent.expense.mainCatagory" 
-		ng-change="onMainCatagoryChange(expenseType,expenseConstant.credit)" ng-value="expenseType" />
+		ng-change="onMainCatagoryChange(expenseType,expenseConstant.1)" ng-value="expenseType" />
 		{{expenseType.name}}
 		</div>
-		<div class="debit_expense_type" ng-repeat="expenseType in expenseConstant.debit.data">
+		<div class="debit_expense_type" ng-repeat="expenseType in expenseConstant.2.data">
 		<input type="radio" name="mainCatagory" 
 		ng-model="$parent.expense.mainCatagory" 
-		ng-change="onMainCatagoryChange(expenseType,expenseConstant.credit)"
+		ng-change="onMainCatagoryChange(expenseType,expenseConstant.2)"
 		ng-value="expenseType" />{{expenseType.name}}
 		</div>
 </div>

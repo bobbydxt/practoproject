@@ -6,6 +6,10 @@
 <script src="/bower_components/angular-route/angular-route.js"></script>
 <script src="/bower_components/angular-local-storage//dist/angular-local-storage.js"></script>
 <script src="/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
+<script src="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+
 </head>
 <body>
 <h1>Index Page</h1>
@@ -16,7 +20,7 @@
         <li><a href="#sign_in"> Sign In</a></li>
         <li><a href="#sign_up"> Sign_up</a></li>
         <li><a href="#expense_select">New Expense</a></li>
-        <li><a href="#expense">Get all Expense</a></li>
+        <li><a href="#view_expense">Get all Expense</a></li>
     </ui>
 </div>
 <flash-message
@@ -37,12 +41,14 @@
 
 <script src="src/js/factory/expenseFactory.js"></script>
 <script src="src/js/factory/userFactory.js"></script>
+<script src="src/js/factory/viewExpenseFactory.js"></script>
 
 <script src="src/js/service/expenseService.js"></script>
 <script src="src/js/service/helperService.js"></script>
 <script src="src/js/service/userService.js"></script>
 <script src="src/js/service/flashService.js"></script>
 
+<script src="src/js/controller/viewExpenseController.js"></script>
 <script src="src/js/controller/expenseController.js"></script>
 <script src="src/js/controller/userController.js"></script>
 <script src="src/js/controller/homeController.js"></script>

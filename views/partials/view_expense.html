@@ -1,0 +1,47 @@
+<H1> Filter Expense </H1>
+<div class="displaypPresent" ng-repeat="todisplay in displayTransactions">
+	{{data = getDataDetails(todisplay);""}}
+	<br>
+	{{data.expenseType}}
+	<br>
+	{{data.mainCatagory}}
+	<br>
+	{{data.subCatagory}}
+	<br>
+	{{data.date}}
+</div>
+
+<datepicker date-format="MM,yyyy">
+	<input type="text" ng-model="date" />
+</datepicker>
+<div class="expense_type_container">
+		<div class="" ng-repeat="expenseType in expenseConstant">
+		<input type="checkbox" name="expenseType.id" 
+		ng-model="filterListner[expenseType.id]" 
+		ng-change="onExpenseCatagoryChange(filterListner[expenseType.id])" 
+		ng-value="expenseType" />
+		{{expenseType.name}}
+			<div class="" ng-repeat="mainCatagory in expenseType.data"
+			style="padding-left:10px">
+			{{mainC = expenseType.id + ' ' + mainCatagory.id;""}}
+			<input type="checkbox" name="mainCatagory.id" 
+			ng-model="filterListner[mainC]" 
+			ng-change="onexpenseTypeChange(filterListner[mainC])" 
+			ng-value="mainCatagory" />
+			{{mainCatagory.name}}
+				<div class="" style="padding-left:10px"
+				ng-repeat="subCatagory in mainCatagory.subCatagory">
+				{{subC = expenseType.id + ' ' + mainCatagory.id + ' ' + subCatagory.id;""}}
+				<input type="checkbox" name="subCatagory" 
+				ng-model="filterListner[subC]" 
+				ng-change="onsubCatagoryChange(filterListner[subC])" 
+				ng-value="subCatagory" />
+				{{subCatagory.name}}
+		
+				</div>
+			</div>
+
+		</div>
+</div>
+
+

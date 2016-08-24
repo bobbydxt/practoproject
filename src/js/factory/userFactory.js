@@ -26,7 +26,7 @@
      */   
         userFactory.signup = function(userInfo) {
                  userService.signupUser(userInfo,function (object){
-                    console.log(object);
+                //    console.log(object);
                     postHttpHandler (object)
                  });
 
@@ -48,7 +48,7 @@
             if (object.success === true && object.data.data.token && object.data.data.email) {
                             if(setCurrentUser(object.data.data.token,object.data.data.email))
                             {
-                                console.log('here');
+                       //         console.log('here');
                                 response = { success: true,
                                     message: 'You are successfully logged in'};
                                     $location.path('/');
@@ -69,7 +69,7 @@
  		function setCurrentUser(token,email) {
 
                 //setting local sto
-                console.log(token,email);
+            //    console.log(token,email);
                 localStorageService.set('token', token);
                 localStorageService.set('email', email);
                 this.presentState={token: token};
@@ -85,13 +85,13 @@
 
             if(this.presentState && this.presentState.token)
             {
-                console.log(this.presentState);
+                //console.log(this.presentState);
                 return this.presentState;
             }
             else if(localStorageService.get('token')&&localStorageService.get('email'))
                 {
                 this.presentState={token: localStorageService.get('token')};
-                console.log(this.presentState+'no');
+             //   console.log(this.presentState+'no');
                 return this.presentState;
                 }
             else

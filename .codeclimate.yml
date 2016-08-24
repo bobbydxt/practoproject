@@ -25,4 +25,5 @@ ratings:
   - "**.py"
   - "**.rb"
 exclude_paths:
+- src/js/constant
 - config/
