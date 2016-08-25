@@ -1,7 +1,15 @@
-body{
-	background-color: #444;
-	p
-	{
-		background-color: red;
-	}
-}
+@import 'partials/global/base.scss';
+@import 'partials/global/layout.scss';
+@import 'partials/global/mixins.scss';
+@import 'partials/global/variable.scss';
+
+
+@import 'partials/elements/input.scss';
+@import 'partials/elements/table.scss';
+@import 'partials/elements/buttons.scss';
+
+
+@import 'partials/component/list.scss';
+@import 'partials/component/navigate.scss';
+
+
