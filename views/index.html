@@ -9,29 +9,52 @@
 <script src="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+<link rel="stylesheet" type="text/css" href="/bower_components/angular-flash-alert/dist/angular-flash.css" />
+<link rel="stylesheet" type="text/css" href="/bower_components/font-awesome-4.6.3/css/font-awesome.css" />
+
+
+<link rel="stylesheet" type="text/css" href="/src/css/style.css" />
 
 </head>
 <body>
-<h1>Index Page</h1>
-<br><br>
-<div class="navbar">
-	<ui>
-		<li><a href="#"> Home</a></li>
+
+
+
+
+
+<div class="navbar-header">
+
+<input type="checkbox" id="toggle" />
+<div>
+    <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars fa-4x" aria-hidden="true"></i></label>
+    <ul class="menu">
+      <li class = "navbar_title">
+      <a href="#">Expense Manager</a>
+      </li>
+        
+        
         <li><a href="#sign_in"> Sign In</a></li>
-        <li><a href="#sign_up"> Sign_up</a></li>
         <li><a href="#expense_select">New Expense</a></li>
-        <li><a href="#view_expense">Get all Expense</a></li>
-    </ui>
+        <li><a href="#view_expense">Get All</a></li>
+    </ul>
 </div>
+</div>
+<div class="clear"></div>
 <flash-message
-    duration="5000"
+    duration="3000"
     show-close="true"
     on-dismiss="myCallback(flash);"
 ></flash-message> 
-<div>
-	  <div ng-view></div>
 
-</div>
+
+
+
+
+
+
+
+
+	  <div ng-view></div>
 
 <script src="src/js/main.js"></script>
 

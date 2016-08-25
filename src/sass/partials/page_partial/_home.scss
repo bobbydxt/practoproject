@@ -1,0 +1,76 @@
+.homeParent
+{
+  background: url(http://s1.picswalls.com/wallpapers/2014/08/11/money-desktop-wallpapers_090606472_192.jpg)
+   no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: $default_container_bacoground;
+}
+.home-container
+{
+  position: relative;
+  padding: 0 20px;
+    min-height: 200px;
+
+
+}
+.loginButton
+{
+	width:40%;
+	float: left;
+color: #D1E2E6;
+ height: auto;
+ padding:10px 10px ;
+ border-radius:3px;
+ font-weight: bold;
+ font-size:2em;
+ margin: 10px 25px 0 25px;
+  @include button-bg(#CC6600);
+  opacity: .9;
+  cursor: pointer;
+
+}
+.signupButton
+{
+	@extend .loginButton;
+
+	@include button-bg(#CC9900);
+}
+.loginContainer{
+	@extend .container;
+	max-width: 700px;
+	min-width: 250px;
+	text-align: center;
+  padding-bottom: 100px;
+  //@include clearfix();
+}
+.buttonContainer
+{
+	padding-top: 100px;
+    width:100%;
+    height:100%;
+    display:box;
+    box-orient:horizontal;
+    box-pack:center;
+    box-align:center;
+}
+.home-description-main
+{
+  padding: 0 20px;
+    min-height: 700px;
+    height: 100%;
+
+  background-color: #382E1C;
+  opacity: .95;
+}
+
+.home-description-container
+{
+  @extend .container;
+  max-width: 700px;
+  min-width: 250px;
+  text-align: center;
+  //@include clearfix();
+}

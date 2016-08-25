@@ -1,3 +1,5 @@
+<div class="main-container">
+	<div class="container">
 <H1> Filter Expense </H1>
 <div class="displaypPresent" ng-repeat="todisplay in displayTransactions">
 	{{data = getDataDetails(todisplay);""}}
@@ -14,7 +16,8 @@
 <datepicker date-format="MM,yyyy">
 	<input type="text" ng-model="date" />
 </datepicker>
-<div class="expense_type_container">
+<div class = "row">
+<div class="expense_type_container col ">
 		<div class="" ng-repeat="expenseType in expenseConstant">
 		<input type="checkbox" name="expenseType.id" 
 		ng-model="filterListner[expenseType.id]" 
@@ -43,5 +46,6 @@
 
 		</div>
 </div>
-
+</div>
+</div>
 

@@ -51,7 +51,7 @@
 			}
 			else
 			{
-				tocall(parseHttpResponse(status,false,err));
+				tocall(parseHttpResponse(status,false,'You arn\'t logged in'));
 				userFactory.logout();
 			}
 		}

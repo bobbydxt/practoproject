@@ -1,15 +1,23 @@
+
+@import 'partials/global/variable.scss';
 @import 'partials/global/base.scss';
 @import 'partials/global/layout.scss';
 @import 'partials/global/mixins.scss';
-@import 'partials/global/variable.scss';
+@import 'partials/global/grid.scss';
+@import 'partials/global/reset.scss';
 
 
 @import 'partials/elements/input.scss';
 @import 'partials/elements/table.scss';
 @import 'partials/elements/buttons.scss';
+//@import 'partials/elements/checkbox.scss';
 
 
 @import 'partials/component/list.scss';
 @import 'partials/component/navigate.scss';
+
+
+@import 'partials/page_partial/home.scss';
+@import 'partials/page_partial/login.scss';
 
 

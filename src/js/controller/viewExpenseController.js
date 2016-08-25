@@ -1,5 +1,5 @@
-    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant',
-                function($scope, viewExpenseFactory, expenseConstant) {
+    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant','userFactory',
+                function($scope, viewExpenseFactory, expenseConstant,userFactory) {
                     var primaryStack = {};
 
                     $scope.expenceType = false;
@@ -9,6 +9,7 @@
                     $scope.filterObject = {};
                     $scope.expenseConstant = expenseConstant;
                     createList(true);
+                    userFactory.routeLoggedIn();
                     //console.log($scope.filterObject );
                     $scope.$watch('date', function(val) {
 

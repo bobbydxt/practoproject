@@ -1,0 +1,11 @@
+.loginleftContainer
+{
+	background-color: red;
+	width: 40%;
+	height: auto;
+	float: left;
+}
+.loginrightContainer
+{
+	@extend .loginleftContainer;
+}

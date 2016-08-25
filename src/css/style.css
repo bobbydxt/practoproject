@@ -1,0 +1,299 @@
+.col {
+  padding: 0 1.5em;
+  margin-top: 10px; }
+
+.row .row {
+  margin: 0 -1.5em; }
+
+.row:before, .row:after {
+  content: "";
+  display: table; }
+
+.row:after {
+  clear: both; }
+
+.main-container {
+  background-color: #ecf0f1;
+  position: relative;
+  min-height: 400px;
+  height: 100%;
+  padding: 0 20px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom: 1px solid #44a4ad; }
+
+.container, .loginContainer, .home-description-container {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 250px;
+  padding-top: 20px; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.navbar-header {
+  height: 100%;
+  padding: 0 20px;
+  background: #3C484C;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom: 1px solid #387F86; }
+  .navbar-header:before, .navbar-header:after {
+    content: " ";
+    display: table; }
+  .navbar-header:after {
+    clear: both; }
+
+#toggle {
+  display: none; }
+
+.toggle {
+  display: none; }
+
+.menu {
+  margin: 0 auto;
+  max-width: 800px;
+  height: 100%; }
+  .menu:before, .menu:after {
+    content: " ";
+    display: table; }
+  .menu:after {
+    clear: both; }
+  .menu > .navbar_title {
+    list-style: none;
+    float: left;
+    height: 100%;
+    font-size: 25px;
+    color: #ecf0f1;
+    font-weight: bold; }
+  .menu > li {
+    list-style: none;
+    float: right;
+    height: 100%; }
+    .menu > li:before, .menu > li:after {
+      content: " ";
+      display: table; }
+    .menu > li:after {
+      clear: both; }
+    .menu > li > a {
+      height: 100%;
+      display: block;
+      padding: 10px 5px 10px 5px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: ariel;
+      line-height: 1;
+      color: #ecf0f1; }
+      .menu > li > a:before, .menu > li > a:after {
+        content: " ";
+        display: table; }
+      .menu > li > a:after {
+        clear: both; }
+      .menu > li > a:hover {
+        background: #387F86;
+        color: #ecf0f1; }
+      .menu > li > a:focus {
+        background: #387F86; }
+
+.clearfix:before {
+  display: table;
+  content: ""; }
+
+.clearfix:after {
+  display: table;
+  content: "";
+  clear: both; }
+
+.nav {
+  display: block;
+  float: right;
+  height: 100%; }
+
+@media only screen and (max-width: 768px) {
+  .menu {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    height: auto; }
+    .menu:before, .menu:after {
+      content: " ";
+      display: table; }
+    .menu:after {
+      clear: both; }
+    .menu > li {
+      clear: both;
+      display: block;
+      border: 4px #387F86;
+      border-bottom-width: 1px;
+      width: 100%;
+      margin: 0;
+      height: auto;
+      margin-bottom: 5px; }
+      .menu > li:before, .menu > li:after {
+        content: " ";
+        display: table; }
+      .menu > li:after {
+        clear: both; }
+      .menu > li > a {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        height: auto;
+        padding: 15px 15px; }
+        .menu > li > a:before, .menu > li > a:after {
+          content: " ";
+          display: table; }
+        .menu > li > a:after {
+          clear: both; }
+        .menu > li > a:hover {
+          background: #387F86;
+          color: #ecf0f1; }
+        .menu > li > a:focus {
+          background: #387F86; }
+  .toggle {
+    display: block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none; }
+    .toggle:after {
+      display: block;
+      width: 200px;
+      margin: 33px 0;
+      padding: 10px 50px;
+      -webkit-border-radius: 2px;
+      text-align: center;
+      font-size: 12px;
+      color: #FFFFFF;
+      -webkit-transition: all 0.5s linear;
+      -moz-transition: all 0.5s linear;
+      -o-transition: all 0.5s linear;
+      transition: all 0.5s linear;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+    .toggle:hover:after {
+      background: #45ABD6; }
+  #toggle:checked + div .menu {
+    display: block;
+    opacity: 1; } }
+
+@media only screen and (max-width: 479px) {
+  .header > h1 {
+    text-align: center;
+    float: none; }
+  .nav {
+    float: none; }
+  .toggle:after {
+    float: none;
+    text-align: center;
+    width: 100%; } }
+
+.homeParent {
+  background: url(http://s1.picswalls.com/wallpapers/2014/08/11/money-desktop-wallpapers_090606472_192.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #ecf0f1; }
+
+.home-container {
+  position: relative;
+  padding: 0 20px;
+  min-height: 200px; }
+
+.loginButton, .signupButton {
+  width: 40%;
+  float: left;
+  color: #D1E2E6;
+  height: auto;
+  padding: 10px 10px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 2em;
+  margin: 10px 25px 0 25px;
+  background: #CC6600;
+  opacity: .9;
+  cursor: pointer; }
+  .loginButton:hover, .signupButton:hover {
+    background: #a35200;
+    transition: all 0.3s ease; }
+  .loginButton:active, .signupButton:active {
+    background: #4d2600; }
+
+.signupButton {
+  background: #CC9900; }
+  .signupButton:hover {
+    background: #a37a00;
+    transition: all 0.3s ease; }
+  .signupButton:active {
+    background: #4d3900; }
+
+.loginContainer {
+  max-width: 700px;
+  min-width: 250px;
+  text-align: center;
+  padding-bottom: 100px; }
+
+.buttonContainer {
+  padding-top: 100px;
+  width: 100%;
+  height: 100%;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center; }
+
+.home-description-main {
+  padding: 0 20px;
+  min-height: 700px;
+  height: 100%;
+  background-color: #382E1C;
+  opacity: .95; }
+
+.home-description-container {
+  max-width: 700px;
+  min-width: 250px;
+  text-align: center; }
+
+.loginleftContainer, .loginrightContainer {
+  background-color: red;
+  width: 40%;
+  height: auto;
+  float: left; }
