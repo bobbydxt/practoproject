@@ -21,6 +21,7 @@
                                     console.log($scope.filterObject);
                                    monthChanged($scope.filterObject[1],'expense',{eid: 1});
                                   //  monthChanged($scope.filterObject[2],'expense',{eid: 2});
+                                  console.log($scope.displayTransactions );
                                 });
                             }
                         }
@@ -109,9 +110,7 @@
                     function addOthrToDisplay(object,status,call)
                     {
                         if (object !== false) {
-                            console.log(object);
                             for (var data in object) {
-                                console.log(data);
                                 if (object[data]) {
                                     if(call===true)
                                     addOthrToDisplay(object[data],status,false)
@@ -152,7 +151,7 @@
                             'main': mainAddToDisplay(data.eid,data.mid,true),
                             'sub': subAddToDisplay(data.sid,data.eid,data.mid,true)
                         };
-                           trueHandler[fieldname];
+                           return trueHandler[fieldname];
                         }
                         else if(checkState!==false)
                         {
@@ -177,9 +176,9 @@
                                 }
                             }
                         } else {
-                            for (var data in object) {
-                                if (object[data]) {
-                                    delete $scope.displayTransactions[data];
+                            for (var toremove in object) {
+                                if (object[toremove]) {
+                                    delete $scope.displayTransactions[toremove];
 
                                 }
                             }
@@ -204,11 +203,14 @@
                         function createList() {
                             //console.log($scope.expenseConstant);
                             for (var data in $scope.expenseConstant) {
+                                if($scope.expenseConstant[data])
+                                {
                                 $scope.filterListner[data] = true;
                                 $scope.filterObject[data] = {
                                     status: true,
                                     data: setMainCatagoryList($scope.expenseConstant[data].data, true, data)
                                 };
+                            }
                             }
                             console.log($scope.filterObject);
                         }
@@ -231,10 +233,12 @@
                         function setSubCatagoryList(object, status, expId, mainId) {
                             var toreturn = {};
                             for (var sub in object) {
+                                if (object[sub]) {
                                 toreturn[object[sub].id] = {
                                     status: status
                                 };
                                 $scope.filterListner[expId + ' ' + mainId + ' ' + sub] = status;
+                                }
                             }
                             return toreturn;
                         }

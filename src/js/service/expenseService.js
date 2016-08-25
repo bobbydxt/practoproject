@@ -21,7 +21,7 @@
 		{
 			//console.log(params);
 			callback(
-				httpRequestHandler({month: parseInt(params[0]), year: parseInt(params[1])},
+				httpRequestHandler({month: parseInt(params[0],10), year: parseInt(params[1],10)},
 					'/api/expense/bymonth','GET',callback))
 		}
 

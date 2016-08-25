@@ -22,7 +22,7 @@
 					valueInserter(entry.expenseType,entry.mainCatagory,entry.subCatagory,entry._id,entry);
 				});
 				//console.log(viewExpenseFactory.presentStack);
-				callback(viewExpenseFactory.presentStack);
+				return callback(viewExpenseFactory.presentStack);
 
 				//console.log(viewExpenseFactory.presentStack);
 				}
@@ -35,7 +35,7 @@
 		function valueInserter(type,catagory,subCatagory,index,entry)
 		{
 			
-			objectinit( viewExpenseFactory.presentStack,type);
+			objectinit(viewExpenseFactory.presentStack,type);
 			objectinit(viewExpenseFactory.presentStack[type],catagory);
 			objectinit(viewExpenseFactory.presentStack[type][catagory],subCatagory);
 			objectinit(viewExpenseFactory.presentStack[type][catagory][subCatagory],index);
