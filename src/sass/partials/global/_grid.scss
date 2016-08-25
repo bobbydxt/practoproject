@@ -23,7 +23,7 @@ $h-padding : 1.5em;
   min-height: 400px;
   height: 100%;
   padding: 0 20px;
-  @include set_border($navbar_active_background);
+  @include set_border(darken($default_container_bacoground,8%));
 }
 
 .container {

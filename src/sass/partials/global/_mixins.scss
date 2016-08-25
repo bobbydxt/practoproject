@@ -35,12 +35,9 @@
 
 
 @mixin set_border($color,
-              $radii: $default_border_radii,
               $style: $default-border-style,
               $width: $default_border_width)
 {
-  border-bottom-left-radius: $radii;
-  border-bottom-right-radius: $radii;
   border-bottom: $width $style $color;
 }
 
@@ -69,14 +66,21 @@
 
 
 @mixin button-bg($bg) {
+  cursor: pointer;
   background: $bg;
-  &:hover {
+  text-align: center;
+  
+  &:hover:enabled {
     background:darken($bg,8%);
     transition: all 0.3s ease;
   }
-  &:active {
+  &:active:enabled {
     background:darken($bg,25%);
   } 
+  &:disabled
+  {
+     background:#A7AEB0;
+  }
 }
 
 

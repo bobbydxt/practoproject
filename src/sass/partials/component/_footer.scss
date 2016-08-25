@@ -1,0 +1,25 @@
+.footer
+{
+  position: relative;
+  min-height: 100px;
+  height: 100%;
+  margin-top: 20px;
+  border-top-width: 1px;
+  border-color: $navbar_background;
+  border-style: dashed;
+  padding: 0 20px;
+}
+.footerContainer
+{
+  @extend .container;
+  padding-top: 5px;
+}
+.footerDataContainer
+{
+  float: right;
+  >a
+  {
+    color: $default_fancy_color;
+    font-size: 12px;
+  }
+}

@@ -1,7 +1,4 @@
-$navbar_background : #3C484C;
-$navbar_active_background : #387F86;
-$navbar_default_color : #ecf0f1;
-$navbar_active_color : #dbfaff;
+
 $navbar-title-width:25px;
 $navbar-standard-width:20px;
 
@@ -50,13 +47,14 @@ $navbar-standard-width:20px;
 			@include clearfix();
 			height: 100%;
 			display: block;
-			padding: 10px 5px 10px 5px;
+			padding: 10px 10px 10px 10px;
 			text-decoration: none;
-			font-weight: bold;
-			font-size: 18px;
-			font-family: ariel;
+			font-size: 16px;
+			font-family: Verdana;
 			line-height: 1;
 			color: $navbar_default_color;
+			margin-right: 5px;
+
 			//@include webkit_transition();
 			&:hover {
 				background: $navbar_active_background;
