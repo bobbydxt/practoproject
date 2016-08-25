@@ -11,26 +11,19 @@
      * @return {response containing status}
      * @author [Bobby Dixit]
      */        
-        userFactory.login = function(userInfo) {
-                 userService.loginUser(userInfo, function (object) {
+        userFactory.transaction = function(userInfo,type) {
+           
+            if(type==='signup')
+                userService.signupUser(userInfo, function (object) {
+                        postHttpHandler (object);
+                    });
+            else if(type === 'login')
+                userService.loginUser(userInfo, function (object) {
                         postHttpHandler (object);
                     });
  
         }
-    /**
-     * SignUp function
-     * @param  {string} email 
-     * @param  {string} password
-     * @return {response containing status}
-     * @author [Bobby Dixit]
-     */   
-        userFactory.signup = function(userInfo) {
-                 userService.signupUser(userInfo,function (object){
-                //    console.log(object);
-                    postHttpHandler (object)
-                 });
 
-        } 
     /**
      * Processes http data sent from login and signup methords
      * @param  {object} object contains the responce pushed 

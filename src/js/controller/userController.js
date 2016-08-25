@@ -4,14 +4,15 @@
 		function($scope,userFactory,helperService){
 		 	//initialization
 		 		//only non logged in user
+		 		//userFactory.logout();
 		 		userFactory.routeNotLoggedIn();
-		 $scope.login = function(userInfo) {
-
-		 	helperService.callHandler(userInfo,$scope.form.$valid,userFactory.login);
+		 $scope.transaction = function(userInfo,type) {
+		 	console.log(type);
+		 	if((type==='login'||type==='signup')&&$scope.form.$valid)
+		 	{
+		 	userFactory.transaction(userInfo,type);
+		 	}
 		 }
-		 $scope.signUp = function(userInfo) {
 
-		 	helperService.callHandler(userInfo,$scope.form.$valid,userFactory.signup);
-		 }
 		 
 	}]);
