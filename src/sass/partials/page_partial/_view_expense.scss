@@ -19,3 +19,37 @@
          {
            display: block;         /* display submenu on click */
          }
+.displayTransactions
+{
+  width: 100%;
+  >.transactionData:nth-of-type(odd) {
+    background-color: darken($default_container_bacoground,3%);
+    
+  }
+  >.transactionData:nth-of-type(even) {
+   background-color: lighten($default_container_bacoground,3%);
+  }
+  >.transactionData
+  {
+    margin: 5px 0 5px 0;
+
+  @include clearfix();
+    width: 100%;
+    padding: 10px 5px 10px 5px;
+    >div
+    {
+      padding: 3px;
+      float: left;
+    }
+    >.transactionType,>.transactionMainC,>.transactionSubC,>.transactiondate
+    {
+      width: 18%;
+    }
+    >.transactionedit,>.transactiondelete
+    {
+      width: 8%;
+    }
+  }
+  @include clearfix();
+
+}
