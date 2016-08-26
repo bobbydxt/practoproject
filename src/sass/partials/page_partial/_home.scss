@@ -25,9 +25,9 @@ color: #D1E2E6;
  padding:10px 10px ;
  border-radius:3px;
  font-weight: bold;
- font-size:2em;
+ font-size:1.5em;
  margin: 10px 25px 0 25px;
-  @include button-bg(#CC6600);
+  @include button-bg(#45ABB5);
   opacity: .9;
   cursor: pointer;
 
@@ -36,7 +36,7 @@ color: #D1E2E6;
 {
 	@extend .loginButton;
 
-	@include button-bg(#CC9900);
+	@include button-bg(#45A0B5);
 }
 .loginContainer{
 	@extend .container;
@@ -59,10 +59,10 @@ color: #D1E2E6;
 .home-description-main
 {
   padding: 0 20px;
-    min-height: 700px;
+    min-height: 400px;
     height: 100%;
 
-  background-color: #382E1C;
+  background-color: #1C3738;
   opacity: .95;
 }
 

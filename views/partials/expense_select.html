@@ -1,16 +1,52 @@
-<H1> Add Expense </H1>
-<div class="expense_type_container">
-
-		<div class="credit_expense_type" ng-repeat="expenseType in expenseConstant.1.data">
-		<input type="radio" name="mainCatagory" 
+<div class="main-container">
+	<div class="container">
+		<div class="expenseHeader">Manage Your Expenses
+		</div>
+		<div class="leftExpenseDataHolder">
+			<div class="leftExpenseData"></div>
+		</div>
+		<div class="rightExpenseDataHolder">
+			<div class="expanseSelectBar">
+				<div class="expenseFunctionName selected">
+				View Transactions
+				</div>
+				<div class="expenseFunctionName selected">
+				Add New
+				</div>
+				<div class="expenseFunctionName right">
+				Vizualize
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="expenseDataContainer">
+				<div class="leftExpenseTypeHolder">
+					<div class="expenseTypeTitle">
+						Credit
+					</div>
+					<div class="expense_type"
+					 ng-repeat="expenseType in expenseConstant[1].data">
+						<input type="radio" name="mainCatagory" 
 		ng-model="$parent.expense.mainCatagory" 
-		ng-change="onMainCatagoryChange(expenseType,expenseConstant.1)" ng-value="expenseType" />
+		ng-change="onMainCatagoryChange(expenseType,expenseConstant[1])" ng-value="expenseType" />
 		{{expenseType.name}}
-		</div>
-		<div class="debit_expense_type" ng-repeat="expenseType in expenseConstant.2.data">
-		<input type="radio" name="mainCatagory" 
+					</div>
+				</div>
+				<div class="rightExpenseTypeHolder">
+				<div class="expenseTypeTitle">
+						Debit
+					</div>
+					<div class="expense_type" ng-repeat="expenseType in expenseConstant[2].data">
+					<input type="radio" name="mainCatagory" 
 		ng-model="$parent.expense.mainCatagory" 
-		ng-change="onMainCatagoryChange(expenseType,expenseConstant.2)"
+		ng-change="onMainCatagoryChange(expenseType,expenseConstant[2])"
 		ng-value="expenseType" />{{expenseType.name}}
+					</div>
+				</div>
+			</div>
+			
 		</div>
+		<div class="clear"></div>
+	</div>
 </div>
+
+

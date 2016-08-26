@@ -1,20 +1,58 @@
-<h1>Expense Page</h1>
-
-<div>
-    <h2>New/Edit Expense</h2>
-    <form name="form" ng-submit="newExpense(userInfo)" role="form">
-        <div class="form-group">
-            <label>Expense Type</label>
-            <span ng-bind="expense.expenseCatagory.name"></span>
+<div class="main-container">
+    <div class="container">
+        <div class="expenseHeader">Manage Your Expenses
         </div>
-        <div class="form-group">
-            <label>Main Catagory</label>
-            <span ng-bind="expense.mainCatagory.name"></span>
+        <div class="leftExpenseDataHolder">
+            <div class="leftExpenseData"></div>
         </div>
-        <div class="form-group" ng-class="{  }">
-            <label for="">Sub Catagory</label>
-            <span ng-bind="expense.subCatagory.name"></span>
-            <div ng-repeat="expenseType in expense.mainCatagory.subCatagory">
+        <div class="rightExpenseDataHolder">
+            <div class="expanseSelectBar">
+                <div class="expenseFunctionName selected">
+                View Transactions
+                </div>
+                <div class="expenseFunctionName selected">
+                Add New
+                </div>
+                <div class="expenseFunctionName right">
+                Vizualize
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="expenseDataContainer">
+            <form name="form" ng-submit="newExpense(userInfo)" role="form">
+                <div class="leftDataViewer">
+                    <div class="form-group forDisplayInput">
+                    <input type="text"  name="expenseCatagory" ng-model="expense.expenseCatagory.name" disabled="">
+                    </div>
+                    <div class="form-group forDisplayInput">
+                    <input type="text"  name="mainCatagory" ng-model="expense.mainCatagory.name" disabled="">
+                    </div>
+                    <div class="form-group forDisplayInput">
+                    <input type="text"  name="subCatagory" ng-model="expense.subCatagory.name" disabled="">
+                    </div>
+        <div class="form-group" 
+        ng-class="{ 'has-error': form.amount.$dirty && form.amount.$error.required }">
+            <input type="text" name="amount" id="amount" 
+            class="form-control" ng-model="userInfo.amount" 
+            ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required placeholder="Amount" />
+            <span ng-show="form.amount.$dirty && form.amount.$error.required">amount is required</span>
+            <span ng-show="form.amount.$dirty && form.amount.$error.pattern" 
+            class="help-block">Only proper numeric allowed</span>
+        </div>
+        <div class="form-group" ng-class="">
+            <input type="text" name="remark" id="remark" class="form-control" ng-model="userInfo.remark"  placeholder="Remark" />
+        </div>
+        <datepicker>
+        <input type="text" name="date" id="date" class="form-control" ng-model="userInfo.date" placeholder="Date of expense" />
+        </datepicker>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid" class="userLoginButton">Add Expense</button>
+        </div>
+                </div>
+                <div class="rightDataViewer">
+                <div class="expenseTypeTitle">Select Sub Catagory</div>
+                <div class="form-group" ng-class="{  }">
+                        <div class="subRadioContainer" ng-repeat="expenseType in expense.mainCatagory.subCatagory">
                 <input type="radio" name="subCatagory" 
                  ng-model="$parent.userInfo.subCatagory"
                     ng-change="onsubCatagoryChange(expenseType)"
@@ -24,26 +62,13 @@
         {{expenseType.name}}
             </div>
         </div>
-        <div class="form-group" 
-        ng-class="{ 'has-error': form.amount.$dirty && form.amount.$error.required }">
-            <label for="amount">amount</label>
-            <input type="text" name="amount" id="amount" 
-            class="form-control" ng-model="userInfo.amount" 
-            ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required />
-            <span ng-show="form.amount.$dirty && form.amount.$error.required">amount is required</span>
-            <span ng-show="form.amount.$dirty && form.amount.$error.pattern" 
-            class="help-block">Only proper numeric allowed</span>
+                </div>
+            </form>
+            </div>
+            
         </div>
-        <div class="form-group" ng-class="">
-            <label for="remark">remark</label>
-            <input type="text" name="remark" id="remark" class="form-control" ng-model="userInfo.remark"  />
-        </div>
-        <datepicker>
-        <input type="text" name="date" id="date" class="form-control" ng-model="userInfo.date"  />
-        </datepicker>
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Login</button>
-            <a href="#/register" class="btn">Register</a>
-        </div>
-    </form>
+        <div class="clear"></div>
+    </div>
 </div>
+
+

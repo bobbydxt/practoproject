@@ -1,0 +1,57 @@
+.leftExpenseDataHolder
+{
+	width: 20%;
+	min-height: 10px;
+		float: left;
+	margin-right: 2%;
+	margin-left: 8%;
+		height: 100%;
+
+}
+.leftExpenseData
+{
+	background-color: lighten($default_container_bacoground,3%);
+
+		height: 100%;
+}
+.rightExpenseDataHolder
+{
+	min-width: 200px;
+	min-height: 10px;
+	width: 60%;
+	float: left;
+	height: 100%;
+
+}
+.expanseSelectBar
+{
+	background-color: darken($default_container_bacoground,2%);
+min-height: 30px;
+		height: 100%;
+		width: 100%;
+		margin-bottom: 20px;
+
+}
+.expenseFunctionName
+{
+	width: 30%;
+	float: left;
+	min-height: 24px;
+	height: auto;
+	vertical-align: middle;
+	text-align: center;
+	margin-right: 5px;
+	font-family: Trebuchet MS;
+	padding-top: 8px;
+	font-size: 15px;
+	@include button-bg(darken($default_container_bacoground,5%))
+}
+.expenseHeader
+{
+	min-width: 400px;
+	margin: 10px 0 20px 0;
+	text-align: center;
+	font-size: 25px;
+	font-family: Verdana;
+	color: $navbar_active_background;
+}

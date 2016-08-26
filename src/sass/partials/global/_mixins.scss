@@ -70,11 +70,11 @@
   background: $bg;
   text-align: center;
   
-  &:hover:enabled {
+  &:hover {
     background:darken($bg,8%);
     transition: all 0.3s ease;
   }
-  &:active:enabled {
+  &:active,+.selected {
     background:darken($bg,25%);
   } 
   &:disabled

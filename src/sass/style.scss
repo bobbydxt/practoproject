@@ -12,7 +12,7 @@
 @import 'partials/elements/buttons.scss';
 //@import 'partials/elements/checkbox.scss';
 
-
+@import 'partials/component/expense_pages_basic.scss';
 @import 'partials/component/list.scss';
 @import 'partials/component/navigate.scss';
 @import 'partials/component/footer.scss';
@@ -20,5 +20,7 @@
 
 @import 'partials/page_partial/home.scss';
 @import 'partials/page_partial/login.scss';
+@import 'partials/page_partial/expense_select.scss';
+
 
 

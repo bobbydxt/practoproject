@@ -1,0 +1,44 @@
+.leftExpenseTypeHolder
+{
+	float: left;
+	width: 45%;
+	margin-right: 5%;
+}
+.rightExpenseTypeHolder
+{
+	float: left;
+	width: 45%;
+}
+.expenseTypeTitle
+{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+}
+.expense_type
+{
+	width: 100%;
+}
+.expenseDataContainer
+{
+	.leftDataViewer
+	{
+		width: 45%;
+		margin-right: 5%;
+		float: left;
+	}
+	.rightDataViewer
+	{
+		width: 45%;
+		float: left;
+
+	}
+}
+.forDisplayInput
+{
+	>input[type="text"]
+	{
+		text-align: center;
+	}
+}
