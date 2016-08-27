@@ -78,53 +78,6 @@ input[type="text"]:focus, input[type="password"] :focus {
 input[type="radio"] {
   margin-top: 10px; }
 
-input.radio:empty {
-  margin-left: -999px; }
-
-/* style label */
-input.radio:empty ~ label {
-  position: relative;
-  float: left;
-  line-height: 2.5em;
-  text-indent: 3.25em;
-  margin-top: 2em;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
-
-input.radio:empty ~ label:before {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  content: '';
-  width: 2.5em;
-  background: #D1D3D4;
-  border-radius: 3px 0 0 3px; }
-
-/* toggle hover */
-input.radio:hover:not(:checked) ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #C2C2C2; }
-
-input.radio:hover:not(:checked) ~ label {
-  color: #888; }
-
-/* toggle on */
-input.radio:checked ~ label:before {
-  content: '\2714';
-  text-indent: .9em;
-  color: #9CE2AE;
-  background-color: #4DCB6D; }
-
-input.radio:checked ~ label {
-  color: #777; }
-
-/* radio focus */
 button {
   box-shadow: none;
   border: none; }
@@ -151,6 +104,7 @@ button {
 .leftExpenseDataHolder {
   width: 25%;
   min-height: 10px;
+  min-width: 200px;
   float: left;
   margin-right: 2%;
   margin-left: 8%;
@@ -216,38 +170,69 @@ button {
   .navbar-header:after {
     clear: both; }
 
+.leftNavDiv {
+  width: 40%;
+  float: left; }
+
+.rightNavDiv {
+  width: 50%;
+  float: right; }
+
+.navbar-container {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 250px; }
+
 #toggle {
   display: none; }
 
 .toggle {
   display: none; }
 
+.navbar_title {
+  list-style: none;
+  float: left;
+  height: 100%;
+  font-size: 25px;
+  color: #ecf0f1;
+  font-weight: bold;
+  height: 100%;
+  display: block;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Verdana;
+  line-height: 1;
+  color: #ecf0f1;
+  margin-right: 5px;
+  position: relative;
+  cursor: pointer; }
+  .navbar_title:before, .navbar_title:after {
+    content: " ";
+    display: table; }
+  .navbar_title:after {
+    clear: both; }
+  .navbar_title:hover {
+    background: #387F86;
+    color: #ecf0f1; }
+
 .menu {
-  margin: 0 auto;
-  max-width: 800px;
   height: 100%; }
   .menu:before, .menu:after {
     content: " ";
     display: table; }
   .menu:after {
     clear: both; }
-  .menu > .navbar_title {
-    list-style: none;
-    float: left;
-    height: 100%;
-    font-size: 25px;
-    color: #ecf0f1;
-    font-weight: bold; }
-  .menu > li {
+  .menu .eachElement {
     list-style: none;
     float: right;
     height: 100%; }
-    .menu > li:before, .menu > li:after {
+    .menu .eachElement:before, .menu .eachElement:after {
       content: " ";
       display: table; }
-    .menu > li:after {
+    .menu .eachElement:after {
       clear: both; }
-    .menu > li > a {
+    .menu .eachElement > .navObject {
       height: 100%;
       display: block;
       padding: 10px 10px 10px 10px;
@@ -256,17 +241,46 @@ button {
       font-family: Verdana;
       line-height: 1;
       color: #ecf0f1;
-      margin-right: 5px; }
-      .menu > li > a:before, .menu > li > a:after {
+      margin-right: 5px;
+      position: relative; }
+      .menu .eachElement > .navObject:before, .menu .eachElement > .navObject:after {
         content: " ";
         display: table; }
-      .menu > li > a:after {
+      .menu .eachElement > .navObject:after {
         clear: both; }
-      .menu > li > a:hover {
+      .menu .eachElement > .navObject > .subNav {
+        position: absolute;
+        top: 35px;
+        left: 0px;
+        display: none;
+        z-index: 2;
+        min-width: 160px;
+        list-style: none;
+        float: right; }
+        .menu .eachElement > .navObject > .subNav > .subElement {
+          background: #394043;
+          height: 100%;
+          display: block;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          font-size: 16px;
+          font-family: Verdana;
+          line-height: 1;
+          color: #ecf0f1;
+          margin-right: 5px; }
+          .menu .eachElement > .navObject > .subNav > .subElement:before, .menu .eachElement > .navObject > .subNav > .subElement:after {
+            content: " ";
+            display: table; }
+          .menu .eachElement > .navObject > .subNav > .subElement:after {
+            clear: both; }
+          .menu .eachElement > .navObject > .subNav > .subElement:hover {
+            background: #387F86;
+            color: #ecf0f1; }
+      .menu .eachElement > .navObject:hover {
         background: #387F86;
         color: #ecf0f1; }
-      .menu > li > a:focus {
-        background: #387F86; }
+        .menu .eachElement > .navObject:hover > .subNav {
+          display: block; }
 
 .clearfix:before {
   display: table;
@@ -294,7 +308,7 @@ button {
       display: table; }
     .menu:after {
       clear: both; }
-    .menu > li {
+    .menu > .eachElement {
       clear: both;
       display: block;
       border: 4px #387F86;
@@ -303,12 +317,12 @@ button {
       margin: 0;
       height: auto;
       margin-bottom: 5px; }
-      .menu > li:before, .menu > li:after {
+      .menu > .eachElement:before, .menu > .eachElement:after {
         content: " ";
         display: table; }
-      .menu > li:after {
+      .menu > .eachElement:after {
         clear: both; }
-      .menu > li > a {
+      .menu > .eachElement > .navObject {
         display: block;
         width: 100%;
         text-decoration: none;
@@ -316,19 +330,47 @@ button {
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         height: auto;
-        padding: 15px 15px; }
-        .menu > li > a:before, .menu > li > a:after {
+        padding: 15px 15px;
+        cursor: pointer; }
+        .menu > .eachElement > .navObject:before, .menu > .eachElement > .navObject:after {
           content: " ";
           display: table; }
-        .menu > li > a:after {
+        .menu > .eachElement > .navObject:after {
           clear: both; }
-        .menu > li > a:hover {
+        .menu > .eachElement > .navObject:hover {
           background: #387F86;
           color: #ecf0f1; }
-        .menu > li > a:focus {
-          background: #387F86; }
+        .menu > .eachElement > .navObject > .subNav {
+          position: absolute;
+          top: 35px;
+          left: 0px;
+          display: none;
+          z-index: 2;
+          width: 100%;
+          list-style: none;
+          float: right; }
+          .menu > .eachElement > .navObject > .subNav > .subElement {
+            background: #394043;
+            height: 100%;
+            display: block;
+            padding: 10px 12px 10px 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: Verdana;
+            line-height: 1;
+            color: #ecf0f1;
+            margin-right: 5px; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:before, .menu > .eachElement > .navObject > .subNav > .subElement:after {
+              content: " ";
+              display: table; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:after {
+              clear: both; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:hover {
+              background: #387F86;
+              color: #ecf0f1; }
   .toggle {
     display: block;
+    float: right;
     cursor: pointer;
     width: 60px;
     height: 60px;
@@ -356,17 +398,6 @@ button {
   #toggle:checked + div .menu {
     display: block;
     opacity: 1; } }
-
-@media only screen and (max-width: 479px) {
-  .header > h1 {
-    text-align: center;
-    float: none; }
-  .nav {
-    float: none; }
-  .toggle:after {
-    float: none;
-    text-align: center;
-    width: 100%; } }
 
 .footer {
   position: relative;
@@ -511,30 +542,9 @@ button {
 .forDisplayInput > input[type="text"] {
   text-align: center; }
 
-#menutree li {
-  list-style: none;
-  /* all list item li dots invisible */ }
-
-li .menu_label + input[type=checkbox] {
-  opacity: 0;
-  /* checkboxes invisible and use no space */ }
-
-/* display: none; is better but fails in ie8 */
-li .menu_label {
-  cursor: pointer;
-  /* cursor changes when you mouse over this class */ }
-
-/* could add the many user-select: none; commands here */
-li .menu_label + input[type=checkbox] + ol > li {
-  display: none;
-  /* prevents sublists below unchecked labels from displaying */ }
-
-li .menu_label + input[type=checkbox]:checked + ol > li {
-  display: block;
-  /* display submenu on click */ }
-
 .displayTransactions {
-  width: 100%; }
+  width: 100%;
+  min-width: 400px; }
   .displayTransactions > .transactionData:nth-of-type(odd) {
     background-color: #edf0f0; }
   .displayTransactions > .transactionData:nth-of-type(even) {

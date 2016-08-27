@@ -39,6 +39,8 @@
 			objectinit(viewExpenseFactory.presentStack[type],catagory);
 			objectinit(viewExpenseFactory.presentStack[type][catagory],subCatagory);
 			objectinit(viewExpenseFactory.presentStack[type][catagory][subCatagory],index);
+			entry.ondate=butifyDate(entry.ondate);
+			//entry.ondate = entry.ondate;
 				viewExpenseFactory.presentStack[type][catagory][subCatagory][index]=entry;
 			//	console.log(viewExpenseFactory.presentStack);
 		}
@@ -52,6 +54,13 @@
 			}
 			return object;
 		}
+                        function butifyDate(data) {
+                            var d = new Date(data);
+                            return [d.getDate(), d.getMonth() + 1,
+                                d.getFullYear()
+                            ].join('/');
+                        }
+
 
 		function postDataHandler(object,response)
 		{

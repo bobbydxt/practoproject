@@ -6,15 +6,23 @@
          <div class="leftExpenseData">
          	
          	<div class="expenseTypeTitle">Filter Expense </div>
+<input type="text"  ng-model="date"  moment-picker="date"
+     format="MM,YYYY"
+     max-view="year"
+     start-view="year"
+     autoclose="true"
+     today="true"
+     keyboard="true"
+     placeholder="Select the query month" >
 
-   <datepicker date-format="MM,yyyy">
-      <input type="text" ng-model="date" placeholder="Select the query month" />
-   </datepicker>
    <div class = "row">
       <div class="expense_type_container col ">
          <ol id="menutree">
          <li>
             <div class="" ng-repeat="expenseType in expenseConstant">
+            <input type="checkbox" name="hideExpenceType" 
+            class="hideExpenceType">
+            <label></label>
                <input type="checkbox" name="expenseType.id" 
                   ng-model="filterListner[expenseType.id]" 
                   ng-change="onexpenseTypeChange(filterListner[expenseType.id])" 
@@ -47,17 +55,7 @@
          </div>
       </div>
       <div class="rightExpenseDataHolder">
-         <div class="expanseSelectBar">
-            <div class="expenseFunctionName selected">
-               View Transactions
-            </div>
-            <div class="expenseFunctionName selected">
-               Add New
-            </div>
-            <div class="expenseFunctionName right">
-               Vizualize
-            </div>
-         </div>
+
          <div class="clear"></div>
          <div class="expenseDataContainer">
          <div class="displayTransactions">
@@ -67,18 +65,17 @@
          		<div class="transactionSubC">Sub Catagory</div>
          		<div class="transactiondate">OnDate</div>
          		
-         	</div>
-         	<div class="transactionData" ng-repeat="todisplay in displayTransactions">
-      		{{data = getDataDetails(todisplay);""}}
-      		<div class="transactionType">{{data.expenseType}}</div>
-         	<div class="transactionMainC">{{data.mainCatagory}}</div>
-         	<div class="transactionSubC">{{data.subCatagory}}</div>
-         	<div class="transactiondate">{{data.date}}</div>
-         	<div class="transactionedit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
-         		<div class="transactiondelete"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
+         	</div><div class="transactionData" ng-repeat="todisplay in displayTransactions">
+          {{data = getDataDetails(todisplay);""}}
+          <div class="transactionType">{{data.expenseType}}</div>
+          <div class="transactionMainC">{{data.mainCatagory}}</div>
+          <div class="transactionSubC">{{data.subCatagory}}</div>
+          <div class="transactiondate">{{data.date}}</div>
+          <div class="transactionedit"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+            <div class="transactiondelete"><i class="fa fa-trash-o" aria-hidden="true"></i></div>
 
       
-   			</div>
+        </div>
          </div>
                
          </div>

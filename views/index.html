@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html ng-app="expense">
 <head>
-	<title>Index Page</title>
+  <title>Index Page</title>
 <script src="/bower_components/angular/angular.js"></script>
 <script src="/bower_components/angular-route/angular-route.js"></script>
 <script src="/bower_components/angular-local-storage//dist/angular-local-storage.js"></script>
 <script src="/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
-<script src="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+<script src="/bower_components/angular-datepicker/dist/angular-datepicker.min.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-fusioncharts/dist/angular-fusioncharts.js"></script>
+<script type="text/javascript" src="/bower_components/fusioncharts-suite-xt/js/fusioncharts.js"></script>
+<script type="text/javascript" src="/bower_components/fusioncharts-suite-xt/js/themes/fusioncharts.theme.ocean.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/bower_components/angular-datepicker/dist/angular-datepicker.min.css" />
 <link rel="stylesheet" type="text/css" href="/bower_components/angular-flash-alert/dist/angular-flash.css" />
 <link rel="stylesheet" type="text/css" href="/bower_components/font-awesome-4.6.3/css/font-awesome.css" />
 
 
 <link rel="stylesheet" type="text/css" href="/src/css/style.css" />
 
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+<script src="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
+<link href="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -23,19 +36,35 @@
 
 
 <div class="navbar-header">
+ <div class="navbar-container">
 
-<input type="checkbox" id="toggle" />
-<div>
+      <div class = "navbar_title eachElement">
+      <i class="fa fa-inr " style="padding-right:5px;" aria-hidden="true"></i>Expense Manager
+      </div>
+    <input type="checkbox" id="toggle" />
+    <div>
     <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars fa-4x" aria-hidden="true"></i></label>
-    <ul class="menu">
-      <li class = "navbar_title">
-      <a href="#"><i class="fa fa-inr " style="padding-right:5px;" aria-hidden="true"></i>Expense Manager</a>
-      </li>
+
+    <div class="menu">
+
+
         
-        
-        <li><a href="#sign_in"> Sign In</a></li>
-    </ul>
-</div>
+
+        <div class="eachElement"><a href="#sign_in" class="navObject"> Sign In</a></div>
+
+        <div class="eachElement">
+        <div class="navObject"> manage
+          <div class="subNav">
+                <a href="#view_expense" class="subElement">Transactions</a>
+                 <a href="#sign_in" class="subElement">Vizualize</a>
+                  <a href="#sign_in" class="subElement"> Sign In</a>
+          </div>
+          </div>
+        </div>
+        <div class="eachElement"><a href="#new_expense" class="navObject">New</a></div>
+    </div>
+    </div>
+  </div>
 </div>
 <div class="clear"></div>
 <flash-message
@@ -52,7 +81,7 @@
 
 
 
-	  <div ng-view></div>
+    <div ng-view></div>
 
 <script src="src/js/main.js"></script>
 
