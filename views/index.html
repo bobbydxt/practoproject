@@ -3,13 +3,13 @@
 <head>
   <title>Index Page</title>
 <script src="/bower_components/angular/angular.js"></script>
-<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="/bower_components/angular-local-storage//dist/angular-local-storage.js"></script>
 <script src="/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
 <script src="/bower_components/angular-datepicker/dist/angular-datepicker.min.js"></script>
 <script src="/bower_components/moment/moment.js"></script>
 <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
-<script type="text/javascript" src="/bower_components/angular-fusioncharts/dist/angular-fusioncharts.js"></script>
+<script type="text/javascript" src="/bower_components/angular-fusioncharts/dist/angular-fusioncharts.min.js"></script>
 <script type="text/javascript" src="/bower_components/fusioncharts-suite-xt/js/fusioncharts.js"></script>
 <script type="text/javascript" src="/bower_components/fusioncharts-suite-xt/js/themes/fusioncharts.theme.ocean.js"></script>
 
@@ -36,7 +36,7 @@
 
 
 <div class="navbar-header">
- <div class="navbar-container">
+ <div class="navbar-container" ng-controller="navController">
 
       <div class = "navbar_title eachElement">
       <i class="fa fa-inr " style="padding-right:5px;" aria-hidden="true"></i>Expense Manager
@@ -45,23 +45,21 @@
     <div>
     <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars fa-4x" aria-hidden="true"></i></label>
 
-    <div class="menu">
-
-
-        
-
-        <div class="eachElement"><a href="#sign_in" class="navObject"> Sign In</a></div>
-
+    <div class="menu" ng-if="status">
+     <div class="eachElement"><a href="#expense_select" class="navObject" ng-click="signout()">Sign Out</a></div>
         <div class="eachElement">
         <div class="navObject"> manage
           <div class="subNav">
                 <a href="#view_expense" class="subElement">Transactions</a>
-                 <a href="#sign_in" class="subElement">Vizualize</a>
-                  <a href="#sign_in" class="subElement"> Sign In</a>
+                 <a href="#view_graph" class="subElement">Vizualize</a>
           </div>
           </div>
         </div>
-        <div class="eachElement"><a href="#new_expense" class="navObject">New</a></div>
+        <div class="eachElement"><a href="#expense_select" class="navObject">Add</a></div>
+       
+    </div>
+    <div class="menu" ng-if="!status">
+            <div class="eachElement"><a href="#sign_in" class="navObject"> Sign In</a></div>
     </div>
     </div>
   </div>
@@ -81,7 +79,7 @@
 
 
 
-    <div ng-view></div>
+    <div ui-view></div>
 
 <script src="src/js/main.js"></script>
 
@@ -101,7 +99,7 @@
 <script src="src/js/controller/viewExpenseController.js"></script>
 <script src="src/js/controller/expenseController.js"></script>
 <script src="src/js/controller/userController.js"></script>
-<script src="src/js/controller/homeController.js"></script>
+<script src="src/js/controller/navController.js"></script>
 
 <div class="footer">
     <div class="footerContainer">

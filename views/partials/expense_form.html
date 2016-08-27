@@ -3,35 +3,31 @@
         <div class="expenseHeader">Manage Your Expenses
         </div>
         <div class="leftExpenseDataHolder">
-            <div class="leftExpenseData"></div>
         </div>
         <div class="rightExpenseDataHolder">
-            <div class="expanseSelectBar">
-                <div class="expens`eFunctionName selected">
-                View Transactions
-                </div>
-                <div class="expenseFunctionName selected">
-                Add New
-                </div>
-                <div class="expenseFunctionName right">
-                Vizualize
-                </div>
-            </div>
+
             <div class="clear"></div>
             <div class="expenseDataContainer">
             <form name="form" ng-submit="newExpense(userInfo)" role="form">
                 <div class="leftDataViewer">
                     <div class="form-group forDisplayInput">
-                    <input type="text"  name="expenseCatagory" ng-model="expense.expenseCatagory.name" disabled="">
+                    <div class="expenseTitle">Transaction Type</div>
+                    <div  class="inputBoxLike" name="expenseCatagory" ng-bind="expense.expenseCatagory.name"  ng-click="changeType()">
                     </div>
-                    <div class="form-group forDisplayInput">
-                    <input type="text"  name="mainCatagory" ng-model="expense.mainCatagory.name" disabled="">
                     </div>
+                    <div class="expenseTitle">Catagory</div>
+                    <div class="inputBoxLike" form-group forDisplayInput">
+                    <div class="" name="mainCatagory" ng-bind="expense.mainCatagory.name" ng-click="changeType()">
+                    </div>
+                    </div>
+                    <div class="expenseTitle">Sub Catagory</div>
                     <div class="form-group forDisplayInput">
-                    <input type="text"  name="subCatagory" ng-model="expense.subCatagory.name" disabled="">
+                    <input type="text" disabled="" name="subCatagory" ng-model="expense.subCatagory.name" >
                     </div>
         <div class="form-group" 
         ng-class="{ 'has-error': form.amount.$dirty && form.amount.$error.required }">
+
+             <div class="expenseTitle">Amount</div>
             <input type="text" name="amount" id="amount" 
             class="form-control" ng-model="userInfo.amount" 
             ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required placeholder="Amount" />
@@ -40,11 +36,21 @@
             class="help-block">Only proper numeric allowed</span>
         </div>
         <div class="form-group" ng-class="">
+         <div class="expenseTitle">Remark</div>
             <input type="text" name="remark" id="remark" class="form-control" ng-model="userInfo.remark"  placeholder="Remark" />
         </div>
-        <datepicker>
-        <input type="text" name="date" id="date" class="form-control" ng-model="userInfo.date" placeholder="Date of expense" />
-        </datepicker>
+        <div class="form-group" ng-class="">
+         <div class="expenseTitle">Date</div>
+
+        <input type="text" ng-model="userInfo.date"   moment-picker="userInfo.date"
+     format="MM/DD/YYYY"
+     max-view="month"
+     start-view="month"
+     autoclose="true"
+     today="true"
+     keyboard="true"
+     placeholder="Date of expense" >
+        </div>
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid" class="userLoginButton">Add Expense</button>
         </div>
@@ -54,10 +60,10 @@
                 <div class="form-group" ng-class="{  }">
                         <div class="subRadioContainer" ng-repeat="expenseType in expense.mainCatagory.subCatagory">
                 <input type="radio" name="subCatagory" 
-                 ng-model="$parent.userInfo.subCatagory"
+                 ng-model="expense.subCatagory"
                     ng-change="onsubCatagoryChange(expenseType)"
-                    ng-init="expenseType.id==$parent.expense.subCatagory.id 
-                    ? ($parent.userInfo.subCatagory=expenseType):''" 
+                    ng-init="expenseType.id==expense.subCatagory.id 
+                    ? (expense.subCatagory=expenseType):''" 
                     ng-value="expenseType" />
         {{expenseType.name}}
             </div>

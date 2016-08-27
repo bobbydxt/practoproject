@@ -3,7 +3,7 @@
 
 			'1': {
 			'id': '1',
-			'name': 'credit',
+			'name': 'Credit',
 			'data': {
 				'1': {'name': 'Salary',
 					'id': '1',
@@ -142,7 +142,7 @@
 			},
 				'2': {
 					'id': '2',
-					'name': 'debit',
+					'name': 'Debit',
 					'data': {
 				'1': {'name': 'Food and Beverage',
 					'id': '1',

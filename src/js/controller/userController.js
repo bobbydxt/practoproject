@@ -5,7 +5,7 @@
 		 	//initialization
 		 		//only non logged in user
 		 		//userFactory.logout();
-		 		userFactory.routeNotLoggedIn();
+		 		
 		 $scope.transaction = function(userInfo,type) {
 		 	console.log(type);
 		 	if((type==='login'||type==='signup')&&$scope.form.$valid)

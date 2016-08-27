@@ -67,7 +67,7 @@ apirouter.put('/update', passport.authenticate('jwt', {
             } else {
               var result = helper.validate(req.query);
                 if (result.status===false||!req.query.id) {
-                    helper.sendjson(res,400,false,"You need to enter id");
+                    helper.sendjson(res,400,false,{msg: "You need to enter a valid data",result: result});
                 } else {
 
                     

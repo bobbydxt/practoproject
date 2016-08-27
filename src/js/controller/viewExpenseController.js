@@ -1,5 +1,5 @@
-    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant', 'userFactory', '$filter',
-        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter) {
+    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant', 'userFactory', '$filter','expenseFactory',
+        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter,expenseFactory) {
             var primaryStack = {};
 
 
@@ -13,7 +13,7 @@
             $scope.expenseConstant = expenseConstant;
             $scope.graphData = {};
             createList(true);
-            userFactory.routeLoggedIn();
+            
             //console.log($scope.filterObject );
             $scope.$watch('date', function(val) {
                 if (val !== undefined) {
@@ -43,6 +43,21 @@
                  if (this.date !== undefined) {
                 createDateGraph($scope.graphType);
                 }
+            }
+
+            $scope.editExpense = function(transactionId)
+            {
+                if($scope.displayTransactions[transactionId])
+                {
+                    expenseFactory.initializeEdit($scope.displayTransactions[transactionId]);
+                }
+                //
+            }
+            $scope.deleteExpense = function(transactionId)
+            {
+                if(transactionId)
+                expenseFactory.delete(transactionId);
+                
             }
 
             function createDateGraph( type) {
@@ -115,11 +130,11 @@
                         catagory = object[value].mainCatagory;
                         if(!toprocess[catagory])
                             toprocess[catagory]={label: expConstant[catagory].name, value:0};
-                        toprocess[catagory].value += parseInt(object[value].amount);
+                        toprocess[catagory].value += parseInt(object[value].amount,10);
                     }
                 }
                 console.log(toprocess);
-                for (var value in toprocess) {
+                for (value in toprocess) {
                     if (toprocess[value]) {
                         toreturn.push(toprocess[value]);
                     }
@@ -139,13 +154,13 @@
                 var date;
                 for (var value in object) {
                     if (object[value]) {
-                        date = parseInt(parseInt(object[value].ondate.split("/")[0]) / 5);
+                        date = parseInt(parseInt(object[value].ondate.split("/")[0],10) / 5,10);
 
-                        toprocess[date].value += parseInt(object[value].amount);
+                        toprocess[date].value += parseInt(object[value].amount,10);
                     }
                 }
                 console.log(toprocess);
-                for (var i = 1; i <= 6; i++) {
+                for ( i = 1; i <= 6; i++) {
                     toreturn.push(toprocess[i]);
                 }
                 //console.log(toreturn);
@@ -177,16 +192,6 @@
                     //Define the data labels and data values for the data plots.
                 ]
             };
-            $scope.$watch('graph', function(val) {
-                // console.log('here');
-                var datasetGenerator = {
-                    //     1: getBarData(),
-                    //   2: getPieData()
-                };
-                if (val >= 1 && val <= 3) {
-
-                }
-            });
 
 
             function expenseAddToDisplay(eid, value) {
@@ -391,6 +396,7 @@
                 pres = pres.subCatagory[object.subCatagory];
                 temp['subCatagory'] = pres.name;
                 temp['date'] = object.ondate;
+                temp['id'] = object._id;
                 return temp;
 
             }
@@ -405,9 +411,6 @@
 
 
 
-            function pushAllSubCatagory(subcatagory) {
-
-            }
 
         }
     ])

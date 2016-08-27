@@ -33,3 +33,92 @@
   @include clearfix();
 
 }
+.selectorButton
+{
+  width: 10%;
+  float: left;
+}
+.selectorCheckbox
+{
+  width: 90%;
+  float: left;
+}
+.usage
+{
+  display: none;
+  +.selector
+  {
+        .hide
+      {
+        display: none;
+      }
+      .show
+      {
+        display: block;
+      }
+      .dataContainer{
+        padding-left: 10px;
+        display: none;
+      }
+    }
+  &:checked {
+  +.selector
+  {
+        .hide
+      {
+        display: block;
+      }
+      .show
+      {
+        display: none;
+      }
+      .dataContainer
+      {
+        display: block;
+      }
+    }
+  }
+}
+
+.usageMain
+{
+  display: none;
+  +.selectorMain
+  {
+         .hideMain
+      {
+        display: none;
+      }
+       .showMain
+      {
+        display: block;
+      }
+       .dataContainerMain
+      {
+        padding-left: 10px;
+        display: none;
+      }
+    }
+  &:checked {
+   +.selectorMain
+  {
+         .hideMain
+      {
+        display: block;
+      }
+      .showMain
+      {
+        display: none;
+      }
+       .dataContainerMain
+      {
+        display: block;
+      }
+    }
+  }
+}
+.selectorButtonMain
+{
+  width: 10%;
+  float: left;
+}

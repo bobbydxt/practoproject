@@ -419,7 +419,7 @@ button {
     font-size: 12px; }
 
 .homeParent {
-  background: url(http://s1.picswalls.com/wallpapers/2014/08/11/money-desktop-wallpapers_090606472_192.jpg) no-repeat center center fixed;
+  background: url(https://s10.postimg.io/al1hhez55/rsz_money_desktop_wallpapers_090606472_192.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -525,7 +525,14 @@ button {
   width: 100%;
   text-align: center;
   font-size: 15px;
-  font-weight: bold; }
+  font-weight: bold;
+  color: #21646A; }
+
+.expenseTitle {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  color: #21646A; }
 
 .expense_type {
   width: 100%; }
@@ -539,8 +546,28 @@ button {
   width: 45%;
   float: left; }
 
-.forDisplayInput > input[type="text"] {
-  text-align: center; }
+.forDisplayInput > input[type="text"], .form-group > input[type="text"] {
+  margin-top: 3px;
+  margin-bottom: 8px; }
+
+.leftExpenseData {
+  width: 100%;
+  padding: 10px 9px 0px 0px; }
+
+.inputBoxLike {
+  text-align: center;
+  border: 1px solid #E6E6E6;
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  margin: 3px 0 8px 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 15px;
+  padding: 8px 0 8px 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none; }
 
 .displayTransactions {
   width: 100%;
@@ -570,3 +597,47 @@ button {
     display: table; }
   .displayTransactions:after {
     clear: both; }
+
+.selectorButton {
+  width: 10%;
+  float: left; }
+
+.selectorCheckbox {
+  width: 90%;
+  float: left; }
+
+.usage {
+  display: none; }
+  .usage + .selector .hide {
+    display: none; }
+  .usage + .selector .show {
+    display: block; }
+  .usage + .selector .dataContainer {
+    padding-left: 10px;
+    display: none; }
+  .usage:checked + .selector .hide {
+    display: block; }
+  .usage:checked + .selector .show {
+    display: none; }
+  .usage:checked + .selector .dataContainer {
+    display: block; }
+
+.usageMain {
+  display: none; }
+  .usageMain + .selectorMain .hideMain {
+    display: none; }
+  .usageMain + .selectorMain .showMain {
+    display: block; }
+  .usageMain + .selectorMain .dataContainerMain {
+    padding-left: 10px;
+    display: none; }
+  .usageMain:checked + .selectorMain .hideMain {
+    display: block; }
+  .usageMain:checked + .selectorMain .showMain {
+    display: none; }
+  .usageMain:checked + .selectorMain .dataContainerMain {
+    display: block; }
+
+.selectorButtonMain {
+  width: 10%;
+  float: left; }

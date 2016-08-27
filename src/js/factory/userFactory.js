@@ -1,5 +1,5 @@
-	app.factory('userFactory', ['localStorageService','userService','flashService','$location',
-        function(localStorageService,userService,flashService,$location){
+	app.factory('userFactory', ['localStorageService','userService','flashService','$state',
+        function(localStorageService,userService,flashService,$state){
 	var userFactory = {};
 
     userFactory.presentState = false;
@@ -44,7 +44,7 @@
                        //         console.log('here');
                                 response = { success: true,
                                     message: 'You are successfully logged in'};
-                                    $location.path('/');
+                                    $state.go('/');
                             }
 
                         } else {
@@ -101,7 +101,7 @@
             //as we should remove expense history also
                 localStorageService.clearAll();
                 this.presentState = false;
-                $location.path("/");
+                $state.go("/");
                 return true;
 
         }
@@ -113,9 +113,12 @@
         {
             if(!this.loginCheck())
             {
-                $location.path("/");
+                return false;
                 flashService.warning('You need to login to access this');
+              //  $location.path("/home");
             }
+            else
+            return true;
         }
         /**
          * Route check for not logged in user
@@ -126,9 +129,12 @@
 
             if(this.loginCheck())
             {
-                $location.path("/");
-                flashService.warning('You need to logout to access this');
+                return false;
+              //  $location.path("/view_expense");
+                flashService.warning('An invalid url was Entered');
             }
+
+            else return true;
         }
         /**
          * checks if a user is logged in

@@ -1,5 +1,5 @@
-	app.factory('expenseFactory', ['localStorageService','expenseService','flashService',
-        function(localStorageService,expenseService,flashService){
+	app.factory('expenseFactory', ['localStorageService','expenseService','flashService','$location',
+        function(localStorageService,expenseService,flashService,$location){
 		var expenseFactory = {};
 		var tempPres = expenseDefaultState();
 		expenseFactory.PresState=getCurrentExpense(tempPres);
@@ -11,25 +11,77 @@
 			this.PresState.subCatagory = mainCatagory.subCatagory['0'];
 			setCurrentExpense(this.PresState);
 		}
+		expenseFactory.setEditExpense = function(expense)
+		{
+			this.PresState = expense;
+			this.PresState.processing = true;
+			setCurrentExpense(this.PresState);
+		}
+		expenseFactory.initializeEdit = function(data)
+		{
+			localStorageService.set('EditData',data);
+			//console.log(localStorageService.get('EditData'));
+               
+			$location.path('/edit_expense');
+			flashService.successResponse(false,'no object to edit');
+		}
+		expenseFactory.getEditData = function()
+		{
+			if(localStorageService.get('EditData'))
+				return localStorageService.get('EditData');
+			else
+			{
+				$location.path('/view_expense');
+flashService.successResponse(false,'no object to edit');
 
+			}
+
+			//console.log(localStorageService.get('EditData'));
+               
+		}
+		expenseFactory.delete = function(transactionId)
+		{
+			expenseService.deleteExpense(transactionId,function(object)
+			{
+				    	 postResponseHandler(object);
+
+                      
+			})
+		}
 		expenseFactory.newExpense= function(userInfo)
 		{
 			expenseService.newExpense(userInfo,function(object)
 			{
-				    	if (object.success === true )
-				    	{
-                            response = { 
-                            	success: true,
-                            	message: 'Entry created Successfully'
-                        		};
+				    	 postResponseHandler(object);
 
-                        } else {
-                            response = { success: false, message: expenseErrorHandler[object.status] };
-                        }
+                        
+			})
+		}
+		expenseFactory.editExpense= function(userInfo)
+		{
+			expenseService.editExpense(userInfo,function(object)
+			{
 
-                        flashService.successResponse(response.success,response.message);
+                        postResponseHandler(object);
                     
 			})
+		}
+		function postResponseHandler(object)
+		{
+			if (object.success === true )
+				{
+                   	response = { 
+                        success: true,
+                        message: 'Task Successful Successfully'
+                    };
+
+                } else {
+                 		//console.log('false');
+                    response = { success: false, message: expenseErrorHandler[object.status] };
+                }
+                flashService.successResponse(response.success,response.message);
+                return response;
+
 		}
 		var expenseErrorHandler = {
 				'403': 'This Is An Invalid Session',

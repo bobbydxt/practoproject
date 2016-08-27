@@ -270,7 +270,9 @@ $navbar-standard-width:20px;
 		}
 	}
 	#toggle {
+
 		&:checked {
+
 			+ {
 				div {
 					.menu {

@@ -6,15 +6,38 @@
 		expenseService.newExpense = function(params,callback)
 		{
 			//console.log(params);
+			console.log(toSendGenerator(params));
+			httpRequestHandler(toSendGenerator(params),'/api/expense/new','POST',callback);
 
-			httpRequestHandler({
+		}
+		expenseService.editExpense = function(params,callback)
+		{
+			//console.log(params);
+			var tosend =toSendGenerator(params);
+			tosend.id = params.id;
+
+			httpRequestHandler(tosend,'/api/expense/update','PUT',callback);
+
+		}
+		expenseService.deleteExpense = function(params,callback)
+		{
+			//console.log(params);
+			
+
+			httpRequestHandler({id:params},'/api/expense/delete','delete',callback);
+
+		}
+		function toSendGenerator(params)
+		{
+						var tosend={
 								expenseType: params.expense.expenseCatagory.id,
 								mainCatagory: params.expense.mainCatagory.id,
 								subCatagory: params.expense.subCatagory.id,
 								amount: params.amount,
-								remark: params.remark
-								},'/api/expense/new','POST',callback);
-
+								remark: params.remark,
+								ondate: params.date
+								};
+								return tosend;
 		}
 
 		expenseService.getMonthlyExpense = function(params,callback)
@@ -37,7 +60,7 @@
 						  url: url,
 						  timeout:5000
 						}).success(function(res,status){
-							//console.log(res);
+							console.log(res);
 							tocall(true,res.data.data);
 						})
 						  .error(function (err,status){
