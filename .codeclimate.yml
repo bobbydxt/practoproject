@@ -26,4 +26,4 @@ ratings:
   - "**.rb"
 exclude_paths:
 - src/js/constant
-- config/
+- src/js/config/

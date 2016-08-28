@@ -132,12 +132,11 @@
                 var date;
                 for (var value in object) {
                     if (object[value]) {
-                        date = parseInt(parseInt(object[value].ondate.split("/")[0],10) / 5,10);
-
-                        toprocess[date].value += parseInt(object[value].amount,10);
+                        date = parseInt(parseInt(object[value].ondate.split("/")[0],10) / 5,10)+1;
+                        console.log(date);
+                        toprocess[date]['value'] += parseInt(object[value].amount,10);
                     }
                 }
-                console.log(toprocess);
                 for ( i = 1; i <= 6; i++) {
                     toreturn.push(toprocess[i]);
                 }
