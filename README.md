@@ -1,7 +1,7 @@
-"!https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/gpa.svg!"
-"!https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/coverage.svg!"
-"!https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/issue_count.svg!"
-!https://travis-ci.org/bobbydxt8may/practoproject.svg?branch=master!:https://travis-ci.org/bobbydxt8may/practoproject
+{<img src="https://travis-ci.org/bobbydxt8may/practoproject.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/bobbydxt8may/practoproject]
+
+
+bobbydxt8may/practoproject
 #Expense Manager
 
 A website developed over node using express server with a RESTful API Backend and a Angular.js Frontend
