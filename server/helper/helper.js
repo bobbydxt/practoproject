@@ -60,10 +60,11 @@ helper.tokenGenerator = function(object,res)
         if (isMatch && !err) {
           
           // if user is found and password is right create a token
-          var token = jwt.sign({ user }, config.secret);
+          var token = jwt.sign({email:user.email }, config.secret);
+          var decoded = jwt.verify(token,config.secret);
           // return the information including token as JSON
           helper.sendjson(res,200,true, "token created successfully",
-           {email: user.email, token: 'JWT ' + token});
+           {email: user.email,data: decoded , token: 'JWT ' + token});
         } else {
           helper.sendjson(res,403,false,
             'Authentication failed. Wrong password.');
@@ -88,7 +89,7 @@ helper.verifyToken = function(header,callback)
     var decoded = jwt.verify(token,config.secret);
     
    var user = User.findOne({
-      email: decoded.user.email
+      email: decoded.email
     },function(err,user) {
         if (err) return  callback({success: false,status: 403,
            msg: err.message});
