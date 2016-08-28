@@ -44,7 +44,7 @@
                        //         console.log('here');
                                 response = { success: true,
                                     message: 'You are successfully logged in'};
-                                    $state.go('/');
+                                    $state.go('view_expense');
                             }
 
                         } else {
@@ -101,7 +101,7 @@
             //as we should remove expense history also
                 localStorageService.clearAll();
                 this.presentState = false;
-                $state.go("/");
+                $state.go("home");
                 return true;
 
         }
@@ -114,8 +114,9 @@
             if(!this.loginCheck())
             {
                 return false;
-                flashService.warning('You need to login to access this');
               //  $location.path("/home");
+                flashService.warning('You need to login to access this');
+             
             }
             else
             return true;
@@ -130,7 +131,7 @@
             if(this.loginCheck())
             {
                 return false;
-              //  $location.path("/view_expense");
+            //   $location.path("/view_expense");
                 flashService.warning('An invalid url was Entered');
             }
 

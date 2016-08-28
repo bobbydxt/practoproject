@@ -10,9 +10,9 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		templateUrl : 'views/partials/sign_in.html',
 			    		controller : 'userController',
 			    		resolve: {
-			    			load: function(userFactory) {
+			    			load: function(userFactory,$state) {
 			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('/view_expense',{reload:true});
+			    				$state.go('view_expense',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -23,7 +23,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('/view_expense',{reload:true});
+			    				$state.go('view_expense',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -35,9 +35,9 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    			edit: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
+			    			load: function(userFactor,$state) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -52,7 +52,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -66,7 +66,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -81,7 +81,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -96,7 +96,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -107,7 +107,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 			    	})
@@ -118,7 +118,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('/home',{reload:true});
+			    				$state.go('home',{reload:true});
 			    			}
 			    		}
 
@@ -129,7 +129,7 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    		resolve: {
 			    			load: function(userFactory) {
 			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('/view_expense',{reload:true});
+			    				$state.go('view_expense',{reload:true});
 			    			}
 			    		}
 			    	})
