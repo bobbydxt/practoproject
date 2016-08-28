@@ -23,11 +23,17 @@
   padding: 0 20px;
   border-bottom: 1px solid #dee5e5; }
 
-.container, .footerContainer, .loginContainer, .home-description-container {
+.container, .footerContainer, .loginContainer, .home-description-container, .home-description-container-sub {
   margin: 0 auto;
   max-width: 800px;
   min-width: 250px;
   padding-top: 20px; }
+
+.help-block {
+  color: red;
+  font-size: 10px;
+  padding: 3px 0px 0px 0px;
+  margin: 3px 0px 0px 0px; }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
@@ -56,6 +62,12 @@ blockquote:before, blockquote:after {
 q:before, q:after {
   content: '';
   content: none; }
+
+a {
+  color: inherit;
+  /* blue colors for links too */
+  text-decoration: inherit;
+  /* no underline */ }
 
 table {
   border-collapse: collapse;
@@ -104,10 +116,10 @@ button {
 .leftExpenseDataHolder {
   width: 25%;
   min-height: 10px;
-  min-width: 200px;
+  min-width: 100px;
   float: left;
   margin-right: 2%;
-  margin-left: 8%;
+  margin-left: 2%;
   height: 100%; }
 
 .leftExpenseData {
@@ -153,7 +165,7 @@ button {
 
 .expenseHeader {
   min-width: 400px;
-  margin: 10px 0 20px 0;
+  margin: 10px 0 20px 20px;
   text-align: center;
   font-size: 25px;
   font-family: Verdana;
@@ -482,16 +494,58 @@ button {
   box-align: center; }
 
 .home-description-main {
-  padding: 0 20px;
-  min-height: 400px;
+  padding: 0 10px;
   height: 100%;
   background-color: #1C3738;
   opacity: .95; }
 
 .home-description-container {
-  max-width: 700px;
-  min-width: 250px;
-  text-align: center; }
+  max-width: 800px;
+  min-width: 100px;
+  text-align: center;
+  color: #ecf0f1; }
+  .home-description-container:before, .home-description-container:after {
+    content: " ";
+    display: table; }
+  .home-description-container:after {
+    clear: both; }
+  .home-description-container > .discriptionSubContainer {
+    width: 30%;
+    margin: 0px 10px 10px 10px;
+    min-height: 100px;
+    min-width: 200px;
+    float: left; }
+    .home-description-container > .discriptionSubContainer > .mainDescIcon {
+      font-size: 150px;
+      padding-bottom: 10px; }
+    .home-description-container > .discriptionSubContainer > .homeDescription {
+      font-size: 25px; }
+
+.home-description-sub {
+  padding: 0 10px;
+  height: 100%; }
+
+.home-description-container-sub {
+  max-width: 900px;
+  min-width: 100px;
+  text-align: center;
+  color: #387F86; }
+  .home-description-container-sub:before, .home-description-container-sub:after {
+    content: " ";
+    display: table; }
+  .home-description-container-sub:after {
+    clear: both; }
+  .home-description-container-sub > .discriptionSubContainer {
+    width: 30%;
+    margin: 0px 10px 10px 10px;
+    min-height: 100px;
+    min-width: 200px;
+    float: left; }
+    .home-description-container-sub > .discriptionSubContainer > .mainDescIcon {
+      font-size: 150px;
+      padding-bottom: 10px; }
+    .home-description-container-sub > .discriptionSubContainer > .homeDescription {
+      font-size: 25px; }
 
 .loginleftContainer, .loginrightContainer {
   width: 65%;

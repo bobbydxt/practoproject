@@ -18,7 +18,7 @@
    <div class = "row">
       <div class="expense_type_container col ">
 
-            
+        
             <div class="dataContainer" ng-repeat="expenseType in expenseConstant">
             <input type="checkbox" 
             id="{{expenseType.name+expenseType.id}}" class="usage" checked="" />
@@ -75,7 +75,8 @@
          		<div class="transactiondate">OnDate</div>
           <div class="transactionamount">Amount</div>
          		
-         	</div><div class="transactionData" ng-repeat="todisplay in displayTransactions">
+         	</div>
+          <div class="transactionData" ng-repeat="todisplay in displayTransactions">
           {{data = getDataDetails(todisplay);""}}
           <div class="transactionType">{{data.expenseType}}</div>
           <div class="transactionMainC">{{data.mainCatagory}}</div>

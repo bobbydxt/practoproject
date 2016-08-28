@@ -6,7 +6,7 @@
       link: function(scope, element, attrs){
         element.bind('click', function(e){
           var message = attrs.ngConfirmClick;
-          if(message && !confirm(message)){
+          if(message && !customConfirm(message)){
             e.stopImmediatePropagation();
             e.preventDefault();
           }

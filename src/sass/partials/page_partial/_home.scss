@@ -58,9 +58,8 @@ color: #D1E2E6;
 }
 .home-description-main
 {
-  padding: 0 20px;
-    min-height: 400px;
-    height: 100%;
+  padding: 0 10px;
+    height:  100%;
 
   background-color: #1C3738;
   opacity: .95;
@@ -69,8 +68,64 @@ color: #D1E2E6;
 .home-description-container
 {
   @extend .container;
-  max-width: 700px;
-  min-width: 250px;
+  max-width: 800px;
+  min-width: 100px;
   text-align: center;
-  //@include clearfix();
+  @include clearfix();
+
+  color: $navbar_default_color;
+  >.discriptionSubContainer
+    {
+      width: 30%;
+      margin:0px 10px 10px 10px;
+      min-height: 100px;
+      min-width: 200px;
+      float: left;
+     >.mainDescIcon
+      {
+        font-size: 150px;
+        padding-bottom: 10px;
+        }
+      >.homeDescription
+        {
+          font-size: 25px;
+         }
+  }
+  
 }
+
+.home-description-sub
+{
+  padding: 0 10px;
+    height:  100%;
+}
+
+.home-description-container-sub
+{
+  @extend .container;
+  max-width: 900px;
+  min-width: 100px;
+  text-align: center;
+  @include clearfix();
+
+  color: $navbar_active_background;
+  >.discriptionSubContainer
+    {
+      width: 30%;
+      margin:0px 10px 10px 10px;
+      min-height: 100px;
+      min-width: 200px;
+      float: left;
+     >.mainDescIcon
+      {
+        font-size: 150px;
+        padding-bottom: 10px;
+        }
+      >.homeDescription
+        {
+          font-size: 25px;
+         }
+  }
+  
+}
+

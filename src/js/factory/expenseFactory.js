@@ -44,25 +44,25 @@ flashService.successResponse(false,'no object to edit');
 			if(type==='delete')
 			expenseService.deleteExpense(data,function(object)
 			{
-				    	 postResponseHandler(object);
+				    	 postResponseHandler(object,type);
 
                       
 			});
 			else if(type==='new')
 			expenseService.newExpense(data,function(object)
 			{
-				    	 postResponseHandler(object);
+				    	 postResponseHandler(object,type);
 			});
 			else if(type==='edit')
 			{
 			expenseService.editExpense(data,function(object)
 			{
-                        postResponseHandler(object);
+                        postResponseHandler(object,type);
                     
 			});
 		}
 		}
-		function postResponseHandler(object)
+		function postResponseHandler(object,type)
 		{
 					var expenseErrorHandler = {
 				'403': 'This Is An Invalid Session',
@@ -71,14 +71,14 @@ flashService.successResponse(false,'no object to edit');
                 '200': 'Data wasn\'t returned',
                 '409': 'Data was rejected by server Please try again later'
 		}
-			console.log(object);
 			if (object.success === true )
 				{
                    	response = { 
                         success: true,
                         message: 'Task Successful'
-                    };
-
+                };
+                if(type==='edit'||type==='new')
+                	$location.path('/view_expense')
                 } else {
                  		//console.log('false');
                     response = { success: false, message: expenseErrorHandler[object.status] };

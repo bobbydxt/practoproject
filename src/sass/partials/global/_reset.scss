@@ -28,7 +28,10 @@ q {
   &:before, &:after {
     content: '';
     content: none; } }
-
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
 table {
   border-collapse: collapse;
   border-spacing: 0; }

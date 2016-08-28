@@ -3,16 +3,9 @@
         function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter,expenseFactory,$route) {
             var primaryStack = {};
 
-
-
-
-            $scope.expenceType = false;
-            $scope.displayTransactions = {};
-            $scope.presentStack = viewExpenseFactory.presentStack;
-            $scope.filterListner = {};
-            $scope.filterObject = {};
-            $scope.expenseConstant = expenseConstant;
-            $scope.graphData = {};
+            //initialize variables
+            initializeVatiable();
+            //create initial list
             createList(true);
             
             //console.log($scope.filterObject );
@@ -24,6 +17,7 @@
                             console.log(response);
                             $scope.presentStack = response;
                             $scope.displayTransactions = {};
+
                             // console.log($scope.filterObject);
                             monthChanged($scope.filterObject[1], 'expense', {
                                 eid: 1
@@ -317,7 +311,19 @@
                 return temp;
 
             }
+            function initializeVatiable()
+            {
 
+            $scope.expenceType = false;
+            $scope.displayStatus = false;
+            $scope.displayTransactions = {};
+            $scope.presentStack = viewExpenseFactory.presentStack;
+            $scope.filterListner = {};
+            $scope.filterObject = {};
+            $scope.expenseConstant = expenseConstant;
+            $scope.graphData = {};
+            }
+            
 
 
 
