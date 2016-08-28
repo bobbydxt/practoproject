@@ -1,5 +1,6 @@
-    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant', 'userFactory', '$filter','expenseFactory',
-        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter,expenseFactory) {
+    app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant',
+     'userFactory', '$filter','expenseFactory','$route',
+        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter,expenseFactory,$route) {
             var primaryStack = {};
 
 
@@ -29,6 +30,10 @@
                             monthChanged($scope.filterObject[2], 'expense', {
                                 eid: 2
                             });
+                            if($route.current.$$route.data.graph===true)
+                            {
+                                 $scope.graphGenerator();
+                            }
                             //console.log(groubByapplier('ondate'));
                             
                         });
@@ -55,8 +60,15 @@
             }
             $scope.deleteExpense = function(transactionId)
             {
-                if(transactionId)
-                expenseFactory.delete(transactionId);
+
+                    var tosearch = this.displayTransactions[transactionId];
+                if(transactionId&&tosearch)
+                {
+                    expenseFactory.delete(transactionId);
+                    
+                    delete this.presentStack[tosearch.expenseType][tosearch.mainCatagory][tosearch.subCatagory][transactionId];
+                    delete this.displayTransactions[transactionId];
+                }
                 
             }
 

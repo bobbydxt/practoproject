@@ -1,6 +1,6 @@
 	app.controller('expenseController', ['$scope','$location','userFactory','expenseFactory',
-		'expenseConstant', 'helperService','$state',
-		function($scope,$location,userFactory,expenseFactory,expenseConstant,helperService,$state){
+		'expenseConstant', 'helperService','$route',
+		function($scope,$location,userFactory,expenseFactory,expenseConstant,helperService,$route){
 
 		//only logged in user
 
@@ -10,7 +10,7 @@
 		//console.log($scope.expense);
 		//userFactory.logout();
 		//console.log($state);
-		$scope.edit = $state.current.data.edit;
+		$scope.edit = $route.current.$$route.data.edit;
 		initialize();
 			$scope.onMainCatagoryChange = function(mainCatagory,expenseCatagory)
 		{
@@ -59,10 +59,11 @@
 		{
 					if($scope.edit)
 			{
+				console.log('here');
 				var toprocess = expenseFactory.getEditData();
 				$scope.expense = {};
 				$scope.userInfo ={};
-				if($state.current.data.mainChange===true && expenseFactory.PresState.processing===true)
+				if($route.current.$$route.data.mainChange===true && expenseFactory.PresState.processing===true)
 				{
 					$scope.expense= expenseFactory.PresState;
 				}

@@ -1,48 +1,38 @@
-var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule','moment-picker',
+var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','moment-picker',
 	'angular.filter','fusioncharts']);
-			    
-	app.config(['$stateProvider','$urlRouterProvider',
-		function($stateProvider, $urlRouterProvider) {
-			    	$urlRouterProvider.otherwise("/home");
-			    	$stateProvider
-			    	.state('sign_in',{
-			    		url: "/sign_in",
-			    		templateUrl : 'views/partials/sign_in.html',
+	app.config(['$routeProvider',function($routeProvider) {
+			    	$routeProvider
+			    	.when('/sign_in',{
+			    		templateUrl : '/views/partials/sign_in.html',
 			    		controller : 'userController',
 			    		resolve: {
-			    			load: function(userFactory,$state) {
-			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('view_expense',{reload:true});
+			    			load: function(userFactory) {
+			    				userFactory.routeNotLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('sign_up',{
-			    		url: "/sign_up",
+			    	.when('/sign_up',{
 			    		templateUrl : 'views/partials/sign_up.html',
 			    		controller : 'userController',
 			    		resolve: {
 			    			load: function(userFactory) {
-			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('view_expense',{reload:true});
+			    				userFactory.routeNotLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('expense_select',{
-			    		url: "/expense_select",
+			    	.when('/expense_select',{
 			    		templateUrl : 'views/partials/expense_select.html',
 			    		controller : 'expenseController',
 			    		data: {
 			    			edit: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactor,$state) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('expense_form',{
-			    		url: "/expense_form",
+			    	.when('/expense_form',{
 			    		templateUrl : 'views/partials/expense_form.html',
 			    		controller : 'expenseController',
 			    		data: {
@@ -50,28 +40,24 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    			mainChange: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('edit_expense_select',{
-			    		url: "/edit_expense_select",
+			    	.when('/edit_expense_select',{
 			    		templateUrl : 'views/partials/expense_select.html',
 			    		controller : 'expenseController',
 			    		data: {
 			    			edit: true
 			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('edit_expense',{
-			    		url: "/edit_expense",
+			    	.when('/edit_expense',{
 			    		templateUrl : 'views/partials/expense_form.html',
 			    		controller : 'expenseController',
 			    		data: {
@@ -79,14 +65,12 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    			mainChange: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('main_edit_expense',{
-			    		url: "/main_edit_expense",
+			    	.when('/main_edit_expense',{
 			    		templateUrl : 'views/partials/expense_form.html',
 			    		controller : 'expenseController',
 			    		data: {
@@ -94,46 +78,55 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
 			    			mainChange: true
 			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('view_expense',{
-			    		url: "/view_expense",
+			    	.when('/view_expense',{
 			    		templateUrl : 'views/partials/view_expense.html',
 			    		controller : 'viewExpenseController',
+			    		data: {
+			    			graph: false
+			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 			    	})
-			    	.state('view_graph',{
-			    		url: "/view_graph",
+			    	.when('/view_graph',{
 			    		templateUrl : 'views/partials/view_graph.html',
 			    		controller : 'viewExpenseController',
+			    		data: {
+			    			graph: true
+			    		},
 			    		resolve: {
-			    			load: function(userFactory) {
-			    				if(!userFactory.routeLoggedIn())
-			    				$state.go('home',{reload:true});
+			    			load: function(userFactory,$location) {
+			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
 
 			    	})
-			    	.state('home',{
-			    		url: "/home",
-			    		templateUrl : 'views/partials/home.html',
+			    	.when('/home',{
+			    		templateUrl : '/views/partials/home.html',
 			    		resolve: {
 			    			load: function(userFactory) {
-			    				if(!userFactory.routeNotLoggedIn())
-			    				$state.go('view_expense',{reload:true});
+			    				userFactory.routeNotLoggedIn()
 			    			}
 			    		}
 			    	})
-			    }]);
+			    	.otherwise({
+			    		templateUrl : '/views/partials/home.html',
+			    		resolve: {
+			    			load: function(userFactory) {
+
+			    				userFactory.routeNotLoggedIn()
+			    			}
+			    		}
+			    	})
+			    }]);	    
+
 	app.directive('ngConfirmClick', [
   function(){
     return {
@@ -152,3 +145,4 @@ var app=angular.module('expense',['ui.router' , 'ngFlash' , 'LocalStorageModule'
     }
   }
 ]);
+

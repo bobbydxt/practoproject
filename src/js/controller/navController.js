@@ -2,7 +2,7 @@
 		$scope.status = userFactory.loginCheck();
 		$scope.signout = function()
 		{
-			console.log('here');
+			//console.log('here');
 			userFactory.logout();
 			$scope.status = userFactory.loginCheck();
 		}
