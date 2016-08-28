@@ -1,4 +1,8 @@
-{<img src="https://travis-ci.org/bobbydxt8may/practoproject.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/bobbydxt8may/practoproject]
+<a href="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/feed"><img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/gpa.svg" /></a>
+<a href="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/coverage"><img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/coverage.svg" /></a>
+<a href="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/feed"><img src="https://codeclimate.com/repos/57b6fe3ca0a6785c0f005447/badges/16954e3421ec3f2402a7/issue_count.svg" /></a>
+<img src="https://travis-ci.org/bobbydxt8may/practoproject.svg?branch=master" alt="Build Status" />
+
 
 
 bobbydxt8may/practoproject
