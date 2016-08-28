@@ -60,8 +60,7 @@ helper.tokenGenerator = function(object,res)
         if (isMatch && !err) {
           
           // if user is found and password is right create a token
-          var token = jwt.sign({ user }, 
-            config.secret);
+          var token = jwt.sign({ user }, config.secret);
           // return the information including token as JSON
           helper.sendjson(res,200,true, "token created successfully",
            {email: user.email, token: 'JWT ' + token});
