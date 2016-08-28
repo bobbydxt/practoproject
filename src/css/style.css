@@ -1,0 +1,698 @@
+.col {
+  padding: 0 1.5em;
+  margin-top: 10px; }
+
+.row .row {
+  margin: 0 -1.5em; }
+
+.row:before, .row:after {
+  content: "";
+  display: table; }
+
+.row:after {
+  clear: both; }
+
+.clear {
+  clear: both; }
+
+.main-container {
+  background-color: #F5F7F7;
+  position: relative;
+  min-height: 400px;
+  height: 100%;
+  padding: 0 20px;
+  border-bottom: 1px solid #dee5e5; }
+
+.container, .footerContainer, .loginContainer, .home-description-container, .home-description-container-sub {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 250px;
+  padding-top: 20px; }
+
+.help-block {
+  color: red;
+  font-size: 10px;
+  padding: 3px 0px 0px 0px;
+  margin: 3px 0px 0px 0px; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+a {
+  color: inherit;
+  /* blue colors for links too */
+  text-decoration: inherit;
+  /* no underline */ }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+input[type="text"], input[type="password"] {
+  display: block;
+  margin: 20px 0 20px 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 15px;
+  padding: 5px 0 5px 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none; }
+
+input[type="text"]:focus, input[type="password"] :focus {
+  outline: none; }
+
+input[type="radio"] {
+  margin-top: 10px; }
+
+button {
+  box-shadow: none;
+  border: none; }
+
+.userLoginButton {
+  cursor: pointer;
+  background: #2D5F70;
+  text-align: center;
+  color: #ecf0f1;
+  font-size: 15px;
+  border: 1px darker(#2D5F70, 8%) solid;
+  width: 100%;
+  float: left;
+  margin: 10px 0 10px 0;
+  padding: 10px 0 10px 0; }
+  .userLoginButton:hover {
+    background: #214653;
+    transition: all 0.3s ease; }
+  .userLoginButton:active, .userLoginButton + .selected {
+    background: #081215; }
+  .userLoginButton:disabled {
+    background: #A7AEB0; }
+
+.leftExpenseDataHolder {
+  width: 25%;
+  min-height: 10px;
+  min-width: 100px;
+  float: left;
+  margin-right: 2%;
+  margin-left: 2%;
+  height: 100%; }
+
+.leftExpenseData {
+  background-color: #fefefe;
+  padding: 10px 5px 10px 5px;
+  height: 100%; }
+
+.rightExpenseDataHolder {
+  min-width: 200px;
+  min-height: 10px;
+  width: 60%;
+  float: left;
+  height: 100%; }
+
+.expanseSelectBar {
+  background-color: #eff2f2;
+  min-height: 30px;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 20px; }
+
+.expenseFunctionName {
+  width: 30%;
+  float: left;
+  min-height: 24px;
+  height: auto;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: 5px;
+  font-family: Trebuchet MS;
+  padding-top: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #e7ecec;
+  text-align: center; }
+  .expenseFunctionName:hover {
+    background: #d0dada;
+    transition: all 0.3s ease; }
+  .expenseFunctionName:active, .expenseFunctionName + .selected {
+    background: #a0b3b3; }
+  .expenseFunctionName:disabled {
+    background: #A7AEB0; }
+
+.expenseHeader {
+  min-width: 400px;
+  margin: 10px 0 20px 20px;
+  text-align: center;
+  font-size: 25px;
+  font-family: Verdana;
+  color: #387F86; }
+
+.navbar-header {
+  height: 100%;
+  padding: 0 20px;
+  background: #262B2D;
+  border-bottom: 1px solid #387F86; }
+  .navbar-header:before, .navbar-header:after {
+    content: " ";
+    display: table; }
+  .navbar-header:after {
+    clear: both; }
+
+.leftNavDiv {
+  width: 40%;
+  float: left; }
+
+.rightNavDiv {
+  width: 50%;
+  float: right; }
+
+.navbar-container {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 250px; }
+
+#toggle {
+  display: none; }
+
+.toggle {
+  display: none; }
+
+.navbar_title {
+  list-style: none;
+  float: left;
+  height: 100%;
+  font-size: 25px;
+  color: #ecf0f1;
+  font-weight: bold;
+  height: 100%;
+  display: block;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: Verdana;
+  line-height: 1;
+  color: #ecf0f1;
+  margin-right: 5px;
+  position: relative;
+  cursor: pointer; }
+  .navbar_title:before, .navbar_title:after {
+    content: " ";
+    display: table; }
+  .navbar_title:after {
+    clear: both; }
+  .navbar_title:hover {
+    background: #387F86;
+    color: #ecf0f1; }
+
+.menu {
+  height: 100%; }
+  .menu:before, .menu:after {
+    content: " ";
+    display: table; }
+  .menu:after {
+    clear: both; }
+  .menu .eachElement {
+    list-style: none;
+    float: right;
+    height: 100%; }
+    .menu .eachElement:before, .menu .eachElement:after {
+      content: " ";
+      display: table; }
+    .menu .eachElement:after {
+      clear: both; }
+    .menu .eachElement > .navObject {
+      height: 100%;
+      display: block;
+      padding: 10px 10px 10px 10px;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: Verdana;
+      line-height: 1;
+      color: #ecf0f1;
+      margin-right: 5px;
+      position: relative; }
+      .menu .eachElement > .navObject:before, .menu .eachElement > .navObject:after {
+        content: " ";
+        display: table; }
+      .menu .eachElement > .navObject:after {
+        clear: both; }
+      .menu .eachElement > .navObject > .subNav {
+        position: absolute;
+        top: 35px;
+        left: 0px;
+        display: none;
+        z-index: 2;
+        min-width: 160px;
+        list-style: none;
+        float: right; }
+        .menu .eachElement > .navObject > .subNav > .subElement {
+          background: #394043;
+          height: 100%;
+          display: block;
+          padding: 10px 10px 10px 10px;
+          text-decoration: none;
+          font-size: 16px;
+          font-family: Verdana;
+          line-height: 1;
+          color: #ecf0f1;
+          margin-right: 5px; }
+          .menu .eachElement > .navObject > .subNav > .subElement:before, .menu .eachElement > .navObject > .subNav > .subElement:after {
+            content: " ";
+            display: table; }
+          .menu .eachElement > .navObject > .subNav > .subElement:after {
+            clear: both; }
+          .menu .eachElement > .navObject > .subNav > .subElement:hover {
+            background: #387F86;
+            color: #ecf0f1; }
+      .menu .eachElement > .navObject:hover {
+        background: #387F86;
+        color: #ecf0f1; }
+        .menu .eachElement > .navObject:hover > .subNav {
+          display: block; }
+
+.clearfix:before {
+  display: table;
+  content: ""; }
+
+.clearfix:after {
+  display: table;
+  content: "";
+  clear: both; }
+
+.nav {
+  display: block;
+  float: right;
+  height: 100%; }
+
+@media only screen and (max-width: 768px) {
+  .menu {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    height: auto;
+    height: auto; }
+    .menu:before, .menu:after {
+      content: " ";
+      display: table; }
+    .menu:after {
+      clear: both; }
+    .menu > .eachElement {
+      clear: both;
+      display: block;
+      border: 4px #387F86;
+      border-bottom-width: 1px;
+      width: 100%;
+      margin: 0;
+      height: auto;
+      margin-bottom: 5px; }
+      .menu > .eachElement:before, .menu > .eachElement:after {
+        content: " ";
+        display: table; }
+      .menu > .eachElement:after {
+        clear: both; }
+      .menu > .eachElement > .navObject {
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        height: auto;
+        padding: 15px 15px;
+        cursor: pointer; }
+        .menu > .eachElement > .navObject:before, .menu > .eachElement > .navObject:after {
+          content: " ";
+          display: table; }
+        .menu > .eachElement > .navObject:after {
+          clear: both; }
+        .menu > .eachElement > .navObject:hover {
+          background: #387F86;
+          color: #ecf0f1; }
+        .menu > .eachElement > .navObject > .subNav {
+          position: absolute;
+          top: 35px;
+          left: 0px;
+          display: none;
+          z-index: 2;
+          width: 100%;
+          list-style: none;
+          float: right; }
+          .menu > .eachElement > .navObject > .subNav > .subElement {
+            background: #394043;
+            height: 100%;
+            display: block;
+            padding: 10px 12px 10px 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: Verdana;
+            line-height: 1;
+            color: #ecf0f1;
+            margin-right: 5px; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:before, .menu > .eachElement > .navObject > .subNav > .subElement:after {
+              content: " ";
+              display: table; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:after {
+              clear: both; }
+            .menu > .eachElement > .navObject > .subNav > .subElement:hover {
+              background: #387F86;
+              color: #ecf0f1; }
+  .toggle {
+    display: block;
+    float: right;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none; }
+    .toggle:after {
+      display: block;
+      width: 200px;
+      margin: 33px 0;
+      padding: 10px 50px;
+      -webkit-border-radius: 2px;
+      text-align: center;
+      font-size: 12px;
+      color: #FFFFFF;
+      -webkit-transition: all 0.5s linear;
+      -moz-transition: all 0.5s linear;
+      -o-transition: all 0.5s linear;
+      transition: all 0.5s linear;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+    .toggle:hover:after {
+      background: #45ABD6; }
+  #toggle:checked + div .menu {
+    display: block;
+    opacity: 1; } }
+
+.footer {
+  position: relative;
+  min-height: 100px;
+  height: 100%;
+  margin-top: 20px;
+  border-top-width: 1px;
+  border-color: #262B2D;
+  border-style: dashed;
+  padding: 0 20px; }
+
+.footerContainer {
+  padding-top: 5px; }
+
+.footerDataContainer {
+  float: right; }
+  .footerDataContainer > a {
+    color: #479AB6;
+    font-size: 12px; }
+
+.homeParent {
+  background: url(https://s10.postimg.io/al1hhez55/rsz_money_desktop_wallpapers_090606472_192.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #F5F7F7; }
+
+.home-container {
+  position: relative;
+  padding: 0 20px;
+  min-height: 200px; }
+
+.loginButton, .signupButton {
+  width: 40%;
+  float: left;
+  color: #D1E2E6;
+  height: auto;
+  padding: 10px 10px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 10px 25px 0 25px;
+  cursor: pointer;
+  background: #45ABB5;
+  text-align: center;
+  opacity: .9;
+  cursor: pointer; }
+  .loginButton:hover, .signupButton:hover {
+    background: #3a8f97;
+    transition: all 0.3s ease; }
+  .loginButton:active, .signupButton:active, .loginButton + .selected, .signupButton + .selected {
+    background: #225459; }
+  .loginButton:disabled, .signupButton:disabled {
+    background: #A7AEB0; }
+
+.signupButton {
+  cursor: pointer;
+  background: #45A0B5;
+  text-align: center; }
+  .signupButton:hover {
+    background: #3a8697;
+    transition: all 0.3s ease; }
+  .signupButton:active, .signupButton + .selected {
+    background: #224e59; }
+  .signupButton:disabled {
+    background: #A7AEB0; }
+
+.loginContainer {
+  max-width: 700px;
+  min-width: 250px;
+  text-align: center;
+  padding-bottom: 100px; }
+
+.buttonContainer {
+  padding-top: 100px;
+  width: 100%;
+  height: 100%;
+  display: box;
+  box-orient: horizontal;
+  box-pack: center;
+  box-align: center; }
+
+.home-description-main {
+  padding: 0 10px;
+  height: 100%;
+  background-color: #1C3738;
+  opacity: .95; }
+
+.home-description-container {
+  max-width: 800px;
+  min-width: 100px;
+  text-align: center;
+  color: #ecf0f1; }
+  .home-description-container:before, .home-description-container:after {
+    content: " ";
+    display: table; }
+  .home-description-container:after {
+    clear: both; }
+  .home-description-container > .discriptionSubContainer {
+    width: 30%;
+    margin: 0px 10px 10px 10px;
+    min-height: 100px;
+    min-width: 200px;
+    float: left; }
+    .home-description-container > .discriptionSubContainer > .mainDescIcon {
+      font-size: 150px;
+      padding-bottom: 10px; }
+    .home-description-container > .discriptionSubContainer > .homeDescription {
+      font-size: 25px; }
+
+.home-description-sub {
+  padding: 0 10px;
+  height: 100%; }
+
+.home-description-container-sub {
+  max-width: 900px;
+  min-width: 100px;
+  text-align: center;
+  color: #387F86; }
+  .home-description-container-sub:before, .home-description-container-sub:after {
+    content: " ";
+    display: table; }
+  .home-description-container-sub:after {
+    clear: both; }
+  .home-description-container-sub > .discriptionSubContainer {
+    width: 30%;
+    margin: 0px 10px 10px 10px;
+    min-height: 100px;
+    min-width: 200px;
+    float: left; }
+    .home-description-container-sub > .discriptionSubContainer > .mainDescIcon {
+      font-size: 150px;
+      padding-bottom: 10px; }
+    .home-description-container-sub > .discriptionSubContainer > .homeDescription {
+      font-size: 25px; }
+
+.loginleftContainer, .loginrightContainer {
+  width: 65%;
+  min-height: 10px;
+  min-width: 250px;
+  height: auto;
+  float: left; }
+
+.loginrightContainer {
+  width: 35%; }
+  .loginrightContainer > input[type="text"] {
+    width: 100%; }
+
+.setFormTitle {
+  margin: 20px 0 30px 0;
+  text-align: center;
+  font-size: 25px;
+  font-family: Geneva;
+  color: #479AB6; }
+
+.leftExpenseTypeHolder {
+  float: left;
+  width: 45%;
+  margin-right: 5%; }
+
+.rightExpenseTypeHolder {
+  float: left;
+  width: 45%; }
+
+.expenseTypeTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #21646A; }
+
+.expenseTitle {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  color: #21646A; }
+
+.expense_type {
+  width: 100%; }
+
+.expenseDataContainer .leftDataViewer {
+  width: 45%;
+  margin-right: 5%;
+  float: left; }
+
+.expenseDataContainer .rightDataViewer {
+  width: 45%;
+  float: left; }
+
+.forDisplayInput > input[type="text"], .form-group > input[type="text"] {
+  margin-top: 3px;
+  margin-bottom: 8px; }
+
+.leftExpenseData {
+  width: 100%;
+  padding: 10px 9px 0px 0px; }
+
+.inputBoxLike {
+  text-align: center;
+  border: 1px solid #E6E6E6;
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  margin: 3px 0 8px 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 15px;
+  padding: 8px 0 8px 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none; }
+
+.displayTransactions {
+  width: 100%;
+  min-width: 400px; }
+  .displayTransactions > .transactionData:nth-of-type(odd) {
+    background-color: #edf0f0; }
+  .displayTransactions > .transactionData:nth-of-type(even) {
+    background-color: #fefefe; }
+  .displayTransactions > .transactionData {
+    margin: 5px 0 5px 0;
+    width: 100%;
+    padding: 10px 5px 10px 5px; }
+    .displayTransactions > .transactionData:before, .displayTransactions > .transactionData:after {
+      content: " ";
+      display: table; }
+    .displayTransactions > .transactionData:after {
+      clear: both; }
+    .displayTransactions > .transactionData > div {
+      padding: 3px;
+      float: left; }
+    .displayTransactions > .transactionData > .transactionType, .displayTransactions > .transactionData > .transactionMainC, .displayTransactions > .transactionData > .transactionSubC,
+    .displayTransactions > .transactionData > .transactiondate, .displayTransactions > .transactionData > .transactionamount {
+      width: 15%; }
+    .displayTransactions > .transactionData > .transactionedit, .displayTransactions > .transactionData > .transactiondelete {
+      width: 8%; }
+  .displayTransactions:before, .displayTransactions:after {
+    content: " ";
+    display: table; }
+  .displayTransactions:after {
+    clear: both; }
+
+.selectorButton {
+  width: 10%;
+  float: left; }
+
+.selectorCheckbox {
+  width: 90%;
+  float: left; }
+
+.usage {
+  display: none; }
+  .usage + .selector .hide {
+    display: none; }
+  .usage + .selector .show {
+    display: block; }
+  .usage + .selector .dataContainer {
+    padding-left: 10px;
+    display: none; }
+  .usage:checked + .selector .hide {
+    display: block; }
+  .usage:checked + .selector .show {
+    display: none; }
+  .usage:checked + .selector .dataContainer {
+    display: block; }
+
+.usageMain {
+  display: none; }
+  .usageMain + .selectorMain .hideMain {
+    display: none; }
+  .usageMain + .selectorMain .showMain {
+    display: block; }
+  .usageMain + .selectorMain .dataContainerMain {
+    padding-left: 10px;
+    display: none; }
+  .usageMain:checked + .selectorMain .hideMain {
+    display: block; }
+  .usageMain:checked + .selectorMain .showMain {
+    display: none; }
+  .usageMain:checked + .selectorMain .dataContainerMain {
+    display: block; }
+
+.selectorButtonMain {
+  width: 10%;
+  float: left; }

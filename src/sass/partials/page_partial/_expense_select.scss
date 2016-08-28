@@ -1,0 +1,74 @@
+.leftExpenseTypeHolder
+{
+	float: left;
+	width: 45%;
+	margin-right: 5%;
+}
+.rightExpenseTypeHolder
+{
+	float: left;
+	width: 45%;
+}
+.expenseTypeTitle
+{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	color: #21646A;
+}
+.expenseTitle
+{
+	width: 100%;
+	font-size: 15px;
+	font-weight: bold;
+	color: #21646A;	
+}
+.expense_type
+{
+	width: 100%;
+}
+.expenseDataContainer
+{
+	.leftDataViewer
+	{
+		width: 45%;
+		margin-right: 5%;
+		float: left;
+	}
+	.rightDataViewer
+	{
+		width: 45%;
+		float: left;
+
+	}
+}
+.forDisplayInput,.form-group
+{
+	>input[type="text"]
+	{
+		margin-top: 3px;
+		margin-bottom: 8px;
+	}
+}
+.leftExpenseData
+{
+	width: 100%;
+	padding: 10px 9px 0px 0px;
+	//text-align: center;
+}
+.inputBoxLike{
+	text-align: center;
+	border: 1px solid #E6E6E6;
+	cursor: pointer; 
+	background-color: white;
+	  display: block;
+  margin: 3px 0 8px 0;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 15px;
+  padding: 8px 0 8px 0;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}

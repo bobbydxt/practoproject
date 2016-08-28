@@ -1,0 +1,98 @@
+<div class="main-container">
+   <div class="container">
+      <div class="expenseHeader">Visualize Your Expense
+      </div>
+      <div class="leftExpenseDataHolder">
+         <div class="leftExpenseData">
+         	
+         	<div class="expenseTypeTitle">Filter Expense </div>
+            <input type="text"  ng-model="date"  moment-picker="date"
+     format="MM,YYYY"
+     max-view="year"
+     start-view="year"
+     autoclose="true"
+     today="true"
+     keyboard="true"
+     placeholder="Select the query month" >
+
+   <div class = "row">
+      <div class="expense_type_container col ">
+
+        
+            <div class="dataContainer" ng-repeat="expenseType in expenseConstant">
+            <input type="checkbox" 
+            id="{{expenseType.name+expenseType.id}}" class="usage" checked="" />
+            <div class="selector">
+            <label for="{{expenseType.name+expenseType.id}}"  class="fa fa-minus-circle hide selectorButton" aria-hidden="true"></label>
+            <label for="{{expenseType.name+expenseType.id}}"  class="fa fa-plus-circle show selectorButton" aria-hidden="true"></label>
+               <input type="checkbox" name="expenseType.id" 
+                  ng-model="filterListner[expenseType.id]" 
+                  ng-change="onexpenseTypeChange(filterListner[expenseType.id])" 
+                  ng-value="expenseType" class="dataCheckBox" 
+                  class="selectorCheckbox" />
+               {{expenseType.name}}
+               <div class="dataContainer" ng-repeat="mainCatagory in expenseType.data"
+                  style="padding-left:10px">
+                  {{mainC = expenseType.id + ' ' + mainCatagory.id;""}}
+            <input type="checkbox" 
+            id="{{mainCatagory.name}}" class="usageMain" />
+            <div class="selectorMain">
+            <label for="{{mainCatagory.name}}"  class="fa fa-minus-circle hideMain selectorButtonMain" aria-hidden="true"></label>
+            <label for="{{mainCatagory.name}}"  class="fa fa-plus-circle showMain selectorButtonMain" aria-hidden="true"></label>
+                  <input type="checkbox" name="mainCatagory.id" 
+                     ng-model="filterListner[mainC]" 
+                     ng-change="onmainCatagoryChange(filterListner[mainC])" 
+                     ng-value="mainCatagory"
+                     class="selectorCheckboxMain" />
+                  {{mainCatagory.name}}
+                  <div class="dataContainerMain" style="padding-left:10px"
+                     ng-repeat="subCatagory in mainCatagory.subCatagory">
+                     {{subC = expenseType.id + ' ' + mainCatagory.id + ' ' + subCatagory.id;""}}
+                     <input type="checkbox" name="subCatagory" 
+                        ng-model="filterListner[subC]" 
+                        ng-change="onsubCatagoryChange(filterListner[subC])" 
+                        ng-value="subCatagory" />
+                     {{subCatagory.name}}
+                  </div>
+               </div>
+               </div>
+               </div>
+            </div>
+      </div>
+      </div>
+
+         </div>
+      </div>
+      <div class="rightExpenseDataHolder">
+
+         <div class="clear"></div>
+         <div class="expenseDataContainer">
+         <div class="displayTransactions">
+         	<div class="transactionData">
+         		<div class="transactionType">Type</div>
+         		<div class="transactionMainC">Main Catagory</div>
+         		<div class="transactionSubC">Sub Catagory</div>
+         		<div class="transactiondate">OnDate</div>
+          <div class="transactionamount">Amount</div>
+         		
+         	</div>
+          <div class="transactionData" ng-repeat="todisplay in displayTransactions">
+          {{data = getDataDetails(todisplay);""}}
+          <div class="transactionType">{{data.expenseType}}</div>
+          <div class="transactionMainC">{{data.mainCatagory}}</div>
+          <div class="transactionSubC">{{data.subCatagory}}</div>
+          <div class="transactiondate">{{data.date}}</div>
+          <div class="transactionamount">{{data.amount}}</div>
+          <div class="transactionedit"><i class="fa fa-pencil" aria-hidden="true" ng-click="editExpense(data.id)"></i></div>
+            <div class="transactiondelete"><i class="fa fa-trash-o" aria-hidden="true" ng-confirm-click="Are you sure you want to delete this expense?" ng-click="deleteExpense(data.id)"></i></div>
+
+      
+        </div>
+         </div>
+               
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
+</div>
+   

@@ -1,12 +1,12 @@
 var gulp=require('gulp');
 var sass=require('gulp-sass');
 gulp.task('sass',function(){
-	return gulp.src('./public/sass/*.scss')
+	return gulp.src('./src/sass/**/*.scss')
 	.pipe(sass())
-	.pipe(gulp.dest('./public/css'));
+	.pipe(gulp.dest('./src/css'));
 });
 gulp.task('default',['sass','watch']);
 gulp.task('watch',function()
 {
-	gulp.watch('./public/sass/*.scss',['sass']);
+	gulp.watch('./src/sass/**/*.scss',['sass']);
 })

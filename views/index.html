@@ -1,1 +1,116 @@
-<h1>Hi</h1>
+<!DOCTYPE html>
+<html ng-app="expense">
+<head>
+  <title>Index Page</title>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-local-storage//dist/angular-local-storage.js"></script>
+<script src="/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+<script type="text/javascript" src="/bower_components/angular-fusioncharts/dist/angular-fusioncharts.min.js"></script>
+<script src="http://www.fusioncharts.com/lib/fcassets/3.11/fusioncharts.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" type="text/css" href="/bower_components/angular-datepicker/dist/angular-datepicker.min.css" />
+<link rel="stylesheet" type="text/css" href="/bower_components/angular-flash-alert/dist/angular-flash.css" />
+<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="/src/css/style.css" />
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+<script src="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
+<link href="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+
+
+<div class="navbar-header">
+ <div class="navbar-container" ng-controller="navController">
+
+    <div class = "navbar_title eachElement">
+      <a href="/home"><i class="fa fa-inr " style="padding-right:5px;" aria-hidden="true"></i>Expense Manager</a>
+    </div>
+    <input type="checkbox" id="toggle" />
+    <div>
+    <label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars fa-4x" aria-hidden="true"></i></label>
+
+    <div class="menu" ng-if="status">
+     <div class="eachElement"><a href="#expense_select" class="navObject" ng-click="signout()">Sign Out</a></div>
+        <div class="eachElement">
+        <div class="navObject"> manage
+          <div class="subNav">
+                <a href="#view_expense" class="subElement">Transactions</a>
+                 <a href="#view_graph" class="subElement">Vizualize</a>
+          </div>
+          </div>
+        </div>
+        <div class="eachElement"><a href="#expense_select" class="navObject">Add</a></div>
+       
+    </div>
+    <div class="menu" ng-if="!status">
+            <div class="eachElement"><a href="#sign_in" class="navObject"> Sign In</a></div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<flash-message
+    duration="3000"
+    show-close="true"
+    on-dismiss="myCallback(flash);"
+></flash-message> 
+
+
+
+
+
+
+
+
+
+    <div ng-view></div>
+
+<script src="src/js/main.js"></script>
+
+<script src="src/js/config/routeConfig.js"></script>
+
+<script src="src/js/constant/expenseConstant.js"></script>
+
+<script src="src/js/directive/Directive.js"></script>
+
+<script src="src/js/factory/expenseFactory.js"></script>
+<script src="src/js/factory/userFactory.js"></script>
+<script src="src/js/factory/viewExpenseFactory.js"></script>
+
+<script src="src/js/service/expenseService.js"></script>
+<script src="src/js/service/helperService.js"></script>
+<script src="src/js/service/userService.js"></script>
+<script src="src/js/service/flashService.js"></script>
+
+<script src="src/js/controller/viewExpenseController.js"></script>
+<script src="src/js/controller/expenseController.js"></script>
+<script src="src/js/controller/userController.js"></script>
+<script src="src/js/controller/navController.js"></script>
+
+<div class="footer">
+    <div class="footerContainer">
+      <div class="footerDataContainer">
+        <a href="#">Terms Of Use</a>
+        <a href="#">Faq</a>
+        <a href="#">About Us</a>
+      </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

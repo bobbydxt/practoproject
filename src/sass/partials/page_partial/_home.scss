@@ -1,0 +1,131 @@
+.homeParent
+{
+  background: url(https://s10.postimg.io/al1hhez55/rsz_money_desktop_wallpapers_090606472_192.jpg)
+   no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: $default_container_bacoground;
+}
+.home-container
+{
+  position: relative;
+  padding: 0 20px;
+    min-height: 200px;
+
+
+}
+.loginButton
+{
+	width:40%;
+	float: left;
+color: #D1E2E6;
+ height: auto;
+ padding:10px 10px ;
+ border-radius:3px;
+ font-weight: bold;
+ font-size:1.5em;
+ margin: 10px 25px 0 25px;
+  @include button-bg(#45ABB5);
+  opacity: .9;
+  cursor: pointer;
+
+}
+.signupButton
+{
+	@extend .loginButton;
+
+	@include button-bg(#45A0B5);
+}
+.loginContainer{
+	@extend .container;
+	max-width: 700px;
+	min-width: 250px;
+	text-align: center;
+  padding-bottom: 100px;
+  //@include clearfix();
+}
+.buttonContainer
+{
+	padding-top: 100px;
+    width:100%;
+    height:100%;
+    display:box;
+    box-orient:horizontal;
+    box-pack:center;
+    box-align:center;
+}
+.home-description-main
+{
+  padding: 0 10px;
+    height:  100%;
+
+  background-color: #1C3738;
+  opacity: .95;
+}
+
+.home-description-container
+{
+  @extend .container;
+  max-width: 800px;
+  min-width: 100px;
+  text-align: center;
+  @include clearfix();
+
+  color: $navbar_default_color;
+  >.discriptionSubContainer
+    {
+      width: 30%;
+      margin:0px 10px 10px 10px;
+      min-height: 100px;
+      min-width: 200px;
+      float: left;
+     >.mainDescIcon
+      {
+        font-size: 150px;
+        padding-bottom: 10px;
+        }
+      >.homeDescription
+        {
+          font-size: 25px;
+         }
+  }
+  
+}
+
+.home-description-sub
+{
+  padding: 0 10px;
+    height:  100%;
+}
+
+.home-description-container-sub
+{
+  @extend .container;
+  max-width: 900px;
+  min-width: 100px;
+  text-align: center;
+  @include clearfix();
+
+  color: $navbar_active_background;
+  >.discriptionSubContainer
+    {
+      width: 30%;
+      margin:0px 10px 10px 10px;
+      min-height: 100px;
+      min-width: 200px;
+      float: left;
+     >.mainDescIcon
+      {
+        font-size: 150px;
+        padding-bottom: 10px;
+        }
+      >.homeDescription
+        {
+          font-size: 25px;
+         }
+  }
+  
+}
+

@@ -1,0 +1,125 @@
+.displayTransactions
+{
+  width: 100%;
+  min-width: 400px;
+  >.transactionData:nth-of-type(odd) {
+    background-color: darken($default_container_bacoground,3%);
+    
+  }
+  >.transactionData:nth-of-type(even) {
+   background-color: lighten($default_container_bacoground,3%);
+  }
+  >.transactionData
+  {
+    margin: 5px 0 5px 0;
+
+  @include clearfix();
+    width: 100%;
+    padding: 10px 5px 10px 5px;
+    >div
+    {
+      padding: 3px;
+      float: left;
+    }
+    >.transactionType,>.transactionMainC,>.transactionSubC,
+    >.transactiondate,>.transactionamount
+    {
+      width: 15%;
+    }
+    >.transactionedit,>.transactiondelete
+    {
+      width: 8%;
+    }
+  }
+  @include clearfix();
+
+}
+.selectorButton
+{
+  width: 10%;
+  float: left;
+}
+.selectorCheckbox
+{
+  width: 90%;
+  float: left;
+}
+.usage
+{
+  display: none;
+  +.selector
+  {
+        .hide
+      {
+        display: none;
+      }
+      .show
+      {
+        display: block;
+      }
+      .dataContainer{
+        padding-left: 10px;
+        display: none;
+      }
+    }
+  &:checked {
+  +.selector
+  {
+        .hide
+      {
+        display: block;
+      }
+      .show
+      {
+        display: none;
+      }
+      .dataContainer
+      {
+        display: block;
+      }
+    }
+  }
+}
+
+.usageMain
+{
+  display: none;
+  +.selectorMain
+  {
+         .hideMain
+      {
+        display: none;
+      }
+       .showMain
+      {
+        display: block;
+      }
+       .dataContainerMain
+      {
+        padding-left: 10px;
+        display: none;
+      }
+    }
+  &:checked {
+   +.selectorMain
+  {
+         .hideMain
+      {
+        display: block;
+      }
+      .showMain
+      {
+        display: none;
+      }
+       .dataContainerMain
+      {
+        display: block;
+      }
+    }
+  }
+}
+.selectorButtonMain
+{
+  width: 10%;
+  float: left;
+}

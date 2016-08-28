@@ -1,0 +1,16 @@
+button
+{
+	box-shadow: none;
+	border: none;
+}
+.userLoginButton
+{
+	@include button-bg(#2D5F70);
+	color: $navbar_default_color;
+	font-size: 15px;
+	border: 1px darker(#2D5F70,8%) solid;
+	width: 100%;
+	float: left;
+	margin: 10px 0 10px 0;
+	padding: 10px 0 10px 0;
+}

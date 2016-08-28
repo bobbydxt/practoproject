@@ -1,0 +1,58 @@
+
+
+
+<div class="main-container">
+   <div class="container">
+      <div class="expenseHeader">Manage Your Expenses
+      </div>
+      <div class="leftExpenseDataHolder">
+         <div class="leftExpenseData">
+         	
+         	<div class="expenseTypeTitle">Filter Expense </div>
+<input type="text"  ng-model="date"  moment-picker="date"
+     format="MM,YYYY"
+     max-view="year"
+     start-view="year"
+     autoclose="true"
+     today="true"
+     keyboard="true"
+     placeholder="Sselect the query month" >
+
+   <div class = "row">
+<input type="radio" name="mainCatagory" 
+    ng-model="graphType" 
+    value="Bar3D" ng-click="graphGenerator()" />Show By Date
+    <br>
+       <input type="radio" name="mainCatagory" 
+    ng-model="graphType" ng-click="graphGenerator()"
+    value="Pie3D" />Show By Catagory
+      </div>
+
+         </div>
+      </div>
+      <div class="rightExpenseDataHolder">
+
+         <div class="clear"></div>
+         <div class="expenseDataContainer">
+         <div class="displayTransactions">
+         <div ng-if="graphData.credit">
+    <!-- code to render a large video block-->
+
+         <fc-chart fc-chart-type="{{graphType}}" fc-data="graphData.credit" width="100%" dynamic>
+          </div>
+         <div ng-if="graphData.credit">
+    <!-- code to render a large video block-->
+
+         <fc-chart fc-chart-type="{{graphType}}" fc-data="graphData.debit" width="100%" dynamic>
+          </div>
+         </div>
+
+        </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
+</div>
+   
+
+         	

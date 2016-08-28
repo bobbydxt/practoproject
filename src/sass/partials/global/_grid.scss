@@ -1,0 +1,44 @@
+$h-padding : 1.5em;
+
+.col {
+    padding: 0 $h-padding;
+    margin-top: 10px;
+}
+.row .row {
+    margin: 0 (-$h-padding);
+}
+
+.row:before, .row:after {
+    content: "";
+    display: table;
+}
+.row:after {
+    clear: both;
+}
+.clear {
+  clear: both;
+}
+.main-container
+{
+  background-color: $default_container_bacoground;
+  position: relative;
+  min-height: 400px;
+  height: 100%;
+  padding: 0 20px;
+  @include set_border(darken($default_container_bacoground,8%));
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 250px;
+  padding-top: 20px;
+}
+.help-block
+{
+  color: red;
+  font-size: 10px;
+  padding: 3px 0px 0px 0px;
+  margin: 3px 0px 0px 0px;
+}
+

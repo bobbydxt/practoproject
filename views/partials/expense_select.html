@@ -1,0 +1,40 @@
+<div class="main-container">
+	<div class="container">
+		<div class="expenseHeader">Manage Your Expenses
+		</div>
+ 		<div class="leftExpenseDataHolder">
+        </div>
+		<div class="rightExpenseDataHolder">
+			<div class="clear"></div>
+			<div class="expenseDataContainer">
+				<div class="leftExpenseTypeHolder">
+					<div class="expenseTypeTitle">
+						Credit
+					</div>
+					<div class="expense_type"
+					 ng-repeat="expenseType in expenseConstant[1].data">
+						<input type="radio" name="mainCatagory" 
+		ng-model="$parent.expense.mainCatagory" 
+		ng-click="onMainCatagoryChange(expenseType,expenseConstant[1])" ng-value="expenseType" />
+		{{expenseType.name}}
+					</div>
+				</div>
+				<div class="rightExpenseTypeHolder">
+				<div class="expenseTypeTitle">
+						Debit
+					</div>
+					<div class="expense_type" ng-repeat="expenseType in expenseConstant[2].data">
+					<input type="radio" name="mainCatagory" 
+		ng-model="$parent.expense.mainCatagory" 
+		ng-click="onMainCatagoryChange(expenseType,expenseConstant[2])"
+		ng-value="expenseType" />{{expenseType.name}}
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+

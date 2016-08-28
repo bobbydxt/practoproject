@@ -1,0 +1,89 @@
+
+@mixin font-size($number) {
+  font-size: #{ $number * $base + 'px'};
+  font-size: #{ $number + 'rem'};
+}
+@mixin line-height($number) {
+  line-height: #{ $number * $leading + 'px'};
+  line-height: #{ $number * $leading-rem + 'rem'};
+}
+@mixin margin-top($number) {
+  margin-top: #{ $number * $leading + 'px'};
+  margin-top: #{ $number * $leading-rem + 'rem'};
+}
+
+// Margin-bottom
+@mixin margin-bottom($number) {
+  margin-bottom: #{ $number * $leading + 'px'};
+  margin-bottom: #{ $number * $leading-rem + 'rem'};
+}
+
+// Margin
+@mixin margin($top, $right, $bottom:null, $left:null) {
+  @if $left == null and $bottom == null {
+    margin: #{ $top * $leading + 'px'} #{ $right * $leading + 'px'};
+    margin: #{ $top * $leading-rem + 'rem'} #{ $right * $leading-rem + 'rem'};
+  } @else if $left == null or $left == $right {
+    margin: #{ $top * $leading + 'px'} #{ $right * $leading + 'px'} #{ $bottom * $leading + 'px'};
+    margin: #{ $top * $leading-rem + 'rem'} #{ $right * $leading-rem + 'rem'} #{ $bottom * $leading-rem + 'rem'};
+  } @else {
+    margin: #{ $top * $leading + 'px'} #{ $right * $leading + 'px'} #{ $bottom * $leading + 'px'} #{ $left * $leading + 'px'};
+    margin: #{ $top * $leading-rem + 'rem'} #{ $right * $leading-rem + 'rem'} #{ $bottom * $leading-rem + 'rem'} #{ $left * $leading-rem + 'rem'};
+  }
+}
+
+
+
+@mixin set_border($color,
+              $style: $default-border-style,
+              $width: $default_border_width)
+{
+  border-bottom: $width $style $color;
+}
+
+@mixin webkit_transition()
+{
+  -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.25s linear;
+      -moz-transition: all 0.25s linear;
+      -o-transition: all 0.25s linear;
+      transition: all 0.25s linear;
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+
+@mixin button-bg($bg) {
+  cursor: pointer;
+  background: $bg;
+  text-align: center;
+  
+  &:hover {
+    background:darken($bg,8%);
+    transition: all 0.3s ease;
+  }
+  &:active,+.selected {
+    background:darken($bg,25%);
+  } 
+  &:disabled
+  {
+     background:#A7AEB0;
+  }
+}
+
+
+
+
+
