@@ -21,6 +21,7 @@
                     var pdate = val.split(',');
                     if (!isNaN(pdate[0]) && !isNaN(pdate[1])) {
                         viewExpenseFactory.getMonthlyData(pdate, function(response) {
+                            console.log(response);
                             $scope.presentStack = response;
                             $scope.displayTransactions = {};
                             // console.log($scope.filterObject);
@@ -64,7 +65,7 @@
                     var tosearch = this.displayTransactions[transactionId];
                 if(transactionId&&tosearch)
                 {
-                    expenseFactory.delete(transactionId);
+                    expenseFactory.transaction(transactionId,'delete');
                     
                     delete this.presentStack[tosearch.expenseType][tosearch.mainCatagory][tosearch.subCatagory][transactionId];
                     delete this.displayTransactions[transactionId];
@@ -87,101 +88,17 @@
                         eid: i
                     });
                     forGraph[mapper[i]] = $scope.displayTransactions;
-                    $scope.graphData[mapper[i]] = createGraphObject(forGraph[mapper[i]], i, type,mapper[i]);
+                    $scope.graphData[mapper[i]] = viewExpenseFactory.createGraphObject(forGraph[mapper[i]], i, type,mapper[i]);
 
                 }
                 //console.log( $scope.graphData[mapper[1]]);
 
             }
 
-            function createGraphObject(object, index, type,name) {
-                var toreturn = new FusionCharts;
-
-                if(type==='Bar3D')
-                {
-                toreturn = {
-                    chart: {
-                        caption: "Monthly " + name + " history",
-                        subCaption: "Here are your " + name + " transactions for this month by date",
-                        numberPrefix: "Rs",
-                        theme: "ocean"
-                    },
-                    data: barDateSlotGenerator(object)
-                };
-                }
-                else if (type==='Pie3D') {
-                    toreturn = {
-                    chart: {
-                        caption: "Monthly " + name +" expense based on catagory",
-                        subcaption: "Here are your " + name + " expense based on catagory",
-                        startingangle: "120",
-                        showlabels: "0",
-                        showlegend: "1",
-                        enablemultislicing: "0",
-                        slicingdistance: "15",
-                        showpercentvalues: "1",
-                        showpercentintooltip: "0",
-                        plottooltext: "Catagory : $label Total amount: $datavalue",
-                        theme: "ocean"
-                    },
-                    data: pieDateSlotGenerator(object,index)
-                };
-                }
-
-                return toreturn;
 
 
-            }
-            function pieDateSlotGenerator(object,index) {
-                var toprocess = {},
-                    toreturn = [];
-                var expConstant=$scope.expenseConstant[index].data;
-                var data;
-                for (var value in object) {
-                    if (object[value]) {
-                        catagory = object[value].mainCatagory;
-                        if(!toprocess[catagory])
-                            toprocess[catagory]={label: expConstant[catagory].name, value:0};
-                        toprocess[catagory].value += parseInt(object[value].amount,10);
-                    }
-                }
-                console.log(toprocess);
-                for (value in toprocess) {
-                    if (toprocess[value]) {
-                        toreturn.push(toprocess[value]);
-                    }
-                }
-             //   console.log(toreturn);
-                return toreturn;
-            }
-            function barDateSlotGenerator(object) {
-                var toprocess = {},
-                    toreturn = [];
-                for (var i = 1; i <= 6; i++) {
-                    toprocess[i] = {
-                        label: (5 * (i - 1)) + 1 + "-" + 5 * i,
-                        value: 0
-                    }
-                }
-                var date;
-                for (var value in object) {
-                    if (object[value]) {
-                        date = parseInt(parseInt(object[value].ondate.split("/")[0],10) / 5,10);
 
-                        toprocess[date].value += parseInt(object[value].amount,10);
-                    }
-                }
-                console.log(toprocess);
-                for ( i = 1; i <= 6; i++) {
-                    toreturn.push(toprocess[i]);
-                }
-                //console.log(toreturn);
-                return toreturn;
-            }
 
-            function groubByapplier(object, data) {
-                return $filter('groupBy')(object, data);
-            }
             $scope.onexpenseTypeChange = function(value) {
 
                 var eid, check;
@@ -207,7 +124,7 @@
 
 
             function expenseAddToDisplay(eid, value) {
-                check = checkIfPresent(eid, $scope.presentStack);
+                check = viewExpenseFactory.checkIfPresent(eid, $scope.presentStack);
                 //console.log(value);
                 addOthrToDisplay(check, value, true);
             }
@@ -224,7 +141,7 @@
 
                 this.filterObject[eid]['data'][mid]['status'] = value;
                 mainAddToDisplay(eid, mid, value)
-                var parent = checkSubFullfilled($scope.filterObject[eid]['data'])
+                var parent = viewExpenseFactory.checkSubFullfilled($scope.filterObject[eid]['data'])
                 this.filterObject[eid]['data']['status'] = parent;
                 this.filterListner[eid] = parent;
                 //setting the sub catagories 
@@ -233,7 +150,7 @@
             }
 
             function mainAddToDisplay(eid, mid, value) {
-                check = checkIfPresent(mid, checkIfPresent(eid, $scope.presentStack));
+                check = viewExpenseFactory.checkIfPresent(mid, viewExpenseFactory.checkIfPresent(eid, $scope.presentStack));
 
                 addOthrToDisplay(check, value, false);
             }
@@ -252,13 +169,13 @@
                 //console.log(value);
                 this.filterObject[eid]['data'][mid]['subCatagory'][sid]['status'] = value;
                 subAddToDisplay(sid, eid, mid, value);
-                var parent = checkSubFullfilled($scope.filterObject[eid]['data'][mid]['subCatagory'])
+                var parent = viewExpenseFactory.checkSubFullfilled($scope.filterObject[eid]['data'][mid]['subCatagory'])
                 this.filterObject[eid]['data'][mid]['status'] = parent;
                 this.filterListner[eid + ' ' + mid] = parent;
             }
 
             function subAddToDisplay(sid, eid, mid, value) {
-                check = checkIfPresent(sid, checkIfPresent(mid, checkIfPresent(eid, $scope.presentStack)));
+                check = viewExpenseFactory.checkIfPresent(sid, viewExpenseFactory.checkIfPresent(mid, viewExpenseFactory.checkIfPresent(eid, $scope.presentStack)));
 
                 subDisplay(check, value);
 
@@ -339,19 +256,6 @@
                 }
             }
 
-            function checkSubFullfilled(tocheck) {
-                var check = true;
-
-                for (var val in tocheck) {
-                    if (tocheck.hasOwnProperty(val)) {
-                        if (tocheck[val].status === false)
-                            check = false;
-                    }
-                }
-                return check;
-
-
-            }
 
 
             function createList() {
@@ -409,17 +313,12 @@
                 temp['subCatagory'] = pres.name;
                 temp['date'] = object.ondate;
                 temp['id'] = object._id;
+                temp['amount'] = object.amount;
                 return temp;
 
             }
 
 
-            function checkIfPresent(index, object) {
-                if (object[index])
-                    return object[index];
-                else
-                    return false
-            }
 
 
 

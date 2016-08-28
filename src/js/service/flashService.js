@@ -15,7 +15,7 @@
 			}
 			else
 			{
-				Flash.create('warning', message);
+				Flash.create('danger', message);
 			}
 		}
 		/**

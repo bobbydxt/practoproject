@@ -6,16 +6,16 @@
 		expenseService.newExpense = function(params,callback)
 		{
 			//console.log(params);
-			console.log(toSendGenerator(params));
 			httpRequestHandler(toSendGenerator(params),'/api/expense/new','POST',callback);
 
 		}
 		expenseService.editExpense = function(params,callback)
 		{
 			//console.log(params);
+			//console.log(params);
 			var tosend =toSendGenerator(params);
 			tosend.id = params.id;
-
+			console.log(tosend);
 			httpRequestHandler(tosend,'/api/expense/update','PUT',callback);
 
 		}
@@ -43,9 +43,8 @@
 		expenseService.getMonthlyExpense = function(params,callback)
 		{
 			//console.log(params);
-			callback(
 				httpRequestHandler({month: parseInt(params[0],10), year: parseInt(params[1],10)},
-					'/api/expense/bymonth','GET',callback))
+					'/api/expense/bymonth','GET',callback);
 		}
 
 		function httpRequestHandler(params,url,method,tocall)
@@ -60,8 +59,9 @@
 						  url: url,
 						  timeout:5000
 						}).success(function(res,status){
-							console.log(res);
-							tocall(true,res.data.data);
+							//console.log(res);
+							console.log(parseHttpResponse(status,true,res));
+							tocall(parseHttpResponse(status,true,res.data.data));
 						})
 						  .error(function (err,status){
 						  	console.log(err);
@@ -97,7 +97,9 @@
 
 		function parseHttpResponse(status,success,msg)
 		{
+			console.log({status: status,success: success, msg:msg});
 				return {status: status,success: success, msg:msg}
+
 		}
 
 		return expenseService;

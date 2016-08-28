@@ -113,9 +113,10 @@
         {
             if(!this.loginCheck())
             {
-                return false;
                 $location.path("/home");
-                flashService.warning('You need to login to access this');
+              //  flashService.warning('You need to login to access this');
+
+                return false;
              
             }
             else
@@ -130,9 +131,10 @@
 
             if(this.loginCheck())
             {
-                return false;
                 $location.path("/view_expense");
                 flashService.warning('An invalid url was Entered');
+
+                return false;
             }
 
             else return true;

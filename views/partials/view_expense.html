@@ -6,7 +6,7 @@
          <div class="leftExpenseData">
          	
          	<div class="expenseTypeTitle">Filter Expense </div>
-<input type="text"  ng-model="date"  moment-picker="date"
+            <input type="text"  ng-model="date"  moment-picker="date"
      format="MM,YYYY"
      max-view="year"
      start-view="year"
@@ -73,6 +73,7 @@
          		<div class="transactionMainC">Main Catagory</div>
          		<div class="transactionSubC">Sub Catagory</div>
          		<div class="transactiondate">OnDate</div>
+          <div class="transactionamount">Amount</div>
          		
          	</div><div class="transactionData" ng-repeat="todisplay in displayTransactions">
           {{data = getDataDetails(todisplay);""}}
@@ -80,6 +81,7 @@
           <div class="transactionMainC">{{data.mainCatagory}}</div>
           <div class="transactionSubC">{{data.subCatagory}}</div>
           <div class="transactiondate">{{data.date}}</div>
+          <div class="transactionamount">{{data.amount}}</div>
           <div class="transactionedit"><i class="fa fa-pencil" aria-hidden="true" ng-click="editExpense(data.id)"></i></div>
             <div class="transactiondelete"><i class="fa fa-trash-o" aria-hidden="true" ng-confirm-click="Are you sure you want to delete this expense?" ng-click="deleteExpense(data.id)"></i></div>
 

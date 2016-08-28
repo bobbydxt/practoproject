@@ -588,8 +588,9 @@ button {
     .displayTransactions > .transactionData > div {
       padding: 3px;
       float: left; }
-    .displayTransactions > .transactionData > .transactionType, .displayTransactions > .transactionData > .transactionMainC, .displayTransactions > .transactionData > .transactionSubC, .displayTransactions > .transactionData > .transactiondate {
-      width: 18%; }
+    .displayTransactions > .transactionData > .transactionType, .displayTransactions > .transactionData > .transactionMainC, .displayTransactions > .transactionData > .transactionSubC,
+    .displayTransactions > .transactionData > .transactiondate, .displayTransactions > .transactionData > .transactionamount {
+      width: 15%; }
     .displayTransactions > .transactionData > .transactionedit, .displayTransactions > .transactionData > .transactiondelete {
       width: 8%; }
   .displayTransactions:before, .displayTransactions:after {

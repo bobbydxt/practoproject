@@ -1,4 +1,5 @@
-	app.controller('navController', ['$scope','userFactory', function($scope,userFactory){
+	app.controller('navController', ['$scope','userFactory','$rootScope', 
+		function($scope,userFactory,$rootScope){
 		$scope.status = userFactory.loginCheck();
 		$scope.signout = function()
 		{
@@ -6,5 +7,9 @@
 			userFactory.logout();
 			$scope.status = userFactory.loginCheck();
 		}
+		$rootScope.$on("$routeChangeStart", function (event, next, current) {
+
+			$scope.status = userFactory.loginCheck();
+		});
 	}]);
 	

@@ -23,7 +23,7 @@
 			//console.log(localStorageService.get('EditData'));
                
 			$location.path('/edit_expense');
-			flashService.successResponse(false,'no object to edit');
+			//flashService.successResponse(false,'no object to edit');
 		}
 		expenseFactory.getEditData = function()
 		{
@@ -39,40 +39,44 @@ flashService.successResponse(false,'no object to edit');
 			//console.log(localStorageService.get('EditData'));
                
 		}
-		expenseFactory.delete = function(transactionId)
+		expenseFactory.transaction= function(data,type)
 		{
-			expenseService.deleteExpense(transactionId,function(object)
+			if(type==='delete')
+			expenseService.deleteExpense(data,function(object)
 			{
 				    	 postResponseHandler(object);
 
                       
-			})
-		}
-		expenseFactory.newExpense= function(userInfo)
-		{
-			expenseService.newExpense(userInfo,function(object)
+			});
+			else if(type==='new')
+			expenseService.newExpense(data,function(object)
 			{
 				    	 postResponseHandler(object);
-
-                        
-			})
-		}
-		expenseFactory.editExpense= function(userInfo)
-		{
-			expenseService.editExpense(userInfo,function(object)
+			});
+			else if(type==='edit')
 			{
-
+			expenseService.editExpense(data,function(object)
+			{
                         postResponseHandler(object);
                     
-			})
+			});
+		}
 		}
 		function postResponseHandler(object)
 		{
+					var expenseErrorHandler = {
+				'403': 'This Is An Invalid Session',
+                '400': 'You haven\'t provided all necessacory fields',
+                '-1': 'Query timeout',
+                '200': 'Data wasn\'t returned',
+                '409': 'Data was rejected by server Please try again later'
+		}
+			console.log(object);
 			if (object.success === true )
 				{
                    	response = { 
                         success: true,
-                        message: 'Task Successful Successfully'
+                        message: 'Task Successful'
                     };
 
                 } else {
@@ -83,13 +87,7 @@ flashService.successResponse(false,'no object to edit');
                 return response;
 
 		}
-		var expenseErrorHandler = {
-				'403': 'This Is An Invalid Session',
-                '400': 'You haven\'t provided all necessacory fields',
-                '-1': 'Query timeout',
-                '200': 'Data wasn\'t returned',
-                '409': 'Data was rejected by server Please try again later'
-		}
+
 		function expenseDefaultState()
 		{
 			return {

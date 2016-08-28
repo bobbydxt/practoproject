@@ -28,6 +28,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    		},
 			    		resolve: {
 			    			load: function(userFactory) {
+			    				console.log(userFactory.routeLoggedIn());
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -40,7 +41,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			mainChange: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -52,7 +53,8 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			edit: true
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
+			    				console.log(userFactory.routeLoggedIn());
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -65,7 +67,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			mainChange: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -78,7 +80,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			mainChange: true
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -90,7 +92,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			graph: false
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -102,7 +104,7 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
 			    			graph: true
 			    		},
 			    		resolve: {
-			    			load: function(userFactory,$location) {
+			    			load: function(userFactory) {
 			    				userFactory.routeLoggedIn();
 			    			}
 			    		}
@@ -135,7 +137,6 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
       link: function(scope, element, attrs){
         element.bind('click', function(e){
           var message = attrs.ngConfirmClick;
-          // confirm() requires jQuery
           if(message && !confirm(message)){
             e.stopImmediatePropagation();
             e.preventDefault();
@@ -145,4 +146,35 @@ var app=angular.module('expense',['ngRoute' , 'ngFlash' , 'LocalStorageModule','
     }
   }
 ]);
+	  app.directive("passwordVerify", function() {
+   return {
+      require: "ngModel",
+      scope: {
+        passwordVerify: '='
+      },
+      link: function(scope, element, attrs, ctrl) {
+        scope.$watch(function() {
+            var combined;
+
+            if (scope.passwordVerify || ctrl.$viewValue) {
+               combined = scope.passwordVerify + '_' + ctrl.$viewValue; 
+            }                    
+            return combined;
+        }, function(value) {
+            if (value) {
+                ctrl.$parsers.unshift(function(viewValue) {
+                    var origin = scope.passwordVerify;
+                    if (origin !== viewValue) {
+                        ctrl.$setValidity("passwordVerify", false);
+                        return undefined;
+                    } else {
+                        ctrl.$setValidity("passwordVerify", true);
+                        return viewValue;
+                    }
+                });
+            }
+        });
+     }
+   };
+});
 

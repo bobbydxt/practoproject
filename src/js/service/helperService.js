@@ -2,11 +2,11 @@
 		var helperService = {};
 		
 		
-		 helperService.callHandler = function(userInfo,tocheck,caller)
+		 helperService.callHandler = function(userInfo,tocheck,caller,type)
 		 {
 		 	if(tocheck) {	
 		 		//signup
-		 		caller(userInfo);
+		 		caller(userInfo,type);
     		} else {
       			console.log('Error : Invalid form pushed User');
     		}

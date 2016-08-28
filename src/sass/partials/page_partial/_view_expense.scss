@@ -21,9 +21,10 @@
       padding: 3px;
       float: left;
     }
-    >.transactionType,>.transactionMainC,>.transactionSubC,>.transactiondate
+    >.transactionType,>.transactionMainC,>.transactionSubC,
+    >.transactiondate,>.transactionamount
     {
-      width: 18%;
+      width: 15%;
     }
     >.transactionedit,>.transactiondelete
     {

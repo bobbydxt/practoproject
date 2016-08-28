@@ -55,14 +55,12 @@ UserSchema.pre('save', function (next) {
  * @author Bobby Dixit
  */
 UserSchema.methods.comparePassword = function (passw, cb) {
-        if (toString(encryptor.encrypt(this.password))===toString(passw)) {
+        if (encryptor.decrypt(this.password)===passw) {
             return cb(null,true);
         }
         else
         {
-            console.log(encryptor.decrypt(this.password));
-            console.log(passw);
-            cb(null, false);
+          return  cb(null, false);
         }
 };
 

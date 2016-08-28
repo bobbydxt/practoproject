@@ -11,7 +11,7 @@
 		userService.loginUser = function(userInfo,callback)
 		{
 				userHttpreqHandler('api/user/authenticate','GET',
-					{email: userInfo.email, password: userInfo.password},
+					userDataParser(userInfo),
 					callback);
 		}
 		/**
@@ -21,10 +21,14 @@
 		 * @return {data} response based on success or faileur
 		 * @author [Bobby Dixit]
 		 */
+		function userDataParser(userInfo)
+		{
+			return {email: userInfo.email, password: userInfo.password}
+		}
 		userService.signupUser = function(userInfo,callback)
 		{
 				userHttpreqHandler('api/user/signup','POST',
-					{email: userInfo.email, password: userInfo.password},callback);
+					userDataParser(userInfo),callback);
 		}
 		/**
 		 * http handler

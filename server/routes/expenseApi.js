@@ -72,12 +72,15 @@ apirouter.put('/update', passport.authenticate('jwt', {
 
                     
                         result.touse["users"]=auth.user._id;
-                    Expense.update({id: req.query.id},{$set:result.touse},
+                        console.log(result.touse);
+                        console.log(req.query.id);
+                    Expense.update({_id: req.query.id},{$set:result.touse},
                       function(err) {
                         if(!err) 
                             helper.sendjson(res,200,true,'Successful updated new Expense.',
                             {name:'id', data:req.query.id })
                         else {
+
                                helper.sendjson(res,403,false,err.message);
                           } 
                     });

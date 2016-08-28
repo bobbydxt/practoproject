@@ -16,7 +16,7 @@
 		{
 			expenseFactory.initialize(expenseCatagory,mainCatagory);
 			//console.log(expenseCatagory);
-			if($scope.edit==true)
+			if($scope.edit===true)
 				$location.path('/main_edit_expense')
 			else
 				$location.path('/expense_form')
@@ -28,18 +28,18 @@
 			if($scope.edit===true)
 			{
 		 	helperService.callHandler(userInfo,$scope.form.$valid,
-		 		expenseFactory.editExpense);
+		 		expenseFactory.transaction,'edit');
 		 	}
 		 	else
 		 	{
 		 		helperService.callHandler(userInfo,$scope.form.$valid,
-		 		expenseFactory.newExpense);
+		 		expenseFactory.transaction,'new');
 		 	}
 		 
 		}
 		$scope.changeType = function()
 		{
-			if($scope.edit==true)
+			if($scope.edit===true)
 			{
 				expenseFactory.setEditExpense($scope.expense);
 				$location.path('/edit_expense_select');
