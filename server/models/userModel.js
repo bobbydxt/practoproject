@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
-
+var key = require('../config/database.js').secret;
+var encryptor = require('simple-encryptor')(key);
 /**
  * [UserSchema describes the schema of the user]
  * @type {Schema}
@@ -35,18 +35,10 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
-        bcrypt.genSalt( function (err, salt) {
-            if (err) {
-                return next(err);
-            }
-            bcrypt.hash(user.password, salt, function (err, hash) {
-                if (err) {
-                    return next(err);
-                }
+       hash =  encryptor.encrypt(user.password);
+       console.log(hash);
                 user.password = hash;
-                next();
-            });
-        });
+                return next();
     } else {
         return next();
     }
@@ -63,12 +55,15 @@ UserSchema.pre('save', function (next) {
  * @author Bobby Dixit
  */
 UserSchema.methods.comparePassword = function (passw, cb) {
-    bcrypt.compare(passw, this.password, function (err, isMatch) {
-        if (err) {
-            return cb(err);
+        if (toString(encryptor.encrypt(this.password))===toString(passw)) {
+            return cb(null,true);
         }
-        cb(null, isMatch);
-    });
+        else
+        {
+            console.log(encryptor.decrypt(this.password));
+            console.log(passw);
+            cb(null, false);
+        }
 };
 
 module.exports = mongoose.model('User', UserSchema);

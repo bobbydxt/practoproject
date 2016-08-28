@@ -24,6 +24,7 @@ apirouter.post('/signup', function(req, res) {
     // save the user
    newUser.save(function(err) {
       if (err) {
+        console.log('here');
         return helper.sendjson(res,409,false, err.message);
       }
       else

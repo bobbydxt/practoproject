@@ -21,7 +21,7 @@
 		 * @return {data} response based on success or faileur
 		 * @author [Bobby Dixit]
 		 */
-		userService.signupUser = function(email,password,callback)
+		userService.signupUser = function(userInfo,callback)
 		{
 				userHttpreqHandler('api/user/signup','POST',
 					{email: userInfo.email, password: userInfo.password},callback);
