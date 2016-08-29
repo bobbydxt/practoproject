@@ -8,24 +8,58 @@
 bobbydxt8may/practoproject
 #Expense Manager
 
-A website developed over node using express server with a RESTful API Backend and a Angular.js Frontend
+A web app that helps users manage their expense
+
+
+## Tech 
+  - Express v4.13.4 (Stable) - fast node.js network app framework
+  - AngularJS v1 - HTML enhanced for User Interfaces
+  - Node.js v4.4.7 - evented I/O for the backend
 
 ### To Use
-Clone the repository
 
-git clone https://github.com/bobbydxt8may/practoproject
+	## Setting up Node and NPM
+	```
+		brew install npm
+    	brew install node
+    ```
 
-run npm install to install the dependencies
+	## Clone the repository
+	```
+		git clone https://github.com/bobbydxt8may/practoproject
+    ```
+    ## Setup The Environment 
+	```
+		npm install 
+		install mongodb 
+		npm server.js
 
-install mongodb
+    ```
+    
 
-run npm app.js to start server
+## Directory Layout
 
-### To test
-
-Karma jasmie is used for testing
-
-For testing run: karma start
+```
+├── README.md
+├── server
+│   ├── config
+│   ├── helper
+│   ├── modules
+│   ├── routes
+├── src
+│   ├── css
+│   ├── sass
+│   └── js
+├── views
+│   ├── partials
+│   └── index.html
+├── server.js
+├── gulpfile.js
+├── karma.conf.js
+├── node_modules
+├── bower_components
+├── package.json
+└── tests
 
 ### to use api and database
 For API we are using Json Web Token
