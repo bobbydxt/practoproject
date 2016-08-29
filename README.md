@@ -29,9 +29,11 @@ A web app that helps users manage their expense
 		git clone https://github.com/bobbydxt8may/practoproject
     ```
 ## Setup The Environment 
+
+	install mongodb refer http://www.bigspaceship.com/mongodb-on-mac/
+	
 	```
 		npm install 
-		install mongodb refer http://www.bigspaceship.com/mongodb-on-mac/
 		npm server.js
 
     ```
