@@ -31,13 +31,18 @@ A web app that helps users manage their expense
 ## Setup The Environment 
 
 	install mongodb refer http://www.bigspaceship.com/mongodb-on-mac/
-	
+
 	```
 		npm install 
 		npm server.js
 
     ```
-    
+## to use api and database
+For API we are using Json Web Token
+
+Sample setting file is provided at server/config/database sample.js
+
+create a file name database.js at the same location with your credentials    
 
 ## Directory Layout
 
@@ -63,10 +68,5 @@ A web app that helps users manage their expense
 ├── package.json
 └── tests
 
-### to use api and database
-For API we are using Json Web Token
 
-Sample setting file is provided at server/config/database sample.js
-
-create a file name database.js at the same location with your credentials
 
