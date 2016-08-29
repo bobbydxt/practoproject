@@ -18,20 +18,20 @@ A web app that helps users manage their expense
 
 ### To Use
 
-	## Setting up Node and NPM
+## Setting up Node and NPM
 	```
 		brew install npm
     	brew install node
     ```
 
-	## Clone the repository
+## Clone the repository
 	```
 		git clone https://github.com/bobbydxt8may/practoproject
     ```
-    ## Setup The Environment 
+## Setup The Environment 
 	```
 		npm install 
-		install mongodb 
+		install mongodb refer http://www.bigspaceship.com/mongodb-on-mac/
 		npm server.js
 
     ```
