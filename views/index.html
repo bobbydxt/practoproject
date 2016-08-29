@@ -1,1 +1,44 @@
-<h1>Hi</h1>
+<!DOCTYPE html>
+<html ng-app="expense">
+<head>
+	<title>Index Page</title>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="/bower_components/angular-local-storage//dist/angular-local-storage.js"></script>
+<script src="/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
+</head>
+<body>
+<h1>Index Page</h1>
+<br><br>
+<div class="navbar">
+	<ui>
+		<li><a href="#"> Home</a></li>
+        <li><a href="#sign_in"> Sign In</a></li>
+        <li><a href="#sign_up"> Sign_up</a></li>
+    </ui>
+</div>
+<flash-message
+    duration="5000"
+    show-close="true"
+    on-dismiss="myCallback(flash);"
+></flash-message> 
+<div>
+	  <div ng-view></div>
+
+</div>
+
+<script src="src/js/main.js"></script>
+
+<script src="src/js/directive/conformPassDirective.js"></script>
+
+<script src="src/js/factory/userFactory.js"></script>
+
+<script src="src/js/service/userService.js"></script>
+<script src="src/js/service/flashService.js"></script>
+
+<script src="src/js/controller/userController.js"></script>
+<script src="src/js/controller/homeController.js"></script>
+
+
+</body>
+</html>
