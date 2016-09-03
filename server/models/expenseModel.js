@@ -7,40 +7,40 @@ var Schema = mongoose.Schema;
  * @author [Bobby Dixit]
  */
 var ExpenseSchema = new Schema({
-  expenseType:  {
+    expenseType: {
         type: Number,
         required: true
-  },
-  mainCatagory: {
+    },
+    mainCatagory: {
         type: Number,
         default: 0
     },
-  subCatagory: {
+    subCatagory: {
         type: Number,
         default: 0
     },
-  amount: {
+    amount: {
         type: Number,
         required: true
-  },
-  ondate: {
+    },
+    ondate: {
         type: Date,
         default: Date.now
-  },
-  month: {
+    },
+    month: {
         type: Number
-  },
-  year: {
+    },
+    year: {
         type: Number
-  },
-  users: [{
-       type: Schema.Types.ObjectId,
+    },
+    users: [{
+        type: Schema.Types.ObjectId,
         ref: 'User'
-  }],
-  remark: [{
+    }],
+    remark: [{
         type: String,
         default: ''
-  }]
+    }]
 });
 /**
  * this function adds month and year field directly to db to make
@@ -49,17 +49,17 @@ var ExpenseSchema = new Schema({
  * @return {next}
  * @author [Bobby Dixit]
  */
-ExpenseSchema.pre('save', function (next) {
+ExpenseSchema.pre('save', function(next) {
     var expense = this;
     if (this.isModified('date') || this.isNew) {
-        var date =  new Date(expense.ondate);
-        expense.month = date.getMonth()+1;
+        var date = new Date(expense.ondate);
+        expense.month = date.getMonth() + 1;
         expense.year = date.getFullYear();
         return next();
     } else {
         return next();
     }
 });
- 
+
 
 module.exports = mongoose.model('Expense', ExpenseSchema);

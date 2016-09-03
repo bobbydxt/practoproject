@@ -8,19 +8,19 @@ var encryptor = require('simple-encryptor')(key);
  * @author [Bobby Dixit]
  */
 var UserSchema = new Schema({
-  email: {
+    email: {
         type: String,
         unique: true,
         required: true
     },
-  password: {
+    password: {
         type: String,
         required: true
     },
-  balance: {
+    balance: {
         type: Number,
         default: 0
-  }
+    }
 });
 
 /**
@@ -32,18 +32,18 @@ var UserSchema = new Schema({
  * @return {[next]}       [explained above]
  * @author Bobby Dixit
  */
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
-       hash =  encryptor.encrypt(user.password);
-       console.log(hash);
-                user.password = hash;
-                return next();
+        hash = encryptor.encrypt(user.password);
+        console.log(hash);
+        user.password = hash;
+        return next();
     } else {
         return next();
     }
 });
- 
+
 /**
  * [comparePassword This function is used to compare the
  *  password that the user provided with password of that
@@ -54,14 +54,12 @@ UserSchema.pre('save', function (next) {
  * @param  {Function} cb    [callback function]
  * @author Bobby Dixit
  */
-UserSchema.methods.comparePassword = function (passw, cb) {
-        if (encryptor.decrypt(this.password)===passw) {
-            return cb(null,true);
-        }
-        else
-        {
-          return  cb(null, false);
-        }
+UserSchema.methods.comparePassword = function(passw, cb) {
+    if (encryptor.decrypt(this.password) === passw) {
+        return cb(null, true);
+    } else {
+        return cb(null, false);
+    }
 };
 
 module.exports = mongoose.model('User', UserSchema);

@@ -1,13 +1,13 @@
     app.controller('viewExpenseController', ['$scope', 'viewExpenseFactory', 'expenseConstant',
-     'userFactory', '$filter','expenseFactory','$route',
-        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter,expenseFactory,$route) {
+        'userFactory', '$filter', 'expenseFactory', '$route',
+        function($scope, viewExpenseFactory, expenseConstant, userFactory, $filter, expenseFactory, $route) {
             var primaryStack = {};
 
             //initialize variables
             initializeVatiable();
             //create initial list
             createList(true);
-            
+
             //console.log($scope.filterObject );
             $scope.$watch('date', function(val) {
                 if (val !== undefined) {
@@ -25,49 +25,44 @@
                             monthChanged($scope.filterObject[2], 'expense', {
                                 eid: 2
                             });
-                            if($route.current.$$route.data.graph===true)
-                            {
-                                 $scope.graphGenerator();
+                            if ($route.current.$$route.data.graph === true) {
+                                $scope.graphGenerator();
                             }
                             //console.log(groubByapplier('ondate'));
-                            
+
                         });
                     }
                 }
             });
             $scope.graphType = 'Bar3D';
 
-            $scope.graphGenerator = function () {
+            $scope.graphGenerator = function() {
                 console.log($scope.graphType);
                 //console.log($scope.graph);
-                 if (this.date !== undefined) {
-                createDateGraph($scope.graphType);
+                if (this.date !== undefined) {
+                    createDateGraph($scope.graphType);
                 }
             }
 
-            $scope.editExpense = function(transactionId)
-            {
-                if($scope.displayTransactions[transactionId])
-                {
+            $scope.editExpense = function(transactionId) {
+                if ($scope.displayTransactions[transactionId]) {
                     expenseFactory.initializeEdit($scope.displayTransactions[transactionId]);
                 }
                 //
             }
-            $scope.deleteExpense = function(transactionId)
-            {
+            $scope.deleteExpense = function(transactionId) {
 
-                    var tosearch = this.displayTransactions[transactionId];
-                if(transactionId&&tosearch)
-                {
-                    expenseFactory.transaction(transactionId,'delete');
-                    
+                var tosearch = this.displayTransactions[transactionId];
+                if (transactionId && tosearch) {
+                    expenseFactory.transaction(transactionId, 'delete');
+
                     delete this.presentStack[tosearch.expenseType][tosearch.mainCatagory][tosearch.subCatagory][transactionId];
                     delete this.displayTransactions[transactionId];
                 }
-                
+
             }
 
-            function createDateGraph( type) {
+            function createDateGraph(type) {
 
                 var forGraph = {};
                 //first fetch all the credit value
@@ -82,13 +77,12 @@
                         eid: i
                     });
                     forGraph[mapper[i]] = $scope.displayTransactions;
-                    $scope.graphData[mapper[i]] = viewExpenseFactory.createGraphObject(forGraph[mapper[i]], i, type,mapper[i]);
+                    $scope.graphData[mapper[i]] = viewExpenseFactory.createGraphObject(forGraph[mapper[i]], i, type, mapper[i]);
 
                 }
                 //console.log( $scope.graphData[mapper[1]]);
 
             }
-
 
 
 
@@ -263,7 +257,7 @@
                         };
                     }
                 }
-              //  console.log($scope.filterObject);
+                //  console.log($scope.filterObject);
             }
 
             function setMainCatagoryList(object, status, expId) {
@@ -311,20 +305,18 @@
                 return temp;
 
             }
-            function initializeVatiable()
-            {
 
-            $scope.expenceType = false;
-            $scope.displayStatus = false;
-            $scope.displayTransactions = {};
-            $scope.presentStack = viewExpenseFactory.presentStack;
-            $scope.filterListner = {};
-            $scope.filterObject = {};
-            $scope.expenseConstant = expenseConstant;
-            $scope.graphData = {};
+            function initializeVatiable() {
+
+                $scope.expenceType = false;
+                $scope.displayStatus = false;
+                $scope.displayTransactions = {};
+                $scope.presentStack = viewExpenseFactory.presentStack;
+                $scope.filterListner = {};
+                $scope.filterObject = {};
+                $scope.expenseConstant = expenseConstant;
+                $scope.graphData = {};
             }
-            
-
 
 
 

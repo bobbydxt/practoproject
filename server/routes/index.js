@@ -12,7 +12,9 @@ var app = express();
  */
 
 router.all('/*', function(req, res) {
- return res.render('index', { title: 'Home' });
+    return res.render('index', {
+        title: 'Home'
+    });
 });
 
 module.exports = router;
